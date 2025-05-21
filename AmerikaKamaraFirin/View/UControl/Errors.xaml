@@ -1,0 +1,97 @@
+﻿<UserControl
+    x:Class="AmerikaKamaraFirin.View.UControl.Errors"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:AmerikaKamaraFirin.View.UControl"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:Height="90"
+    d:Width="350"
+    mc:Ignorable="d">
+
+    <Border
+        x:Name="border"
+        Width="350"
+        Height="90"
+        Margin="0,0,0,0"
+        Background="#7F000000"
+        BorderBrush="Red"
+        BorderThickness="1"
+        CornerRadius="15">
+        <Grid>
+            <!--  İlk Görünüm  -->
+            <Grid x:Name="FirstGrid" Visibility="Visible">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="90" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition Height="25" />
+                </Grid.RowDefinitions>
+
+                <Viewbox
+                    x:Name="svgViewbox"
+                    Grid.Row="0"
+                    Grid.RowSpan="2"
+                    Grid.Column="0"
+                    Canvas.Left="10"
+                    Width="70"
+                    Height="70"
+                    Stretch="Uniform">
+                    <Canvas Width="125" Height="125">
+                        <Path
+                            x:Name="path1"
+                            Data="M89.4 1.8C88.3 0.6 86.8 0 85.2 0H38.8c-1.6 0-3.1 0.6-4.2 1.8L1.8 34.6C0.6 35.7 0 37.2 0 38.8v46.4 c0 1.6 0.6 3.1 1.8 4.2l32.8 32.8c1.1 1.1 2.7 1.8 4.2 1.8h46.4c1.6 0 3.1-0.6 4.2-1.8l32.8-32.8c1.1-1.101 1.8-2.7 1.8-4.2V38.8 c0-1.6-0.6-3.1-1.8-4.2L89.4 1.8z M110 79.4c0 1.6-0.6 3.1-1.8 4.199L83.6 108.2c-1.1 1.1-2.699 1.8-4.199 1.8H44.6 c-1.6 0-3.1-0.6-4.2-1.8L15.8 83.6C14.6 82.5 14 81 14 79.4V44.6c0-1.6 0.6-3.1 1.8-4.2l24.6-24.6c1.1-1.1 2.7-1.8 4.2-1.8h34.8 c1.6 0 3.1 0.6 4.199 1.8L108.2 40.4c1.1 1.1 1.8 2.7 1.8 4.2V79.4z"
+                            Fill="DarkOrange" />
+                        <Path
+                            x:Name="path2"
+                            Data="M65 23h-6c-3.3 0-6 2.7-6 6v41c0 3.3 2.7 6 6 6h6c3.3 0 6-2.7 6-6V29C71 25.7 68.3 23 65 23z"
+                            Fill="DarkOrange" />
+                        <Ellipse
+                            x:Name="path3"
+                            Canvas.Left="53"
+                            Canvas.Top="82.5"
+                            Width="18"
+                            Height="18"
+                            Fill="DarkOrange" />
+                    </Canvas>
+                </Viewbox>
+
+                <TextBlock
+                    x:Name="baslik"
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontSize="13"
+                    FontWeight="Bold"
+                    Foreground="White"
+                    Text="Program Açılırken Bazı Hatalar Oluştu."
+                    TextWrapping="Wrap" />
+                <TextBlock
+                    x:Name="textBlock"
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Margin="0,0,10,10"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Bottom"
+                    Foreground="White"
+                    Text="&gt;&gt;&gt;"
+                    TextWrapping="Wrap" />
+            </Grid>
+
+            <!--  İkinci Görünüm  -->
+            <!--<Grid x:Name="SecondGrid" Margin="4,4,0,0"  VerticalAlignment="Top" HorizontalAlignment="Left"  Visibility="Visible">
+                <Viewbox Stretch="Uniform" Width="50" Height="50" Canvas.Left="10">
+                    <Canvas Width="125" Height="125">
+                        <Path Fill="Green" Data="M89.4 1.8C88.3 0.6 86.8 0 85.2 0H38.8c-1.6 0-3.1 0.6-4.2 1.8L1.8 34.6C0.6 35.7 0 37.2 0 38.8v46.4 c0 1.6 0.6 3.1 1.8 4.2l32.8 32.8c1.1 1.1 2.7 1.8 4.2 1.8h46.4c1.6 0 3.1-0.6 4.2-1.8l32.8-32.8c1.1-1.101 1.8-2.7 1.8-4.2V38.8 c0-1.6-0.6-3.1-1.8-4.2L89.4 1.8z M110 79.4c0 1.6-0.6 3.1-1.8 4.199L83.6 108.2c-1.1 1.1-2.699 1.8-4.199 1.8H44.6 c-1.6 0-3.1-0.6-4.2-1.8L15.8 83.6C14.6 82.5 14 81 14 79.4V44.6c0-1.6 0.6-3.1 1.8-4.2l24.6-24.6c1.1-1.1 2.7-1.8 4.2-1.8h34.8 c1.6 0 3.1 0.6 4.199 1.8L108.2 40.4c1.1 1.1 1.8 2.7 1.8 4.2V79.4z" />
+                        <Path Fill="Green" Data="M65 23h-6c-3.3 0-6 2.7-6 6v41c0 3.3 2.7 6 6 6h6c3.3 0 6-2.7 6-6V29C71 25.7 68.3 23 65 23z" />
+                        <Ellipse Fill="Green" Canvas.Left="53" Canvas.Top="82.5" Width="18" Height="18" />
+                    </Canvas>
+                </Viewbox>
+            </Grid>-->
+        </Grid>
+    </Border>
+
+</UserControl>

@@ -1,0 +1,66 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="View\images\1.gif" />
+    <None Remove="View\images\2.gif" />
+    <None Remove="View\images\3.gif" />
+    <None Remove="View\images\AddBtn.png" />
+    <None Remove="View\images\background.png" />
+    <None Remove="View\images\background2.png" />
+    <None Remove="View\images\DelBtn.png" />
+    <None Remove="View\images\FolderBtn.png" />
+    <None Remove="View\images\Logo.png" />
+    <None Remove="View\images\SaveBtn.png" />
+    <None Remove="View\images\SermakLogo.png" />
+    <None Remove="View\images\SettingBtn.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Sharp7" Version="1.1.84" />
+    <PackageReference Include="XamlAnimatedGif" Version="2.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="View\images\1.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="View\images\2.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="View\images\3.gif" />
+    <Resource Include="View\images\AddBtn.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="View\images\background.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="View\images\background2.png" />
+    <Resource Include="View\images\DelBtn.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="View\images\FolderBtn.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="View\images\Logo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="View\images\SaveBtn.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="View\images\SermakLogo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="View\images\SettingBtn.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
+</Project>

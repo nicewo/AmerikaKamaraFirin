@@ -1,0 +1,264 @@
+﻿<Window x:Class="AmerikaKamaraFirin.View.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AmerikaKamaraFirin"
+        xmlns:controls="clr-namespace:AmerikaKamaraFirin.View.UControl"
+        Title="MainWindow"
+        Width="1024"
+        Height="768"
+        AllowsTransparency="True"
+        Background="#FF000035"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        mc:Ignorable="d" 
+        WindowState="Normal">
+    <Grid>
+
+        <Border>
+            <Grid Margin="0,0,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="70" />
+                    <RowDefinition />
+                    <RowDefinition Height="80" />
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <Image
+                        Height="70"
+                        Margin="10,0,0,0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        Cursor="Hand"
+                        MouseDown="Image_MouseDown"
+                        Source="/View/images/logo.png"
+                        Stretch="Uniform" />
+                </Grid>
+                <StackPanel
+                    Grid.Row="1"
+                    Margin="0,10,0,10"
+                    Orientation="Vertical">
+                    <Frame
+                        x:Name="Pages"
+                        Height="604"
+                        Navigated="MainFrame_Navigated"
+                        NavigationUIVisibility="Hidden"
+                        Source="/View/MainPage.xaml" />
+                </StackPanel>
+                <Grid />
+                <Grid Grid.Row="2" Background="Black">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <!--  ANASAYFA Butonu  -->
+                    <Button
+                        x:Name="btnMainPage"
+                        Grid.Column="0"
+                        Width="240"
+                        Height="80"
+                        Margin="0,0,0,0"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        BorderThickness="0"
+                        Click="btnNavbar_Click"
+                        Content="ANASAYFA"
+                        Cursor="Hand"
+                        FontFamily="Montserrat"
+                        FontSize="20"
+                        FontWeight="Bold"
+                        Foreground="White">
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Background" Value="Transparent" />
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#c62b1e" />
+                                    </Trigger>
+                                    <DataTrigger Binding="{Binding ActivePage}" Value="btnMainPage">
+                                        <Setter Property="Background" Value="#c62b1e" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+
+                    <!--  MANUEL Butonu  -->
+                    <Button
+                        x:Name="btnManual"
+                        Grid.Column="1"
+                        Width="240"
+                        Height="80"
+                        Margin="0,0,0,0"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        BorderThickness="0"
+                        Click="btnNavbar_Click"
+                        Content="MANUEL"
+                        Cursor="Hand"
+                        FontFamily="Montserrat"
+                        FontSize="20"
+                        FontWeight="Bold"
+                        Foreground="White">
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Background" Value="Transparent" />
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#c62b1e" />
+                                    </Trigger>
+                                    <DataTrigger Binding="{Binding ActivePage}" Value="btnManual">
+                                        <Setter Property="Background" Value="#c62b1e" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+
+                    <!--  ALARM Butonu  -->
+                    <Button
+                        x:Name="btnAlarms"
+                        Grid.Column="2"
+                        Width="240"
+                        Height="80"
+                        Margin="0,0,0,0"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        BorderThickness="0"
+                        Click="btnNavbar_Click"
+                        Content="ALARMLAR"
+                        Cursor="Hand"
+                        FontFamily="Montserrat"
+                        FontSize="20"
+                        FontWeight="Bold"
+                        Foreground="White">
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Background" Value="Transparent" />
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#c62b1e" />
+                                    </Trigger>
+                                    <DataTrigger Binding="{Binding ActivePage}" Value="btnAlarms">
+                                        <Setter Property="Background" Value="#c62b1e" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+
+                    <!--  REÇETE Butonu  -->
+                    <Button
+                        x:Name="btnRecipe"
+                        Grid.Column="3"
+                        Width="240"
+                        Height="80"
+                        Margin="0,0,0,0"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        BorderThickness="0"
+                        Click="btnNavbar_Click"
+                        Content="REÇETELER"
+                        Cursor="Hand"
+                        FontFamily="Montserrat"
+                        FontSize="20"
+                        FontWeight="Bold"
+                        Foreground="White">
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Background" Value="Transparent" />
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#c62b1e" />
+                                    </Trigger>
+                                    <DataTrigger Binding="{Binding ActivePage}" Value="btnRecipe">
+                                        <Setter Property="Background" Value="#c62b1e" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+
+                    <!--  AYARLAR Butonu  -->
+                    <Button
+                        x:Name="btnSettings"
+                        Grid.Column="4"
+                        Width="240"
+                        Height="80"
+                        Margin="0,0,0,0"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        BorderThickness="0"
+                        Click="btnNavbar_Click"
+                        Content="AYARLAR"
+                        Cursor="Hand"
+                        FontFamily="Montserrat"
+                        FontSize="20"
+                        FontWeight="Bold"
+                        Foreground="White">
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Background" Value="Transparent" />
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#c62b1e" />
+                                    </Trigger>
+                                    <DataTrigger Binding="{Binding ActivePage}" Value="btnSettings">
+                                        <Setter Property="Background" Value="#c62b1e" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+
+                </Grid>
+            </Grid>
+        </Border>
+        <controls:Errors
+            x:Name="txbError"
+            Margin="57,104,0,564"
+            IsError="True"
+            HorizontalAlignment="Left"
+            MouseLeftButtonDown="txbError_MouseLeftButtonDown" Width="316" />
+    </Grid>
+</Window>

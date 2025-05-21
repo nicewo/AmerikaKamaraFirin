@@ -1,0 +1,145 @@
+﻿<UserControl
+    x:Class="AmerikaKamaraFirin.View.UControl.UpDownTextbox"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:AmerikaKamaraFirin.View.UControl"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Width="273"
+    Height="100"
+    d:Height="100"
+    d:Width="273"
+    mc:Ignorable="d">
+    <Border
+        Margin="0,0,0,0"
+        Background="#7F000000"
+        BorderBrush="{DynamicResource {x:Static SystemColors.MenuHighlightBrushKey}}"
+        BorderThickness="1"
+        CornerRadius="15">
+        <Grid>
+            <Grid.ColumnDefinitions>
+
+                <ColumnDefinition Width="70" />
+                <ColumnDefinition />
+                <ColumnDefinition Width="70" />
+
+            </Grid.ColumnDefinitions>
+            <Border
+                Grid.Column="0"
+                Width="60"
+                Height="80"
+                Background="Green"
+                BorderBrush="Green"
+                BorderThickness="1"
+                CornerRadius="20"
+                Cursor="Hand"
+                MouseLeftButtonDown="ArrowLeft_Click">
+                <Path
+                    x:Name="arrow"
+                    Width="35"
+                    Height="25"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Data="M228.657,290.4c0,1.844,1.068,3.524,2.75,4.3c1.664,0.775,3.638,0.514,5.042-0.685l78.044-66.035 l-78.044-66.034c-1.404-1.2-3.378-1.46-5.042-0.686c-1.681,0.775-2.75,2.456-2.75,4.3v33.392H37.79v58.064h190.868V290.4z"
+                    Fill="White"
+                    RenderTransformOrigin="0.5,0.5"
+                    Stretch="Fill"
+                    Stroke="White">
+                    <Path.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform />
+                            <SkewTransform />
+                            <RotateTransform Angle="90.0" />
+                            <TranslateTransform />
+                        </TransformGroup>
+                    </Path.RenderTransform>
+                </Path>
+            </Border>
+            <Border
+                Grid.Column="2"
+                Width="60"
+                Height="80"
+                Background="Green"
+                BorderBrush="Green"
+                BorderThickness="1"
+                CornerRadius="20"
+                Cursor="Hand"
+                MouseLeftButtonDown="ArrowRight_Click">
+                <Path
+                    x:Name="arrow2"
+                    Width="35"
+                    Height="25"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Data="M228.657,290.4c0,1.844,1.068,3.524,2.75,4.3c1.664,0.775,3.638,0.514,5.042-0.685l78.044-66.035 l-78.044-66.034c-1.404-1.2-3.378-1.46-5.042-0.686c-1.681,0.775-2.75,2.456-2.75,4.3v33.392H37.79v58.064h190.868V290.4z"
+                    Fill="White"
+                    RenderTransformOrigin="0.5,0.5"
+                    Stretch="Fill"
+                    Stroke="White">
+                    <Path.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform />
+                            <SkewTransform />
+                            <RotateTransform Angle="270.0" />
+                            <TranslateTransform />
+                        </TransformGroup>
+                    </Path.RenderTransform>
+                </Path>
+            </Border>
+
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+
+                <TextBlock
+                    x:Name="baslik"
+                    Grid.Row="0"
+                    Margin="10,5,10,0"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Top"
+                    FontSize="13"
+                    FontWeight="Bold"
+                    Foreground="White"
+                    Text="Başlık"
+                    TextWrapping="Wrap" />
+                <Border
+                    Grid.Row="1"
+                    Margin="10,0,10,5"
+                    Background="#7D6479EF"
+                    CornerRadius="5"
+                    Cursor="Hand"
+                    MouseLeftButtonDown="Numpad_Click">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock
+                            x:Name="deger"
+                            Grid.Column="0"
+                            Margin="0,0,5,0"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Center"
+                            FontSize="13"
+                            FontWeight="Bold"
+                            Foreground="White"
+                            Text="10" />
+                        <TextBlock
+                            x:Name="birim"
+                            Grid.Column="1"
+                            Margin="5,0,0,0"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            FontSize="13"
+                            FontWeight="Bold"
+                            Foreground="White"
+                            Text="m/dk" />
+                    </Grid>
+                </Border>
+            </Grid>
+        </Grid>
+    </Border>
+</UserControl>
+

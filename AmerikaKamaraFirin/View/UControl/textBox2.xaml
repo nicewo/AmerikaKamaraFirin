@@ -1,0 +1,44 @@
+﻿<UserControl
+    x:Class="AmerikaKamaraFirin.View.UControl.textBox2"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:AmerikaKamaraFirin.View.UControl"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <Border
+        Margin="0,0,0,0"
+        Background="#7F000000"
+        BorderBrush="{DynamicResource {x:Static SystemColors.MenuHighlightBrushKey}}"
+        BorderThickness="1"
+        CornerRadius="5">
+        <Grid>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <TextBlock
+                    x:Name="deger"
+                    Grid.Column="0"
+                    Margin="0,0,2,0"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Center"
+                    FontSize="13"
+                    FontWeight="Bold"
+                    Foreground="White"
+                    Text="10" />
+                <TextBlock
+                    x:Name="birim"
+                    Grid.Column="1"
+                    Margin="2,0,3,0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    FontSize="13"
+                    FontWeight="Bold"
+                    Foreground="White"
+                    Text="m/dk" />
+            </Grid>
+        </Grid>
+    </Border>
+</UserControl>
