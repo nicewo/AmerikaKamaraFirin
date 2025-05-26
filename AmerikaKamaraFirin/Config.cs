@@ -29,7 +29,7 @@ namespace AmerikaKamaraFirin
             XDocument config = XDocument.Load(configPath);
 
             // PLC Ayarları
-            PlcIP = GetOrAddValue(config, "PlcLaminationIP", PlcIP);
+            PlcIP = GetOrAddValue(config, "PlcIP", PlcIP);
 
 
             // Config.xml güncellenmişse kaydet
@@ -53,7 +53,7 @@ namespace AmerikaKamaraFirin
         {
             XDocument defaultConfig = new XDocument(
                 new XElement("Config",
-                    new XElement("PlcLaminationIP", PlcIP)
+                    new XElement("PlcIP", PlcIP)
                 )
             );
 

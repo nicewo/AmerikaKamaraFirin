@@ -3,7 +3,8 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:local="clr-namespace:AmerikaKamaraFirin.View"
+       xmlns:resx="clr-namespace:AmerikaKamaraFirin"
+   xmlns:local="clr-namespace:AmerikaKamaraFirin.View"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="Bilgilendirme"
     Width="250"
@@ -30,7 +31,7 @@
                 VerticalAlignment="Top"
                 FontSize="14"
                 Foreground="{DynamicResource {x:Static SystemColors.WindowBrushKey}}"
-                Text="Hata İçeriği Günlüğe Kaydedildi."
+                Text="{x:Static resx:Resources.hata_icerigi_gunluge_kaydedildi}"
                 TextWrapping="Wrap" />
             <Button
                 Width="42"
@@ -41,7 +42,7 @@
                 VerticalAlignment="Top"
                 Background="{DynamicResource {x:Static SystemColors.InactiveCaptionTextBrushKey}}"
                 Click="CloseButton_Click"
-                Content="Tamam"
+                Content="{x:Static resx:Resources.tamam}"
                 FontSize="9"
                 Foreground="{DynamicResource {x:Static SystemColors.MenuBrushKey}}" />
         </Grid>

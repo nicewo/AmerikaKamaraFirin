@@ -41,7 +41,7 @@ namespace AmerikaKamaraFirin.View
         {
             Config.LoadConfig();
             // PLC Bağlantısı
-            UpdateStatus("PLC'lere Bağlanılıyor...");
+            UpdateStatus(AmerikaKamaraFirin.Resources.plclere_baglaniliyor);
             int tryConnect = 0;
             Config.PlcStatu = 1;
             while (Config.PlcStatu != 0 && tryConnect < Globals.ConnectTryCount)
@@ -50,14 +50,14 @@ namespace AmerikaKamaraFirin.View
                 Task.Delay(500).Wait();
                 tryConnect++;
             }
-            if (Config.PlcStatu != 0) UpdateStatus($"Fırın PLC Bağlanamadı: {Globals.PlcError(Config.PlcStatu)}", true, "Program Açılırken Bazı Hatalar Oluştu!");
+            if (Config.PlcStatu != 0) UpdateStatus($"{AmerikaKamaraFirin.Resources.fırın_PLC_Baglanamadi}: {Globals.PlcError(Config.PlcStatu)}", true, AmerikaKamaraFirin.Resources.program_acilirken_bazi_hatalar_olustu);
             tryConnect = 0;
 
-                UpdateStatus("Reçeteler kontrol ediliyor...");
+                UpdateStatus(AmerikaKamaraFirin.Resources.receteler_kontrol_ediliyor);
                 Task.Delay(3 * DelayCarpan).Wait();
                 CheckAndCreateRecipe();
             // Arayüz Yükleniyor
-            UpdateStatus("Arayüz Yükleniyor...");
+            UpdateStatus(AmerikaKamaraFirin.Resources.arayuz_yukleniyor);
             Task.Delay(1 * DelayCarpan).Wait(); // Arayüz yükleme işlemi burada yapılır
 
         }
@@ -79,14 +79,14 @@ namespace AmerikaKamaraFirin.View
                 if (!Directory.Exists(klasorYolu))
                 {
                     Directory.CreateDirectory(klasorYolu);
-                    UpdateStatus("Reçeteler klasörü oluşturuldu.");
+                    UpdateStatus(AmerikaKamaraFirin.Resources.receteler_klasoru_olusturuldu);
                 }
 
                 var receteDosyalari = Directory.GetFiles(klasorYolu, "*.json");
                 if (receteDosyalari.Length == 0)
                 {
                     // Örnek reçete oluştur
-                    string receteAdi = "Sample Recipe";
+                    string receteAdi = AmerikaKamaraFirin.Resources.sample_recipe;
                     var ornekRecete = new Recete
                     {
                         Adi = receteAdi,
@@ -108,20 +108,21 @@ namespace AmerikaKamaraFirin.View
                     string json = JsonSerializer.Serialize(ornekRecete, new JsonSerializerOptions { WriteIndented = true });
                     File.WriteAllText(dosyaYolu, json);
 
-                    UpdateStatus("Örnek reçete oluşturuldu.");
+                    UpdateStatus(AmerikaKamaraFirin.Resources.ornek_recete_olusturuldu);
                 }
                 else
                 {
-                    UpdateStatus("Reçeteler kontrol edildi.");
+                    UpdateStatus(AmerikaKamaraFirin.Resources.receteler_kontrol_edildi);
                 }
             }
             catch (Exception ex)
             {
-                UpdateStatus($"Reçete klasörü kontrolünde hata: {ex.Message}", true, "Reçete Oluşturma Hatası");
+                UpdateStatus($"{AmerikaKamaraFirin.Resources.recete_klasörü_kontrolünde_hata}: {ex.Message}", true, AmerikaKamaraFirin.Resources.recete_olusturma_hatasi);
             }
         }
         private void UpdateStatus(string message, bool error = false, string title = "Bir Hatayla Karşılaşıldı!")
         {
+            title = AmerikaKamaraFirin.Resources.bir_hatayla_karsilasildi;
             // Uygulama içindeki TextBlock'a mesajı yaz
             Application.Current.Dispatcher.Invoke(() =>
             {

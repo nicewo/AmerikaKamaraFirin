@@ -1,0 +1,468 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="add" xml:space="preserve">
+    <value>Add  </value>
+  </data>
+  <data name="alarmlar" xml:space="preserve">
+    <value>Alarms  </value>
+  </data>
+  <data name="anasayfa" xml:space="preserve">
+    <value>Homepage  </value>
+  </data>
+  <data name="ayarlar" xml:space="preserve">
+    <value>Settings  </value>
+  </data>
+  <data name="adim" xml:space="preserve">
+    <value>Step  </value>
+  </data>
+  <data name="adimlar" xml:space="preserve">
+    <value>Steps  </value>
+  </data>
+  <data name="alarms" xml:space="preserve">
+    <value>Alarms  </value>
+  </data>
+  <data name="baslik" xml:space="preserve">
+    <value>Title  </value>
+  </data>
+  <data name="bilgilendirme" xml:space="preserve">
+    <value>Information  </value>
+  </data>
+  <data name="buffer_durum_bilgisi" xml:space="preserve">
+    <value>Buffer Status Info  </value>
+  </data>
+  <data name="data_otomasyon" xml:space="preserve">
+    <value>Data Otomasyon</value>
+  </data>
+  <data name="giris_yapiniz" xml:space="preserve">
+    <value>Please log in!</value>
+  </data>
+  <data name="hata_sayfasi" xml:space="preserve">
+    <value>Error Page  </value>
+  </data>
+  <data name="hata_icerigi_gunluge_kaydedildi" xml:space="preserve">
+    <value>Error content saved to log.</value>
+  </data>
+  <data name="hedef_sicaklik" xml:space="preserve">
+    <value>Target Temperature  </value>
+  </data>
+  <data name="kamara_firin" xml:space="preserve">
+    <value>Chamber Oven  </value>
+  </data>
+  <data name="kaydet" xml:space="preserve">
+    <value>Save  </value>
+  </data>
+  <data name="loading" xml:space="preserve">
+    <value>Loading  </value>
+  </data>
+  <data name="manuel" xml:space="preserve">
+    <value>Manual  </value>
+  </data>
+  <data name="main" xml:space="preserve">
+    <value>Main  </value>
+  </data>
+  <data name="mainwindow" xml:space="preserve">
+    <value>Mainwindow  </value>
+  </data>
+  <data name="manual" xml:space="preserve">
+    <value>Manual  </value>
+  </data>
+  <data name="new_recipe" xml:space="preserve">
+    <value>New Recipe  </value>
+  </data>
+  <data name="otomanual" xml:space="preserve">
+    <value>Auto/Manual  </value>
+  </data>
+  <data name="program_acilirken_bazi_hatalar_olustu" xml:space="preserve">
+    <value>Errors Occurred During Startup  </value>
+  </data>
+  <data name="receteler" xml:space="preserve">
+    <value>Recipes  </value>
+  </data>
+  <data name="recipe" xml:space="preserve">
+    <value>Recipe  </value>
+  </data>
+  <data name="recete_adi" xml:space="preserve">
+    <value>Recipe Name  </value>
+  </data>
+  <data name="recete_duzenle" xml:space="preserve">
+    <value>Edit Recipe  </value>
+  </data>
+  <data name="sermak_makina" xml:space="preserve">
+    <value>SER-MAK Makine</value>
+  </data>
+  <data name="settings" xml:space="preserve">
+    <value>Settings  </value>
+  </data>
+  <data name="sure" xml:space="preserve">
+    <value>Duration  </value>
+  </data>
+  <data name="tamam" xml:space="preserve">
+    <value>OK  </value>
+  </data>
+  <data name="x" xml:space="preserve">
+    <value>X  </value>
+  </data>
+  <data name="yukleniyor" xml:space="preserve">
+    <value>Loading...  </value>
+  </data>
+  <data name="mdk" xml:space="preserve">
+    <value>m/min  </value>
+  </data>
+  <data name="icerik" xml:space="preserve">
+    <value>Content  </value>
+  </data>
+  <data name="newadim" xml:space="preserve">
+    <value>New Step</value>
+  </data>
+  <data name="adres_araligi_disina_cikildi" xml:space="preserve">
+    <value>Address range exceeded.</value>
+  </data>
+  <data name="alinan_veri_boyutu_gecersiz" xml:space="preserve">
+    <value>Invalid received data size.</value>
+  </data>
+  <data name="arayuz_yukleniyor" xml:space="preserve">
+    <value>Interface is loading...</value>
+  </data>
+  <data name="ayarlanacak_veya_temizlenecek_sifre_yok" xml:space="preserve">
+    <value>No password to set or clear.</value>
+  </data>
+  <data name="baglanti_kapatiliyor" xml:space="preserve">
+    <value>Disconnecting...</value>
+  </data>
+  <data name="basarili_islem_sorunsuz_tamamlandi" xml:space="preserve">
+    <value>Success, operation completed smoothly.</value>
+  </data>
+  <data name="bir_hatayla_karsilasildi" xml:space="preserve">
+    <value>An error occurred!</value>
+  </data>
+  <data name="buffer_acik" xml:space="preserve">
+    <value>Buffer On</value>
+  </data>
+  <data name="buffer_kapali" xml:space="preserve">
+    <value>Buffer Off</value>
+  </data>
+  <data name="config" xml:space="preserve">
+    <value>Config</value>
+  </data>
+  <data name="confirm_deletion" xml:space="preserve">
+    <value>Confirm Deletion</value>
+  </data>
+  <data name="delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="fonksiyon_mevcut_degil" xml:space="preserve">
+    <value>Function does not exist.</value>
+  </data>
+  <data name="fonksiyon_reddedildi" xml:space="preserve">
+    <value>Function rejected.</value>
+  </data>
+  <data name="fonksiyon_uygulanmamis" xml:space="preserve">
+    <value>Function not applied.</value>
+  </data>
+  <data name="gecersiz_iso_pdu_protokol_veri_birimi_algilandi" xml:space="preserve">
+    <value>Invalid ISO PDU (Protocol Data Unit) detected.</value>
+  </data>
+  <data name="gecersiz_blok_boyutu" xml:space="preserve">
+    <value>Invalid block size.</value>
+  </data>
+  <data name="gecersiz_blok_numarasi" xml:space="preserve">
+    <value>Invalid block number.</value>
+  </data>
+  <data name="gecersiz_blok_turu" xml:space="preserve">
+    <value>Invalid block type.</value>
+  </data>
+  <data name="gecersiz_deger" xml:space="preserve">
+    <value>Invalid value.</value>
+  </data>
+  <data name="gecersiz_parametre_numarasi" xml:space="preserve">
+    <value>Invalid parameter number.</value>
+  </data>
+  <data name="gecersiz_parametreler_gonderildi" xml:space="preserve">
+    <value>Invalid parameters sent.</value>
+  </data>
+  <data name="gecersiz_tasima_boyutu" xml:space="preserve">
+    <value>Invalid transport size.</value>
+  </data>
+  <data name="gecersiz_veri_uzunlugu" xml:space="preserve">
+    <value>Invalid data length.</value>
+  </data>
+  <data name="gecersiz_sifre" xml:space="preserve">
+    <value>Invalid password.</value>
+  </data>
+  <data name="iso_baglantisi_basarisiz_oldu" xml:space="preserve">
+    <value>ISO connection failed.</value>
+  </data>
+  <data name="iso_veri_boyutu_gecersiz" xml:space="preserve">
+    <value>Invalid ISO data size.</value>
+  </data>
+  <data name="movestoryboard" xml:space="preserve">
+    <value>MoveStoryboard</value>
+  </data>
+  <data name="pdu_protokol_veri_birimi_muzakeresi_basarisiz_oldu" xml:space="preserve">
+    <value>PDU negotiation failed.</value>
+  </data>
+  <data name="plc_baslatilamiyor" xml:space="preserve">
+    <value>Cannot start PLC.</value>
+  </data>
+  <data name="plc_durdurulamiyor" xml:space="preserve">
+    <value>Cannot stop PLC.</value>
+  </data>
+  <data name="plc_zaten_durdurulmus" xml:space="preserve">
+    <value>PLC already stopped.</value>
+  </data>
+  <data name="plc_zaten_calisiyor" xml:space="preserve">
+    <value>PLC already running.</value>
+  </data>
+  <data name="plcden_alinan_yanit_gecersiz" xml:space="preserve">
+    <value>Invalid response from PLC.</value>
+  </data>
+  <data name="plclere_baglaniliyor" xml:space="preserve">
+    <value>Connecting to PLCs...</value>
+  </data>
+  <data name="parametre_degistirilemiyor" xml:space="preserve">
+    <value>Parameter cannot be changed.</value>
+  </data>
+  <data name="plclaminationip" xml:space="preserve">
+    <value>PlcLaminationIP</value>
+  </data>
+  <data name="ramden_roma_kopyalama_basarisiz_oldu" xml:space="preserve">
+    <value>Copying from RAM to ROM failed.</value>
+  </data>
+  <data name="recipes" xml:space="preserve">
+    <value>Recipes</value>
+  </data>
+  <data name="recete_ekle_tiklandi" xml:space="preserve">
+    <value>Add Recipe clicked</value>
+  </data>
+  <data name="recete_basariyla_kaydedildi" xml:space="preserve">
+    <value>Recipe saved successfully.</value>
+  </data>
+  <data name="recete_basariyla_silindi" xml:space="preserve">
+    <value>Recipe deleted successfully.</value>
+  </data>
+  <data name="recete_bulunamadi" xml:space="preserve">
+    <value>Recipe not found.</value>
+  </data>
+  <data name="receteler_klasoru_olusturuldu" xml:space="preserve">
+    <value>Recipes folder created.</value>
+  </data>
+  <data name="receteler_kontrol_edildi" xml:space="preserve">
+    <value>Recipes checked.</value>
+  </data>
+  <data name="receteler_kontrol_ediliyor" xml:space="preserve">
+    <value>Checking recipes...</value>
+  </data>
+  <data name="sample_recipe" xml:space="preserve">
+    <value>Sample Recipe</value>
+  </data>
+  <data name="servis" xml:space="preserve">
+    <value>Service</value>
+  </data>
+  <data name="sikistirma_islemi_basarisiz_oldu" xml:space="preserve">
+    <value>Compression operation failed.</value>
+  </data>
+  <data name="tcp_ana_bilgisayar_erisilemez" xml:space="preserve">
+    <value>TCP host unreachable.</value>
+  </data>
+  <data name="tcp_baglantisi_basarisiz_oldu" xml:space="preserve">
+    <value>TCP connection failed.</value>
+  </data>
+  <data name="tcp_baglantisi_kurulmamis" xml:space="preserve">
+    <value>TCP not connected.</value>
+  </data>
+  <data name="tcp_baglantisi_sifirlandi" xml:space="preserve">
+    <value>TCP connection reset.</value>
+  </data>
+  <data name="tcp_baglantisi_zaman_asimina_ugradi" xml:space="preserve">
+    <value>TCP connection timed out.</value>
+  </data>
+  <data name="tcp_soketi_olusturulamadi" xml:space="preserve">
+    <value>TCP socket creation failed.</value>
+  </data>
+  <data name="tcp_veri_alimi_zaman_asimina_ugradi" xml:space="preserve">
+    <value>TCP data receive timed out.</value>
+  </data>
+  <data name="tcp_veri_gonderimi_zaman_asimina_ugradi" xml:space="preserve">
+    <value>TCP data send timed out.</value>
+  </data>
+  <data name="tcp_uzerinden_veri_alinamadi" xml:space="preserve">
+    <value>Failed to receive data over TCP.</value>
+  </data>
+  <data name="tcp_uzerinden_veri_gonderilemedi" xml:space="preserve">
+    <value>Failed to send data over TCP.</value>
+  </data>
+  <data name="tampon_boyutu_cok_kucuk" xml:space="preserve">
+    <value>Buffer size is too small.</value>
+  </data>
+  <data name="timeraction" xml:space="preserve">
+    <value>TimerAction</value>
+  </data>
+  <data name="veri_boyutu_pdu_sinirini_asiyor" xml:space="preserve">
+    <value>Data size exceeds PDU limit.</value>
+  </data>
+  <data name="yalnizca_kismi_veri_okundu" xml:space="preserve">
+    <value>Only partial data was read.</value>
+  </data>
+  <data name="yalnizca_kismi_veri_yazildi" xml:space="preserve">
+    <value>Only partial data was written.</value>
+  </data>
+  <data name="yazilan_veri_boyutu_uyumsuz" xml:space="preserve">
+    <value>Written data size mismatch.</value>
+  </data>
+  <data name="yukleme_sirasi_basarisiz_oldu" xml:space="preserve">
+    <value>Load sequence failed.</value>
+  </data>
+  <data name="cok_fazla_oge_gonderildi" xml:space="preserve">
+    <value>Too many items sent.</value>
+  </data>
+  <data name="onceki_islem_hala_beklemede" xml:space="preserve">
+    <value>Previous operation is still pending.</value>
+  </data>
+  <data name="ornek_recete_olusturuldu" xml:space="preserve">
+    <value>Sample recipe created.</value>
+  </data>
+  <data name="istenen_oge_mevcut_degil" xml:space="preserve">
+    <value>Requested item not found.</value>
+  </data>
+  <data name="islem_zaman_asimina_ugradi" xml:space="preserve">
+    <value>Operation timed out.</value>
+  </data>
+  <data name="sifre_gerekli" xml:space="preserve">
+    <value>Password required.</value>
+  </data>
+  <data name="recete_olusturma_hatasi" xml:space="preserve">
+    <value>Recipe Creation Error</value>
+  </data>
+  <data name="recete_klasörü_kontrolünde_hata" xml:space="preserve">
+    <value>Error checking recipe folder</value>
+  </data>
+  <data name="fırın_PLC_Baglanamadi" xml:space="preserve">
+    <value>Furnace PLC connection failed</value>
+  </data>
+  <data name="recete_okunurken_hata_olustu" xml:space="preserve">
+    <value>An error occurred while reading the recipe</value>
+  </data>
+  <data name="Are_you_sure_you_want_to_delete_the_recipe" xml:space="preserve">
+    <value>Are you sure you want to delete the recipe?</value>
+  </data>
+  <data name="toplam_süre" xml:space="preserve">
+    <value>Total Duration : </value>
+  </data>
+</root>

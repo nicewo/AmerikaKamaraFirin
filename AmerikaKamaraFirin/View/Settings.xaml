@@ -2,13 +2,14 @@
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+       xmlns:resx="clr-namespace:AmerikaKamaraFirin"
+     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:AmerikaKamaraFirin.View"
       mc:Ignorable="d" 
       d:DesignHeight="604" d:DesignWidth="1366"
       Title="Settings">
 
     <Grid>
-        <TextBlock Text="AYARLAR" Margin="442,193,298,225" Foreground="AliceBlue"/>
+        <TextBlock Text="{x:Static resx:Resources.ayarlar}" Margin="442,193,298,225" Foreground="AliceBlue"/>
     </Grid>
 </Page>

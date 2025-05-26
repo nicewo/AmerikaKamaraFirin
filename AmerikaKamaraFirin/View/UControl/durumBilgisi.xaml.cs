@@ -31,12 +31,12 @@ namespace AmerikaKamaraFirin.View.UControl
         {
             if (status)
             {
-                statusLabel.Content = "Buffer Açık";
+                statusLabel.Content = AmerikaKamaraFirin.Resources.buffer_acik;
                 statusLabel.Foreground = new SolidColorBrush(Colors.Green);
             }
             else
             {
-                statusLabel.Content = "Buffer Kapalı";
+                statusLabel.Content = AmerikaKamaraFirin.Resources.buffer_kapali;
                 statusLabel.Foreground = new SolidColorBrush(Colors.Red);
             }
         }

@@ -45,7 +45,7 @@ namespace AmerikaKamaraFirin.View
 
         private async void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            var msg = new Message("Hata İçeriği Günlüğe Kaydedildi.");
+            var msg = new Message(AmerikaKamaraFirin.Resources.hata_icerigi_gunluge_kaydedildi);
             await msg.ShowWithTimeout(1000);
             Globals.HataIcerigi = "";
         }

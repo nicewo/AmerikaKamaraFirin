@@ -100,7 +100,7 @@ namespace AmerikaKamaraFirin.View.UControl
                     OnPropertyChanged(nameof(Text));
 
                     title.Content = text;
-                    if (text?.ToString() != "Giriş Yapınız!")
+                    if (text?.ToString() != AmerikaKamaraFirin.Resources.giris_yapiniz)
                     {
                         door.Visibility = Visibility.Hidden;
                         arrow.Visibility = Visibility.Hidden;

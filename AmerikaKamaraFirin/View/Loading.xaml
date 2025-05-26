@@ -3,7 +3,8 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-     xmlns:gif="https://github.com/XamlAnimatedGif/XamlAnimatedGif"
+    xmlns:resx="clr-namespace:AmerikaKamaraFirin"
+    xmlns:gif="https://github.com/XamlAnimatedGif/XamlAnimatedGif"
      xmlns:local="clr-namespace:AmerikaKamaraFirin"
     Title="Loading"
     Width="1024"
@@ -62,7 +63,7 @@
                         FontFamily="Montserrat"
                         FontSize="13"
                         Foreground="White"
-                        Text="Data Otomasyon" />
+                        Text="{x:Static resx:Resources.data_otomasyon}" />
                     <Button
                         x:Name="btnClose"
                         Width="50"
@@ -152,7 +153,7 @@
                         FontSize="34"
                         FontWeight="Medium"
                         Foreground="White"
-                        Text="SER-MAK Makina" 
+                        Text="{x:Static resx:Resources.sermak_makina}" 
                             Grid.Column="0"/>
                         <TextBlock
                         HorizontalAlignment="Center"
@@ -160,7 +161,7 @@
                         FontSize="34"
                         FontWeight="Medium"
                         Foreground="White"
-                        Text="DATA OTOMASYON" 
+                        Text="{x:Static resx:Resources.data_otomasyon}" 
                             Grid.Column="1"/>
                     </Grid>
                     <TextBlock
@@ -170,7 +171,7 @@
                         FontSize="100"
                         FontWeight="Medium"
                         Foreground="LightGray"
-                        Text="KAMARA FIRIN" />
+                        Text="{x:Static resx:Resources.kamara_firin}" />
                 </StackPanel>
 
 
@@ -187,7 +188,7 @@
                         FontSize="13"
                         FontWeight="Medium"
                         Foreground="White"
-                        Text="DATA OTOMASYON"
+                        Text="{x:Static resx:Resources.data_otomasyon}"
                         TextWrapping="Wrap" />
                     <TextBlock
                         x:Name="txtLoading"
@@ -199,7 +200,7 @@
                         FontSize="12"
                         FontWeight="Medium"
                         Foreground="White"
-                        Text="Yükleniyor...." />
+                        Text="{x:Static resx:Resources.yukleniyor}" />
                 </Grid>
 
 

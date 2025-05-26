@@ -1,5 +1,7 @@
 ﻿using AmerikaKamaraFirin.View;
 using System.ComponentModel;
+using System.Globalization;
+using System.IO;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -30,6 +32,7 @@ namespace AmerikaKamaraFirin.View
         bool debug = false;
 #endif
 
+        bool ilkacilis = true;
         public string ActivePage
         {
             get => _activePage;
@@ -91,6 +94,21 @@ namespace AmerikaKamaraFirin.View
             UItimer.Tick += UItimerTick;
             UItimer.Start();
             ActivePage = "btnMainPage";
+
+            if (File.Exists("lang.txt"))
+            {
+                string currentLang = File.ReadAllText("lang.txt").Trim();
+                foreach (ComboBoxItem item in cmbLanguage.Items)
+                {
+                    if ((item.Tag as string) == currentLang)
+                    {
+                        cmbLanguage.SelectedItem = item;
+                        break;
+                    }
+                }
+            }
+
+            ilkacilis = false;
         }
 
         private void MainFrame_Navigated(object sender, NavigationEventArgs e)
@@ -137,6 +155,20 @@ namespace AmerikaKamaraFirin.View
         {
             ErrorPage errorPage = new ErrorPage();
             errorPage.ShowDialog();
+        }
+        private void cmbLanguage_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (ilkacilis) return;
+            if (cmbLanguage.SelectedItem is ComboBoxItem selectedItem && selectedItem.Tag is string cultureCode)
+            {
+                // Dili kaydet
+                File.WriteAllText("lang.txt", cultureCode);
+
+                // Uygulamayı yeniden başlat
+                var exePath = System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName;
+                System.Diagnostics.Process.Start(exePath);
+                Application.Current.Shutdown();
+            }
         }
     }
 }

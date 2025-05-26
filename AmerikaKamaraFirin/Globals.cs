@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static AmerikaKamaraFirin.Resources;
 
 namespace AmerikaKamaraFirin
 {
@@ -23,28 +24,9 @@ namespace AmerikaKamaraFirin
             HataBasligi = "",
             HataIcerigi = "";
         public static bool
-            IsError = false,
-            PlcLaminasyonBaglanti = false,
+            IsError = false;
         //plcden gelecekler ------------------
-            MakineAktif = false,
-            SuAkisAktif = false,
-            OrtalayiciAktif = false,
-            SungerGirisIleri = false,
-            AstarGirisIleri = false,
-            KumasGirisIleri = false,
-            LamineliIleri = false,
-            SungerGirisGeri = false,
-            AstarGirisGeri = false,
-            KumasGirisGeri = false,
-            LamineliGeri = false,
-            SungerDogGeri = false,
-            AstarDogGeri = false,
-            KumasDogGeri = false,
-            SungerDogIleri = false,
-            AstarDogIleri = false,
-            KumasDogIleri = false,
-            KumasAlev = false,
-            AstarAlev = false;
+
         //plcden gelecekler ------------------
         public static int
             ConnectTryCount = 1;
@@ -55,7 +37,7 @@ namespace AmerikaKamaraFirin
 
         public static void UpdateStatus(string message, bool error = false, string title = "Bir Hatayla Karşılaşıldı!")
         {
-
+            title = bir_hatayla_karsilasildi;
             string logMessage = $"{DateTime.Now:yyyy-MM-dd HH:mm:ss} - {message}"; // Tarih, saat ve mesajın birleştirilmesi
             if (error)
             { 
@@ -101,107 +83,107 @@ namespace AmerikaKamaraFirin
             switch (error)
             {
                 case S7Consts.ResultOK:
-                    return "Başarılı, işlem sorunsuz tamamlandı.";
+                    return basarili_islem_sorunsuz_tamamlandi;
                 case S7Consts.errTCPSocketCreation:
-                    return "TCP soketi oluşturulamadı.";
+                    return tcp_soketi_olusturulamadi;
                 case S7Consts.errTCPConnectionTimeout:
-                    return "TCP bağlantısı zaman aşımına uğradı.";
+                    return tcp_baglantisi_zaman_asimina_ugradi;
                 case S7Consts.errTCPConnectionFailed:
-                    return "TCP bağlantısı başarısız oldu.";
+                    return tcp_baglantisi_basarisiz_oldu;
                 case S7Consts.errTCPReceiveTimeout:
-                    return "TCP veri alımı zaman aşımına uğradı.";
+                    return tcp_veri_alimi_zaman_asimina_ugradi;
                 case S7Consts.errTCPDataReceive:
-                    return "TCP üzerinden veri alınamadı.";
+                    return tcp_uzerinden_veri_alinamadi;
                 case S7Consts.errTCPSendTimeout:
-                    return "TCP veri gönderimi zaman aşımına uğradı.";
+                    return tcp_veri_gonderimi_zaman_asimina_ugradi;
                 case S7Consts.errTCPDataSend:
-                    return "TCP üzerinden veri gönderilemedi.";
+                    return tcp_uzerinden_veri_gonderilemedi;
                 case S7Consts.errTCPConnectionReset:
-                    return "TCP bağlantısı sıfırlandı.";
+                    return tcp_baglantisi_sifirlandi;
                 case S7Consts.errTCPNotConnected:
-                    return "TCP bağlantısı kurulmamış.";
+                    return tcp_baglantisi_kurulmamis;
                 case S7Consts.errTCPUnreachableHost:
-                    return "TCP ana bilgisayar erişilemez.";
+                    return tcp_ana_bilgisayar_erisilemez;
                 case S7Consts.errIsoConnect:
-                    return "ISO bağlantısı başarısız oldu.";
+                    return iso_baglantisi_basarisiz_oldu;
                 case S7Consts.errIsoInvalidPDU:
-                    return "Geçersiz ISO PDU (Protokol Veri Birimi) algılandı.";
+                    return gecersiz_iso_pdu_protokol_veri_birimi_algilandi;
                 case S7Consts.errIsoInvalidDataSize:
-                    return "ISO veri boyutu geçersiz.";
+                    return iso_veri_boyutu_gecersiz;
                 case S7Consts.errCliNegotiatingPDU:
-                    return "PDU (Protokol Veri Birimi) müzakeresi başarısız oldu.";
+                    return pdu_protokol_veri_birimi_muzakeresi_basarisiz_oldu;
                 case S7Consts.errCliInvalidParams:
-                    return "Geçersiz parametreler gönderildi.";
+                    return gecersiz_parametreler_gonderildi;
                 case S7Consts.errCliJobPending:
-                    return "Önceki işlem hala beklemede.";
+                    return onceki_islem_hala_beklemede;
                 case S7Consts.errCliTooManyItems:
-                    return "Çok fazla öğe gönderildi.";
+                    return cok_fazla_oge_gonderildi;
                 case S7Consts.errCliInvalidWordLen:
-                    return "Geçersiz veri uzunluğu.";
+                    return gecersiz_veri_uzunlugu;
                 case S7Consts.errCliPartialDataWritten:
-                    return "Yalnızca kısmi veri yazıldı.";
+                    return yalnizca_kismi_veri_yazildi;
                 case S7Consts.errCliSizeOverPDU:
-                    return "Veri boyutu PDU sınırını aşıyor.";
+                    return veri_boyutu_pdu_sinirini_asiyor;
                 case S7Consts.errCliInvalidPlcAnswer:
-                    return "PLC'den alınan yanıt geçersiz.";
+                    return plcden_alinan_yanit_gecersiz;
                 case S7Consts.errCliAddressOutOfRange:
-                    return "Adres aralığı dışına çıkıldı.";
+                    return adres_araligi_disina_cikildi;
                 case S7Consts.errCliInvalidTransportSize:
-                    return "Geçersiz taşıma boyutu.";
+                    return gecersiz_tasima_boyutu;
                 case S7Consts.errCliWriteDataSizeMismatch:
-                    return "Yazılan veri boyutu uyumsuz.";
+                    return yazilan_veri_boyutu_uyumsuz;
                 case S7Consts.errCliItemNotAvailable:
-                    return "İstenen öğe mevcut değil.";
+                    return istenen_oge_mevcut_degil;
                 case S7Consts.errCliInvalidValue:
-                    return "Geçersiz değer.";
+                    return gecersiz_deger;
                 case S7Consts.errCliCannotStartPLC:
-                    return "PLC başlatılamıyor.";
+                    return plc_baslatilamiyor;
                 case S7Consts.errCliAlreadyRun:
-                    return "PLC zaten çalışıyor.";
+                    return plc_zaten_calisiyor;
                 case S7Consts.errCliCannotStopPLC:
-                    return "PLC durdurulamıyor.";
+                    return plc_durdurulamiyor;
                 case S7Consts.errCliCannotCopyRamToRom:
-                    return "RAM'den ROM'a kopyalama başarısız oldu.";
+                    return ramden_roma_kopyalama_basarisiz_oldu;
                 case S7Consts.errCliCannotCompress:
-                    return "Sıkıştırma işlemi başarısız oldu.";
+                    return sikistirma_islemi_basarisiz_oldu;
                 case S7Consts.errCliAlreadyStop:
-                    return "PLC zaten durdurulmuş.";
+                    return plc_zaten_durdurulmus;
                 case S7Consts.errCliFunNotAvailable:
-                    return "Fonksiyon mevcut değil.";
+                    return fonksiyon_mevcut_degil;
                 case S7Consts.errCliUploadSequenceFailed:
-                    return "Yükleme sırası başarısız oldu.";
+                    return yukleme_sirasi_basarisiz_oldu;
                 case S7Consts.errCliInvalidDataSizeRecvd:
-                    return "Alınan veri boyutu geçersiz.";
+                    return alinan_veri_boyutu_gecersiz;
                 case S7Consts.errCliInvalidBlockType:
-                    return "Geçersiz blok türü.";
+                    return gecersiz_blok_turu;
                 case S7Consts.errCliInvalidBlockNumber:
-                    return "Geçersiz blok numarası.";
+                    return gecersiz_blok_numarasi;
                 case S7Consts.errCliInvalidBlockSize:
-                    return "Geçersiz blok boyutu.";
+                    return gecersiz_blok_boyutu;
                 case S7Consts.errCliNeedPassword:
-                    return "Şifre gerekli.";
+                    return sifre_gerekli;
                 case S7Consts.errCliInvalidPassword:
-                    return "Geçersiz şifre.";
+                    return gecersiz_sifre;
                 case S7Consts.errCliNoPasswordToSetOrClear:
-                    return "Ayarlanacak veya temizlenecek şifre yok.";
+                    return ayarlanacak_veya_temizlenecek_sifre_yok;
                 case S7Consts.errCliJobTimeout:
-                    return "İşlem zaman aşımına uğradı.";
+                    return islem_zaman_asimina_ugradi;
                 case S7Consts.errCliPartialDataRead:
-                    return "Yalnızca kısmi veri okundu.";
+                    return yalnizca_kismi_veri_okundu;
                 case S7Consts.errCliBufferTooSmall:
-                    return "Tampon boyutu çok küçük.";
+                    return tampon_boyutu_cok_kucuk;
                 case S7Consts.errCliFunctionRefused:
-                    return "Fonksiyon reddedildi.";
+                    return fonksiyon_reddedildi;
                 case S7Consts.errCliDestroying:
-                    return "Bağlantı kapatılıyor.";
+                    return baglanti_kapatiliyor;
                 case S7Consts.errCliInvalidParamNumber:
-                    return "Geçersiz parametre numarası.";
+                    return gecersiz_parametre_numarasi;
                 case S7Consts.errCliCannotChangeParam:
-                    return "Parametre değiştirilemiyor.";
+                    return parametre_degistirilemiyor;
                 case S7Consts.errCliFunctionNotImplemented:
-                    return "Fonksiyon uygulanmamış.";
+                    return fonksiyon_uygulanmamis;
                 default:
-                    return $"Bilinmeyen hata kodu: {error}";
+                    return $"{bir_hatayla_karsilasildi}: {error}";
             }
         }
     }

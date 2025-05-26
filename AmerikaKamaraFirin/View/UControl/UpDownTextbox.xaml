@@ -1,7 +1,8 @@
 ﻿<UserControl
     x:Class="AmerikaKamaraFirin.View.UControl.UpDownTextbox"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:resx="clr-namespace:AmerikaKamaraFirin"
+   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:AmerikaKamaraFirin.View.UControl"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -102,7 +103,7 @@
                     FontSize="13"
                     FontWeight="Bold"
                     Foreground="White"
-                    Text="Başlık"
+                    Text="{x:Static resx:Resources.baslik}"
                     TextWrapping="Wrap" />
                 <Border
                     Grid.Row="1"
@@ -135,7 +136,7 @@
                             FontSize="13"
                             FontWeight="Bold"
                             Foreground="White"
-                            Text="m/dk" />
+                            Text="{x:Static resx:Resources.mdk}" />
                     </Grid>
                 </Border>
             </Grid>

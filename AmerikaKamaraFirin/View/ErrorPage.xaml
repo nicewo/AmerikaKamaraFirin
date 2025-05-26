@@ -4,6 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:AmerikaKamaraFirin.View"
+    xmlns:resx="clr-namespace:AmerikaKamaraFirin"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Width="1000"
     Height="450"
@@ -34,7 +35,7 @@
                         VerticalAlignment="Center"
                         FontWeight="Bold"
                         Foreground="White"
-                        Text="Hata Sayfası" />
+                        Text="{x:Static resx:Resources.hata_sayfasi}" />
                     <Button
                         Width="38"
                         Height="25"

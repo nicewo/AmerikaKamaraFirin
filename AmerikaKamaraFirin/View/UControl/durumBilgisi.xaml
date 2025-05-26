@@ -3,7 +3,8 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:local="clr-namespace:AmerikaKamaraFirin.View.UControl"
+       xmlns:resx="clr-namespace:AmerikaKamaraFirin"
+   xmlns:local="clr-namespace:AmerikaKamaraFirin.View.UControl"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Width="200"
     Height="100"
@@ -25,7 +26,7 @@
                 FontSize="13"
                 FontWeight="Bold"
                 Foreground="White"
-                Text="İçerik" />
+                Text="{x:Static resx:Resources.icerik}" />
             <Border
                 Height="50"
                 Margin="10,38,10,10"
@@ -37,7 +38,7 @@
                 Margin="0,50,0,0"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Top"
-                Content="Buffer Durum Bilgisi"
+                Content="{x:Static resx:Resources.buffer_durum_bilgisi}"
                 FontWeight="BOLD" />
         </Grid>
     </Border>
