@@ -26,6 +26,20 @@ namespace AmerikaKamaraFirin
         public static bool
             IsError = false;
         //plcden gelecekler ------------------
+        public static bool
+            plc_solKapiAssada = true,
+            plc_solKapiYukarda = false,
+            plc_solKapiAcik = true,
+            plc_solKapiKapali = false,
+            plc_sagKapiAssada = true,
+            plc_sagKapiYukarda = false,
+            plc_sagKapiAcik = true,
+            plc_sagKapiKapali = false,
+            plc_firinDurum = true;
+
+        public static int
+            mevcutAdim = 1,
+            gecenZaman = 180;
 
         //plcden gelecekler ------------------
         public static int

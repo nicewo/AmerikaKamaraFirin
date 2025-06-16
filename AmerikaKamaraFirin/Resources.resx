@@ -160,7 +160,7 @@
     <value>Error content saved to log.</value>
   </data>
   <data name="hedef_sicaklik" xml:space="preserve">
-    <value>Target Temperature  </value>
+    <value>Target Temperature  (C)</value>
   </data>
   <data name="kamara_firin" xml:space="preserve">
     <value>Chamber Oven  </value>
@@ -211,7 +211,7 @@
     <value>Settings  </value>
   </data>
   <data name="sure" xml:space="preserve">
-    <value>Duration  </value>
+    <value>Duration (min) </value>
   </data>
   <data name="tamam" xml:space="preserve">
     <value>OK  </value>
@@ -464,5 +464,53 @@
   </data>
   <data name="toplam_süre" xml:space="preserve">
     <value>Total Duration : </value>
+  </data>
+  <data name="baca_aciklik" xml:space="preserve">
+    <value>Flue Damper Opening (%)</value>
+  </data>
+  <data name="Machine_Statu" xml:space="preserve">
+    <value>Furnace Statu :</value>
+  </data>
+  <data name="calisiyor" xml:space="preserve">
+    <value>Running</value>
+  </data>
+  <data name="durduruldu" xml:space="preserve">
+    <value>Stopping</value>
+  </data>
+  <data name="G1degeri" xml:space="preserve">
+    <value>Group 1 </value>
+  </data>
+  <data name="G2Degeri" xml:space="preserve">
+    <value>Group 2</value>
+  </data>
+  <data name="AktifAlarm" xml:space="preserve">
+    <value>Alarms</value>
+  </data>
+  <data name="GecmisAlarm" xml:space="preserve">
+    <value>Previous Alarms</value>
+  </data>
+  <data name="logyok" xml:space="preserve">
+    <value>Log File Not Found</value>
+  </data>
+  <data name="Temizle" xml:space="preserve">
+    <value>Reset Alarms</value>
+  </data>
+  <data name="recete_sec" xml:space="preserve">
+    <value>Select Recipe</value>
+  </data>
+  <data name="gecenZaman" xml:space="preserve">
+    <value>Elapsed Time</value>
+  </data>
+  <data name="dk" xml:space="preserve">
+    <value>min</value>
+  </data>
+  <data name="yeniAdim" xml:space="preserve">
+    <value>New Step</value>
+  </data>
+  <data name="receteDegeri" xml:space="preserve">
+    <value>Recipe G1</value>
+  </data>
+  <data name="receteDegeri2" xml:space="preserve">
+    <value>Recipe G2</value>
   </data>
 </root>

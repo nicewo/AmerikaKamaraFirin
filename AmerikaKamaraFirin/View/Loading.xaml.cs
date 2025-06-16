@@ -93,12 +93,16 @@ namespace AmerikaKamaraFirin.View
                         Adimlar = new List<Adim>()
                     };
 
-                    for (int i = 0; i < 10; i++)
+                    var rnd = new Random();
+                    for (int i = 0; i < 5; i++)
                     {
                         ornekRecete.Adimlar.Add(new Adim
                         {
-                            HedefSicaklik = 100 + (i * 20), // 100, 120, ..., 280
-                            SureDakika = 5 + i              // 5, 6, ..., 14 dakika
+                            AdimNo = i + 1,
+                            HedefSicaklik1 = rnd.Next(100, 1300),
+                            HedefSicaklik2 = rnd.Next(100, 1300),
+                            SureDakika = rnd.Next(10, 120),
+                            BacaAciklik = rnd.Next(0, 100)
                         });
                     }
 

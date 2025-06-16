@@ -63,7 +63,10 @@ namespace AmerikaKamaraFirin.View
         private void UItimerTick(object? sender, EventArgs e)
         {
             ErrorControl();
-
+            if(ActivePage == "btnAlarms")
+            {
+                txbError.Visibility = Visibility.Hidden;
+            }
             var currentPage = Pages.Content as dynamic;
             if (currentPage != null && currentPage?.GetType().GetMethod("TimerAction") != null)
             {
@@ -124,11 +127,6 @@ namespace AmerikaKamaraFirin.View
                 Pages.Navigate(new MainPage());
                 ActivePage = "btnMainPage";
             }
-            else if (btn.Name == "btnManual")
-            {
-                Pages.Navigate(new Manual());
-                ActivePage = "btnManual";
-            }
             else if (btn.Name == "btnAlarms")
             {
                 Pages.Navigate(new Alarms());
@@ -144,6 +142,11 @@ namespace AmerikaKamaraFirin.View
                 Pages.Navigate(new Settings());
                 ActivePage = "btnSettings";
             }
+            else
+            {
+                Pages.Navigate(new MainPage());
+                ActivePage = "btnMainPage";
+            }
         }
 
         private void Image_MouseDown(object sender, MouseButtonEventArgs e)
@@ -153,8 +156,8 @@ namespace AmerikaKamaraFirin.View
 
         private void txbError_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            ErrorPage errorPage = new ErrorPage();
-            errorPage.ShowDialog();
+            Pages.Navigate(new Alarms());
+            ActivePage = "btnAlarms";
         }
         private void cmbLanguage_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {

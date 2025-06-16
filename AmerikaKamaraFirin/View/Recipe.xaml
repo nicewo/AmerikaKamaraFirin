@@ -8,7 +8,7 @@
     xmlns:resx="clr-namespace:AmerikaKamaraFirin"
     Title="Recipe"
     d:DesignHeight="604"
-    d:DesignWidth="1366"
+    d:DesignWidth="1024"
     mc:Ignorable="d">
 
     <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
@@ -16,7 +16,7 @@
             x:Name="RecipeWrapPanel"
             Margin="30"
             ItemHeight="170"
-            ItemWidth="320"
+            ItemWidth="310"
             Orientation="Horizontal" />
     </ScrollViewer>
 </Page>

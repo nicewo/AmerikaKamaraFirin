@@ -16,11 +16,26 @@
     <None Remove="View\images\background.png" />
     <None Remove="View\images\background2.png" />
     <None Remove="View\images\DelBtn.png" />
+    <None Remove="View\images\firin.png" />
     <None Remove="View\images\FolderBtn.png" />
     <None Remove="View\images\Logo.png" />
+    <None Remove="View\images\sagacikassa.png" />
+    <None Remove="View\images\sagacikyukari.png" />
+    <None Remove="View\images\sagkapaliassa.png" />
+    <None Remove="View\images\sagkapaliyukari.png" />
     <None Remove="View\images\SaveBtn.png" />
     <None Remove="View\images\SermakLogo.png" />
     <None Remove="View\images\SettingBtn.png" />
+    <None Remove="View\images\solacikassa.png" />
+    <None Remove="View\images\solacikyukari.png" />
+    <None Remove="View\images\solkapaliassa.png" />
+    <None Remove="View\images\solkapaliyukari.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="View\images\sagacikassa.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
   <ItemGroup>
@@ -40,10 +55,20 @@
     <Resource Include="View\images\DelBtn.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="View\images\firin.png" />
     <Resource Include="View\images\FolderBtn.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="View\images\Logo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="View\images\sagacikyukari.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="View\images\sagkapaliassa.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="View\images\sagkapaliyukari.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="View\images\SaveBtn.png">
@@ -53,6 +78,18 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="View\images\SettingBtn.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="View\images\solacikassa.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="View\images\solacikyukari.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="View\images\solkapaliassa.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="View\images\solkapaliyukari.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>

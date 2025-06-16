@@ -1,15 +1,20 @@
-﻿<Page x:Class="AmerikaKamaraFirin.View.Settings"
-      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-       xmlns:resx="clr-namespace:AmerikaKamaraFirin"
-     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:AmerikaKamaraFirin.View"
-      mc:Ignorable="d" 
-      d:DesignHeight="604" d:DesignWidth="1366"
-      Title="Settings">
+﻿<Page
+    x:Class="AmerikaKamaraFirin.View.Settings"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:AmerikaKamaraFirin.View"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:resx="clr-namespace:AmerikaKamaraFirin"
+    Title="Settings"
+    d:DesignHeight="604"
+    d:DesignWidth="1024"
+    mc:Ignorable="d">
 
     <Grid>
-        <TextBlock Text="{x:Static resx:Resources.ayarlar}" Margin="442,193,298,225" Foreground="AliceBlue"/>
+        <TextBlock
+            Margin="442,193,298,225"
+            Foreground="AliceBlue"
+            Text="{x:Static resx:Resources.ayarlar}" />
     </Grid>
 </Page>

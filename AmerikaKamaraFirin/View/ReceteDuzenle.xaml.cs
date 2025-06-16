@@ -25,7 +25,7 @@ namespace AmerikaKamaraFirin.View
             eskirecete = recete;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Save_Click(object sender, RoutedEventArgs e)
         {
             _recete.Adi = txtReceteAdi.Text;
 
@@ -87,15 +87,18 @@ namespace AmerikaKamaraFirin.View
         }
         private void EkleAdim_Click(object sender, RoutedEventArgs e)
         {
-            if (int.TryParse(txtYeniSicaklik.Text, out int sicaklik) &&
-                int.TryParse(txtYeniSure.Text, out int sure))
+            if (int.TryParse(txtYeniSicaklik1.Text, out int sicaklik1) &&
+                int.TryParse(txtYeniSicaklik2.Text, out int sicaklik2) &&
+                int.TryParse(txtYeniSure.Text, out int sure) && 
+                int.TryParse(txtYeniBaca.Text, out int baca))
             {
                 // Yeni adım nesnesi oluştur
                 var yeniAdim = new Adim
                 {
                     AdimNo = _recete.Adimlar.Count + 1,
-                    HedefSicaklik = sicaklik,
-                    SureDakika = sure
+                    HedefSicaklik1 = sicaklik1,
+                    SureDakika = sure,
+                    BacaAciklik = baca
                 };
 
                 // Listeye ekle
@@ -106,7 +109,8 @@ namespace AmerikaKamaraFirin.View
                 lstAdimlar.ItemsSource = _recete.Adimlar;
 
                 // Giriş kutularını temizle
-                txtYeniSicaklik.Text = "";
+                txtYeniSicaklik1.Text = "";
+                txtYeniSicaklik2.Text = "";
                 txtYeniSure.Text = "";
             }
             else

@@ -17,9 +17,9 @@ using System.Windows.Shapes;
 namespace AmerikaKamaraFirin.View.UControl
 {
     /// <summary>
-    /// UpDownTextbox.xaml etkileşim mantığı
+    /// LeftRightTextbox.xaml etkileşim mantığı
     /// </summary>
-    public partial class UpDownTextbox : UserControl
+    public partial class LeftRightTextbox : UserControl
     {
         public event EventHandler ArrowLeftClicked;
         public event EventHandler ArrowRightClicked;
@@ -28,7 +28,7 @@ namespace AmerikaKamaraFirin.View.UControl
 
         // Sağ ok için event
 
-        public UpDownTextbox()
+        public LeftRightTextbox()
         {
             InitializeComponent();
         }

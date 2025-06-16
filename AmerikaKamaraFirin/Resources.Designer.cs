@@ -97,6 +97,15 @@ namespace AmerikaKamaraFirin {
         }
         
         /// <summary>
+        ///   Alarms benzeri yerelleştirilmiş bir dize arar.
+        /// </summary>
+        public static string AktifAlarm {
+            get {
+                return ResourceManager.GetString("AktifAlarm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Alarms   benzeri yerelleştirilmiş bir dize arar.
         /// </summary>
         public static string alarmlar {
@@ -165,6 +174,15 @@ namespace AmerikaKamaraFirin {
         public static string ayarlar {
             get {
                 return ResourceManager.GetString("ayarlar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Flue Damper Opening (%) benzeri yerelleştirilmiş bir dize arar.
+        /// </summary>
+        public static string baca_aciklik {
+            get {
+                return ResourceManager.GetString("baca_aciklik", resourceCulture);
             }
         }
         
@@ -241,6 +259,15 @@ namespace AmerikaKamaraFirin {
         }
         
         /// <summary>
+        ///   Running benzeri yerelleştirilmiş bir dize arar.
+        /// </summary>
+        public static string calisiyor {
+            get {
+                return ResourceManager.GetString("calisiyor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Too many items sent. benzeri yerelleştirilmiş bir dize arar.
         /// </summary>
         public static string cok_fazla_oge_gonderildi {
@@ -286,6 +313,24 @@ namespace AmerikaKamaraFirin {
         }
         
         /// <summary>
+        ///   min benzeri yerelleştirilmiş bir dize arar.
+        /// </summary>
+        public static string dk {
+            get {
+                return ResourceManager.GetString("dk", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Stopping benzeri yerelleştirilmiş bir dize arar.
+        /// </summary>
+        public static string durduruldu {
+            get {
+                return ResourceManager.GetString("durduruldu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Furnace PLC connection failed benzeri yerelleştirilmiş bir dize arar.
         /// </summary>
         public static string fırın_PLC_Baglanamadi {
@@ -318,6 +363,33 @@ namespace AmerikaKamaraFirin {
         public static string fonksiyon_uygulanmamis {
             get {
                 return ResourceManager.GetString("fonksiyon_uygulanmamis", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Group 1  benzeri yerelleştirilmiş bir dize arar.
+        /// </summary>
+        public static string G1degeri {
+            get {
+                return ResourceManager.GetString("G1degeri", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Group 2 benzeri yerelleştirilmiş bir dize arar.
+        /// </summary>
+        public static string G2Degeri {
+            get {
+                return ResourceManager.GetString("G2Degeri", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Elapsed Time benzeri yerelleştirilmiş bir dize arar.
+        /// </summary>
+        public static string gecenZaman {
+            get {
+                return ResourceManager.GetString("gecenZaman", resourceCulture);
             }
         }
         
@@ -412,6 +484,15 @@ namespace AmerikaKamaraFirin {
         }
         
         /// <summary>
+        ///   Previous Alarms benzeri yerelleştirilmiş bir dize arar.
+        /// </summary>
+        public static string GecmisAlarm {
+            get {
+                return ResourceManager.GetString("GecmisAlarm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Please log in! benzeri yerelleştirilmiş bir dize arar.
         /// </summary>
         public static string giris_yapiniz {
@@ -439,7 +520,7 @@ namespace AmerikaKamaraFirin {
         }
         
         /// <summary>
-        ///   Target Temperature   benzeri yerelleştirilmiş bir dize arar.
+        ///   Target Temperature  (C) benzeri yerelleştirilmiş bir dize arar.
         /// </summary>
         public static string hedef_sicaklik {
             get {
@@ -516,6 +597,24 @@ namespace AmerikaKamaraFirin {
         public static string loading {
             get {
                 return ResourceManager.GetString("loading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Log File Not Found benzeri yerelleştirilmiş bir dize arar.
+        /// </summary>
+        public static string logyok {
+            get {
+                return ResourceManager.GetString("logyok", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Furnace Statu : benzeri yerelleştirilmiş bir dize arar.
+        /// </summary>
+        public static string Machine_Statu {
+            get {
+                return ResourceManager.GetString("Machine_Statu", resourceCulture);
             }
         }
         
@@ -799,6 +898,33 @@ namespace AmerikaKamaraFirin {
         }
         
         /// <summary>
+        ///   Select Recipe benzeri yerelleştirilmiş bir dize arar.
+        /// </summary>
+        public static string recete_sec {
+            get {
+                return ResourceManager.GetString("recete_sec", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recipe G1 benzeri yerelleştirilmiş bir dize arar.
+        /// </summary>
+        public static string receteDegeri {
+            get {
+                return ResourceManager.GetString("receteDegeri", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recipe G2 benzeri yerelleştirilmiş bir dize arar.
+        /// </summary>
+        public static string receteDegeri2 {
+            get {
+                return ResourceManager.GetString("receteDegeri2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recipes   benzeri yerelleştirilmiş bir dize arar.
         /// </summary>
         public static string receteler {
@@ -907,7 +1033,7 @@ namespace AmerikaKamaraFirin {
         }
         
         /// <summary>
-        ///   Duration   benzeri yerelleştirilmiş bir dize arar.
+        ///   Duration (min)  benzeri yerelleştirilmiş bir dize arar.
         /// </summary>
         public static string sure {
             get {
@@ -1024,6 +1150,15 @@ namespace AmerikaKamaraFirin {
         }
         
         /// <summary>
+        ///   Reset Alarms benzeri yerelleştirilmiş bir dize arar.
+        /// </summary>
+        public static string Temizle {
+            get {
+                return ResourceManager.GetString("Temizle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   TimerAction benzeri yerelleştirilmiş bir dize arar.
         /// </summary>
         public static string timeraction {
@@ -1083,6 +1218,15 @@ namespace AmerikaKamaraFirin {
         public static string yazilan_veri_boyutu_uyumsuz {
             get {
                 return ResourceManager.GetString("yazilan_veri_boyutu_uyumsuz", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   New Step benzeri yerelleştirilmiş bir dize arar.
+        /// </summary>
+        public static string yeniAdim {
+            get {
+                return ResourceManager.GetString("yeniAdim", resourceCulture);
             }
         }
         

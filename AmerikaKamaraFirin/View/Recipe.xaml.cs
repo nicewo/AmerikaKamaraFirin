@@ -20,10 +20,12 @@ namespace AmerikaKamaraFirin.View
     {
         public static string RecipesFolder => Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Recipes");
         public static WrapPanel StaticWrapPanelInstance;
+        public static int cardWidth = 230;
         public Recipe()
         {
             InitializeComponent();
             StaticWrapPanelInstance = RecipeWrapPanel;
+            cardWidth = (int)RecipeWrapPanel.ItemWidth - 80;
             LoadRecipes();
         }
 
@@ -61,70 +63,66 @@ namespace AmerikaKamaraFirin.View
             grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(30) });
 
             // Reçete adı
+            string adi = recete.Adi;
+            if (adi.Length > 25)
+                adi = adi.Substring(0, 22) + "...";
+
             var textblock = new TextBlock
             {
-                Text = recete.Adi,
+                Text = adi,
                 FontSize = 16,
                 FontWeight = FontWeights.Bold,
                 Foreground = Brushes.White,
                 HorizontalAlignment = HorizontalAlignment.Center,
-                Margin = new Thickness(0, 0, 0, 8)
-            };
-            grid.Children.Add(textblock);
+                Margin = new Thickness(0, 0, 0, 8),
+                IsHitTestVisible = false
+            }; grid.Children.Add(textblock);
 
             // Grafik
             var grafik = CreateTrendCanvas(recete);
             Grid.SetRow(grafik, 1);
+            grafik.IsHitTestVisible = false; // olaylar grid'e geçsin
             grid.Children.Add(grafik);
 
-            var border = new Border
-            {
-                Width = 250,
-                Height = 150,
-                Margin = new Thickness(35,10,35,10),
-                Background = new SolidColorBrush(Color.FromRgb(30, 30, 46)),
-                CornerRadius = new CornerRadius(12),
-                BorderBrush = Brushes.LightGray,
-                BorderThickness = new Thickness(1),
-                Cursor = System.Windows.Input.Cursors.Hand, // Hand imleç
-                Child = grid
-            };
-
-            int toplamsüre = 0;
-            for (int i = 0; i < recete.Adimlar.Count; i++)
-            {
-                toplamsüre += recete.Adimlar[i].SureDakika;
-            }
-            string toplamsüreStr = (toplamsüre/60) + ":" + (toplamsüre%60);
+            int toplamsüre = recete.Adimlar.Sum(a => a.SureDakika);
+            string toplamsüreStr = (toplamsüre / 60) + ":" + (toplamsüre % 60);
             var buton = new TextBlock
             {
-                Text = AmerikaKamaraFirin.Resources.toplam_süre +"  "+ toplamsüreStr,
+                Text = AmerikaKamaraFirin.Resources.toplam_süre + "  " + toplamsüreStr,
                 FontSize = 14,
                 FontWeight = FontWeights.Bold,
                 Foreground = Brushes.White,
                 Margin = new Thickness(8, 0, 8, 0),
-                HorizontalAlignment=HorizontalAlignment.Right,
-                Width = 234,
+                HorizontalAlignment = HorizontalAlignment.Right,
+                Width = 150,
+                IsHitTestVisible = false
             };
             grid.Children.Add(buton);
             Grid.SetRow(buton, 2);
 
-            // Mouse tıklama olayı
-            grafik.MouseLeftButtonUp += (s, e) =>
+            var border = new Border
             {
-                var duzenlePencere = new ReceteDuzenle(recete);
-                duzenlePencere.ShowDialog(); // modal aç
+                Width = cardWidth,
+                Height = 150,
+                Margin = new Thickness(35, 10, 35, 10),
+                Background = new SolidColorBrush(Color.FromRgb(30, 30, 46)),
+                CornerRadius = new CornerRadius(12),
+                BorderBrush = Brushes.LightGray,
+                BorderThickness = new Thickness(1),
+                Cursor = System.Windows.Input.Cursors.Hand,
+                Child = grid
             };
 
-            textblock.MouseLeftButtonUp += (s, e) =>
+            // Tıklama olayını sadece bir yerde tanımla
+            border.MouseLeftButtonUp += (s, e) =>
             {
                 var duzenlePencere = new ReceteDuzenle(recete);
-                duzenlePencere.ShowDialog(); // modal aç
+                duzenlePencere.ShowDialog();
             };
 
             return border;
-
         }
+
 
         public static Canvas CreateTrendCanvas(Recete recete)
         {
@@ -139,9 +137,15 @@ namespace AmerikaKamaraFirin.View
                 StrokeThickness = 3,
                 StrokeLineJoin = PenLineJoin.Round
             };
+            var polyline2 = new Polyline
+            {
+                Stroke = Brushes.LightSkyBlue,
+                StrokeThickness = 3,
+                StrokeLineJoin = PenLineJoin.Round
+            };
 
-            double maxSicaklik = recete.Adimlar.Max(a => a.HedefSicaklik);
-            double minSicaklik = recete.Adimlar.Min(a => a.HedefSicaklik);
+            double maxSicaklik = recete.Adimlar.Max(a => a.HedefSicaklik1);
+            double minSicaklik = recete.Adimlar.Min(a => a.HedefSicaklik1);
             double range = maxSicaklik - minSicaklik;
             if (range == 0) range = 1;
             double timeRange = 0;
@@ -162,19 +166,48 @@ namespace AmerikaKamaraFirin.View
                 double xPre = recete.Adimlar[i].SureDakika * timeRange;
                 now = now + xPre;
                 double x = now;
-                double y = recete.Adimlar[i].HedefSicaklik * range;
+                double y = recete.Adimlar[i].HedefSicaklik1 * range;
                 y = canvas.Height - y; // Y eksenini ters çeviriyoruz
                 polyline.Points.Add(new Point(x, y));
             }
 
             canvas.Children.Add(polyline);
+
+            double maxSicaklik2 = recete.Adimlar.Max(a => a.HedefSicaklik2);
+            double minSicaklik2 = recete.Adimlar.Min(a => a.HedefSicaklik2);
+            double range2 = maxSicaklik2 - minSicaklik2;
+            if (range2 == 0) range2 = 1;
+            double timeRange2 = 0;
+            for (int i = 0; i < recete.Adimlar.Count; i++)
+            {
+                timeRange2 += recete.Adimlar[i].SureDakika;
+            }
+
+            range2 = canvas.Height / maxSicaklik2;
+            timeRange2 = canvas.Width / timeRange2;
+
+            double xStep2 = canvas.Width / (recete.Adimlar.Count - 1);
+            double now2 = 0;
+            polyline2.Points.Add(new Point(0, canvas.Height));
+
+            for (int i = 0; i < recete.Adimlar.Count; i++)
+            {
+                double xPre = recete.Adimlar[i].SureDakika * timeRange2;
+                now2 = now2 + xPre;
+                double x = now2;
+                double y = recete.Adimlar[i].HedefSicaklik2 * range2;
+                y = canvas.Height - y; // Y eksenini ters çeviriyoruz
+                polyline2.Points.Add(new Point(x, y));
+            }
+
+            canvas.Children.Add(polyline2);
             return canvas;
         }
         public static void newRecipePanel()
         {
             var border = new Border
             {
-                Width = 250,
+                Width = cardWidth,
                 Height = 150,
                 Margin = new Thickness(35,10,35,10),
                 Background = (Brush)new BrushConverter().ConvertFromString("#FF1E1E2E"),
@@ -231,9 +264,55 @@ namespace AmerikaKamaraFirin.View
             StaticWrapPanelInstance.Children.Add(border);
         }
 
-        public static void ReceteEkle(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        public static void ReceteEkle(object sender, MouseButtonEventArgs e)
         {
-            MessageBox.Show(AmerikaKamaraFirin.Resources.recete_ekle_tiklandi);
+            Recete _recete = new Recete();
+
+            string klasor = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Recipes");
+            string[] jsonDosyalari = Directory.GetFiles(klasor, "*.json");
+            int adet = jsonDosyalari.Length;
+            _recete.Adi = AmerikaKamaraFirin.Resources.new_recipe + " - " + adet;
+
+
+            var rnd = new Random();
+            for (int i = 0; i < 5; i++)
+            {
+                _recete.Adimlar.Add(new Adim
+                {
+                    AdimNo = i + 1,
+                    HedefSicaklik1 = rnd.Next(100, 300),
+                    HedefSicaklik2 = rnd.Next(100, 300),
+                    SureDakika = rnd.Next(10, 60),
+                    BacaAciklik = rnd.Next(0, 100)
+                });
+            }
+
+
+            // Güvenli dosya adı oluştur
+
+
+            string dosyaAdi = Globals.RemoveTurkishAndSpecialChars(_recete.Adi);
+
+
+
+            Directory.CreateDirectory(klasor);
+            string yol = Path.Combine(klasor, dosyaAdi + ".json");
+
+            // JSON serialize ve kaydet
+            var options = new JsonSerializerOptions
+            {
+                WriteIndented = true,
+                Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping
+            };
+
+            File.WriteAllText(yol, JsonSerializer.Serialize(_recete, options));
+            MessageBox.Show(AmerikaKamaraFirin.Resources.recete_basariyla_kaydedildi);
+            StaticWrapPanelInstance.Children.Clear(); // Reçeteleri yeniden yükle
+            LoadRecipes();
+
+            var duzenlePencere = new ReceteDuzenle(_recete);
+            duzenlePencere.ShowDialog();
+
         }
 
         public static void ReceteSil(Recete recete)

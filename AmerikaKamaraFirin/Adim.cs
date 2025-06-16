@@ -9,8 +9,10 @@ namespace AmerikaKamaraFirin
 {
     public class Adim
     {
-        public int HedefSicaklik { get; set; }
+        public int HedefSicaklik1 { get; set; }
+        public int HedefSicaklik2 { get; set; }
         public int SureDakika { get; set; }
+        public int BacaAciklik { get; set; }
 
         [JsonIgnore] // kaydetmesin
         public int AdimNo { get; set; }
