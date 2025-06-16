@@ -125,7 +125,7 @@ namespace AmerikaKamaraFirin.View
         Recete seciliRecete = null;
         public void CreateTrendCanvas()
         {
-            trendGraph.Children.Clear(); // 🔴 Önce eski çizimi temizle
+            trendGraph.Children.Clear(); 
 
             seciliRecete = comboBox.SelectedItem as Recete;
             if (seciliRecete == null || seciliRecete.Adimlar == null || seciliRecete.Adimlar.Count < 1)
@@ -182,7 +182,7 @@ namespace AmerikaKamaraFirin.View
             double yScale2 = trendGraph.Height / maxSicaklik2;
 
             double now2= 0;
-            polyline2.Points.Add(new Point(0, trendGraph.Height)); // ilk nokta alt köşe
+            polyline2.Points.Add(new Point(0, trendGraph.Height)); 
 
             foreach (var adim in seciliRecete.Adimlar)
             {
@@ -191,7 +191,7 @@ namespace AmerikaKamaraFirin.View
                 polyline2.Points.Add(new Point(now2, y));
             }
 
-            trendGraph.Children.Add(polyline2); // yeni çizim
+            trendGraph.Children.Add(polyline2); 
 
         }
 
