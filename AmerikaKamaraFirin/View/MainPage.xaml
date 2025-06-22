@@ -32,17 +32,27 @@
             <UControl:UpDownTextbox
                 x:Name="solUpDown"
                 Grid.Column="0"
-                Margin="10"
+                Grid.ColumnSpan="3"
+                Margin="176,10,396,0"
                 VerticalAlignment="Top"
                 ArrowLeftClicked="solUpDown_ArrowLeftClicked"
-                ArrowRightClicked="solUpDown_ArrowRightClicked" />
+                ArrowRightClicked="solUpDown_ArrowRightClicked">
+                <UControl:UpDownTextbox.RenderTransform>
+                    <ScaleTransform ScaleX="-1" />
+                </UControl:UpDownTextbox.RenderTransform>
+            </UControl:UpDownTextbox>
             <UControl:LeftRightTextbox
                 x:Name="solLeftRight"
                 Grid.Column="0"
-                Margin="10"
+                Grid.ColumnSpan="3"
+                Margin="176,0,396,10"
                 VerticalAlignment="Bottom"
                 ArrowLeftClicked="solLeftRight_ArrowLeftClicked"
-                ArrowRightClicked="solLeftRight_ArrowRightClicked" />
+                ArrowRightClicked="solLeftRight_ArrowRightClicked">
+                <UControl:LeftRightTextbox.RenderTransform>
+                    <ScaleTransform ScaleX="-1" />
+                </UControl:LeftRightTextbox.RenderTransform>
+            </UControl:LeftRightTextbox>
 
 
 
@@ -71,8 +81,9 @@
             <Image
                 x:Name="solkapi"
                 Grid.Column="1"
-                Margin="5"
-                VerticalAlignment="Bottom"
+                Height="270"
+                Margin="5,45,5,0"
+                VerticalAlignment="Top"
                 Source="/View/images/solacikassa.png" />
             <Image
                 x:Name="sagkapi"

@@ -513,4 +513,7 @@
   <data name="receteDegeri2" xml:space="preserve">
     <value>Recipe G2</value>
   </data>
+  <data name="recetede_en_az_1_adim_olmalı" xml:space="preserve">
+    <value>A recipe must contain at least one step.</value>
+  </data>
 </root>

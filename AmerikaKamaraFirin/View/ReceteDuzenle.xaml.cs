@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq.Expressions;
 using System.Text.Json;
 using System.Windows;
 using System.Windows.Controls;
@@ -14,10 +15,13 @@ namespace AmerikaKamaraFirin.View
     {
         private Recete _recete;
         public Recete eskirecete;
+        Keyboard key;
+        Numpad num;
+
         public ReceteDuzenle(Recete recete)
         {
             InitializeComponent();
-           for (int i = 0; i < recete.Adimlar.Count; i++)
+            for (int i = 0; i < recete.Adimlar.Count; i++)
                 recete.Adimlar[i].AdimNo = i + 1;
             _recete = recete;
             txtReceteAdi.Text = recete.Adi;
@@ -29,7 +33,7 @@ namespace AmerikaKamaraFirin.View
         {
             _recete.Adi = txtReceteAdi.Text;
 
-            if(_recete.Adi != eskirecete.Adi)
+            if (_recete.Adi != eskirecete.Adi)
             {
                 // Reçete adı değiştiğinde eski dosyayı sil
                 string eskiDosyaAdi = Globals.RemoveTurkishAndSpecialChars(eskirecete.Adi);
@@ -60,12 +64,15 @@ namespace AmerikaKamaraFirin.View
             Recipe.LoadRecipes();
             this.Close();
         }
-        private void Close_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-        }
         private void SilAdim_Click(object sender, RoutedEventArgs e)
         {
+            // Eğer sadece 1 adım kaldıysa, silinmesine izin verme
+            if (_recete.Adimlar.Count <= 1)
+            {
+                MessageBox.Show(AmerikaKamaraFirin.Resources.recetede_en_az_1_adim_olmalı);
+                return;
+            }
+
             // Hangi butona tıklandığını al
             var button = sender as Button;
             if (button == null) return;
@@ -89,7 +96,7 @@ namespace AmerikaKamaraFirin.View
         {
             if (int.TryParse(txtYeniSicaklik1.Text, out int sicaklik1) &&
                 int.TryParse(txtYeniSicaklik2.Text, out int sicaklik2) &&
-                int.TryParse(txtYeniSure.Text, out int sure) && 
+                int.TryParse(txtYeniSure.Text, out int sure) &&
                 int.TryParse(txtYeniBaca.Text, out int baca))
             {
                 // Yeni adım nesnesi oluştur
@@ -118,6 +125,10 @@ namespace AmerikaKamaraFirin.View
                 MessageBox.Show("Geçerli bir sıcaklık ve süre giriniz.");
             }
         }
+        private void Close_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed)
@@ -129,6 +140,32 @@ namespace AmerikaKamaraFirin.View
             if (e.Key == Key.Escape)
                 this.Close();
         }
+
+        private void Keyboard_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (sender is TextBox txb)
+            {
+                key = new Keyboard(txb.Text);
+                if (key.ShowDialog() == true)
+                {
+                    txb.Text = key.GirilenMetin;
+                }
+            }
+        }
+
+        private void Keyboard_GotFocus1(object sender, RoutedEventArgs e)
+        {
+            if (sender is TextBox txb)
+            {
+                num = new Numpad(txb.Text);
+                if (num.ShowDialog() == true)
+                {
+                    txb.Text = num.GirilenMetin;
+                }
+            }
+        }
+
+
 
     }
 }

@@ -9,12 +9,25 @@
     Title="Settings"
     d:DesignHeight="604"
     d:DesignWidth="1024"
+    Foreground="White"
     mc:Ignorable="d">
 
     <Grid>
-        <TextBlock
-            Margin="442,193,298,225"
-            Foreground="AliceBlue"
-            Text="{x:Static resx:Resources.ayarlar}" />
+        <Label
+            x:Name="lbl_frekans"
+            Margin="82,74,812,485"
+            Content="Pomp Speed"
+            FontSize="20"
+            FontWeight="Bold"
+            Foreground="White" />
+        <TextBox
+            x:Name="txb_frekans"
+            Margin="82,124,812,407"
+            FontSize="50"
+            FontWeight="Bold"
+            GotFocus="GotFocus"
+            Text="50"
+            TextChanged="txb_frekans_TextChanged"
+            TextWrapping="Wrap" />
     </Grid>
 </Page>

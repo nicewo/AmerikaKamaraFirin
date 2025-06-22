@@ -32,6 +32,31 @@ namespace AmerikaKamaraFirin.View.UControl
         {
             InitializeComponent();
         }
+        public static readonly DependencyProperty LeftButtonBackgroundProperty =
+    DependencyProperty.Register("LeftButtonBackground", typeof(Brush), typeof(UpDownTextbox), new PropertyMetadata(Brushes.Green));
+
+        public static readonly DependencyProperty RightButtonBackgroundProperty =
+            DependencyProperty.Register("RightButtonBackground", typeof(Brush), typeof(UpDownTextbox), new PropertyMetadata(Brushes.Green));
+
+        public Brush LeftButtonBackground
+        {
+            get => (Brush)GetValue(LeftButtonBackgroundProperty);
+            set
+            {
+                SetValue(LeftButtonBackgroundProperty, value);
+                OnPropertyChanged(nameof(LeftButtonBackground));
+            }
+        }
+
+        public Brush RightButtonBackground
+        {
+            get => (Brush)GetValue(RightButtonBackgroundProperty);
+            set
+            {
+                SetValue(RightButtonBackgroundProperty, value);
+                OnPropertyChanged(nameof(RightButtonBackground));
+            }
+        }
 
         // Sol oka tıklanma olayı
         private void ArrowLeft_Click(object sender, MouseButtonEventArgs e)

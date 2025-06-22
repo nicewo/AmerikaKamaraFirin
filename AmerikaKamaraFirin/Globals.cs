@@ -20,51 +20,44 @@ namespace AmerikaKamaraFirin
     {
         public static string
             defaultUser = "Servis",
-            defaultPassword = "20212021",
+            defaultPassword = "8889",
             HataBasligi = "",
             HataIcerigi = "";
         public static bool
             IsError = false;
-        //plcden gelecekler ------------------
-        public static bool
-            plc_solKapiAssada = true,
-            plc_solKapiYukarda = false,
-            plc_solKapiAcik = true,
-            plc_solKapiKapali = false,
-            plc_sagKapiAssada = true,
-            plc_sagKapiYukarda = false,
-            plc_sagKapiAcik = true,
-            plc_sagKapiKapali = false,
-            plc_firinDurum = true;
+
 
         public static int
-            mevcutAdim = 1,
-            gecenZaman = 180;
-
-        //plcden gelecekler ------------------
-        public static int
-            ConnectTryCount = 1;
+            ConnectTryCount = 3;
 
             public static List<User> Users = new();
             public static User LoggedInUser;
 
 
+        private static readonly object _lock = new object();
+
         public static void UpdateStatus(string message, bool error = false, string title = "Bir Hatayla Karşılaşıldı!")
         {
             title = bir_hatayla_karsilasildi;
-            string logMessage = $"{DateTime.Now:yyyy-MM-dd HH:mm:ss} - {message}"; // Tarih, saat ve mesajın birleştirilmesi
+            string logMessage = $"{DateTime.Now:yyyy-MM-dd HH:mm:ss} - {message}";
+
             if (error)
-            { 
-                string filePath = "status_log.txt"; // Log dosyasının adı ve yolu
+            {
+                string filePath = "status_log.txt";
                 IsError = true;
                 HataBasligi = title;
                 HataIcerigi = Globals.HataIcerigi + "/" + logMessage;
-                // Dosya yoksa oluştur, varsa aç ve mesajı ekle
-                using (StreamWriter sw = File.AppendText(filePath))
+
+                lock (_lock) // Aynı anda birden fazla thread dosyaya yazmaya çalışmasın diye kilit koyduk
                 {
-                    sw.WriteLine(logMessage);
+                    using (var stream = new FileStream(filePath, FileMode.Append, FileAccess.Write, FileShare.ReadWrite))
+                    using (var sw = new StreamWriter(stream))
+                    {
+                        sw.WriteLine(logMessage);
+                    }
                 }
-                Task.Delay(3000).Wait();
+
+                // Task.Delay(3000).Wait(); // Bu satırı iptal etmeni öneririm, UI veya thread kilitlenebilir
             }
             else
             {
@@ -72,8 +65,8 @@ namespace AmerikaKamaraFirin
                 HataBasligi = title;
                 HataIcerigi = Globals.HataIcerigi + "/" + logMessage;
             }
-
         }
+
         public static string RemoveTurkishAndSpecialChars(string input)
         {
             string[] turkish = { "İ", "I", "Ş", "Ğ", "Ü", "Ö", "Ç", "ı", "ş", "ğ", "ü", "ö", "ç" };

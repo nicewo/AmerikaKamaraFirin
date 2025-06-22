@@ -243,5 +243,13 @@
             HorizontalAlignment="Left"
             IsError="True"
             MouseLeftButtonDown="txbError_MouseLeftButtonDown" />
+        <Label
+            x:Name="lbl_geriSayim"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Content="123"
+            FontSize="80"
+            Foreground="Red"
+            Visibility="Hidden" />
     </Grid>
 </Window>

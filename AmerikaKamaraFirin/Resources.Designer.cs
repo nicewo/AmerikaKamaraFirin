@@ -907,6 +907,15 @@ namespace AmerikaKamaraFirin {
         }
         
         /// <summary>
+        ///   A recipe must contain at least one step. benzeri yerelleştirilmiş bir dize arar.
+        /// </summary>
+        public static string recetede_en_az_1_adim_olmalı {
+            get {
+                return ResourceManager.GetString("recetede_en_az_1_adim_olmalı", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recipe G1 benzeri yerelleştirilmiş bir dize arar.
         /// </summary>
         public static string receteDegeri {

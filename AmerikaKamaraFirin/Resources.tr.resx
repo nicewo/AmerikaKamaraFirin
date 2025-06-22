@@ -229,73 +229,73 @@
     <value>İçerik  </value>
   </data>
   <data name="newadim" xml:space="preserve">
-    <value>Yeni Adım  </value>
+    <value>Yeni Adım</value>
   </data>
   <data name="adres_araligi_disina_cikildi" xml:space="preserve">
-    <value>Adres aralığı aşıldı.  </value>
+    <value>Adres aralığı aşıldı.</value>
   </data>
   <data name="alinan_veri_boyutu_gecersiz" xml:space="preserve">
-    <value>Alınan veri boyutu geçersiz.  </value>
+    <value>Alınan veri boyutu geçersiz.</value>
   </data>
   <data name="arayuz_yukleniyor" xml:space="preserve">
-    <value>Arayüz yükleniyor...  </value>
+    <value>Arayüz yükleniyor...</value>
   </data>
   <data name="ayarlanacak_veya_temizlenecek_sifre_yok" xml:space="preserve">
-    <value>Ayarlanacak şifre yok.  </value>
+    <value>Ayarlanacak şifre yok.</value>
   </data>
   <data name="baglanti_kapatiliyor" xml:space="preserve">
-    <value>Bağlantı kesiliyor...  </value>
+    <value>Bağlantı kesiliyor...</value>
   </data>
   <data name="basarili_islem_sorunsuz_tamamlandi" xml:space="preserve">
-    <value>İşlem başarıyla tamamlandı.  </value>
+    <value>İşlem başarıyla tamamlandı.</value>
   </data>
   <data name="bir_hatayla_karsilasildi" xml:space="preserve">
-    <value>Bir hata oluştu!  </value>
+    <value>Bir hata oluştu!</value>
   </data>
   <data name="buffer_acik" xml:space="preserve">
-    <value>Buffer Açık  </value>
+    <value>Buffer Açık</value>
   </data>
   <data name="buffer_kapali" xml:space="preserve">
-    <value>Buffer Kapalı  </value>
+    <value>Buffer Kapalı</value>
   </data>
   <data name="config" xml:space="preserve">
-    <value>Yapılandırma  </value>
+    <value>Yapılandırma</value>
   </data>
   <data name="confirm_deletion" xml:space="preserve">
-    <value>Silme Onayı  </value>
+    <value>Silme Onayı</value>
   </data>
   <data name="delete" xml:space="preserve">
-    <value>Sil  </value>
+    <value>Sil</value>
   </data>
   <data name="fonksiyon_mevcut_degil" xml:space="preserve">
-    <value>Fonksiyon mevcut değil.  </value>
+    <value>Fonksiyon mevcut değil.</value>
   </data>
   <data name="fonksiyon_reddedildi" xml:space="preserve">
-    <value>Fonksiyon reddedildi.  </value>
+    <value>Fonksiyon reddedildi.</value>
   </data>
   <data name="fonksiyon_uygulanmamis" xml:space="preserve">
-    <value>Fonksiyon uygulanmamış.  </value>
+    <value>Fonksiyon uygulanmamış.</value>
   </data>
   <data name="gecersiz_iso_pdu_protokol_veri_birimi_algilandi" xml:space="preserve">
-    <value>Geçersiz ISO PDU (Protokol Veri Birimi) algılandı.  </value>
+    <value>Geçersiz ISO PDU (Protokol Veri Birimi) algılandı.</value>
   </data>
   <data name="gecersiz_blok_boyutu" xml:space="preserve">
-    <value>Geçersiz blok boyutu.  </value>
+    <value>Geçersiz blok boyutu.</value>
   </data>
   <data name="gecersiz_blok_numarasi" xml:space="preserve">
-    <value>Geçersiz blok numarası.  </value>
+    <value>Geçersiz blok numarası.</value>
   </data>
   <data name="gecersiz_blok_turu" xml:space="preserve">
-    <value>Geçersiz blok türü.  </value>
+    <value>Geçersiz Blok Tipi.</value>
   </data>
   <data name="gecersiz_deger" xml:space="preserve">
-    <value>Geçersiz değer.  </value>
+    <value>Geçersiz değer.</value>
   </data>
   <data name="gecersiz_parametre_numarasi" xml:space="preserve">
     <value>Geçersiz parametre numarası.  </value>
   </data>
   <data name="gecersiz_parametreler_gonderildi" xml:space="preserve">
-    <value>Geçersiz parametreler gönderildi.  </value>
+    <value>Geçersiz parametreler gönderildi.</value>
   </data>
   <data name="gecersiz_tasima_boyutu" xml:space="preserve">
     <value>Geçersiz taşıma boyutu.  </value>
@@ -512,5 +512,8 @@
   </data>
   <data name="receteDegeri2" xml:space="preserve">
     <value>Recete G2</value>
+  </data>
+  <data name="recetede_en_az_1_adim_olmalı" xml:space="preserve">
+    <value>Reçetede en az 1 adım olmalı...</value>
   </data>
 </root>

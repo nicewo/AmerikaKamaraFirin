@@ -1,4 +1,5 @@
 ﻿using AmerikaKamaraFirin.View;
+using Sharp7;
 using System.ComponentModel;
 using System.Globalization;
 using System.IO;
@@ -33,6 +34,13 @@ namespace AmerikaKamaraFirin.View
 #endif
 
         bool ilkacilis = true;
+
+        private static string lastErrorMessage = string.Empty;  
+
+
+
+
+
         public string ActivePage
         {
             get => _activePage;
@@ -42,58 +50,30 @@ namespace AmerikaKamaraFirin.View
                 OnPropertyChanged(nameof(ActivePage));
             }
         }
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
+
+
+
         public MainWindow()
         {
             InitializeComponent();
             DataContext = this; // Binding için
             Loaded += MainWindow_Loaded;
             if (!debug)
-            this.WindowState = WindowState.Maximized;
+                this.WindowState = WindowState.Maximized;
         }
-        private void ThreadTimerTick(object? state)
-        {
-            //           Plc.ReadPlc();
-        }
-
-        private void UItimerTick(object? sender, EventArgs e)
-        {
-            ErrorControl();
-            if(ActivePage == "btnAlarms")
-            {
-                txbError.Visibility = Visibility.Hidden;
-            }
-            var currentPage = Pages.Content as dynamic;
-            if (currentPage != null && currentPage?.GetType().GetMethod("TimerAction") != null)
-            {
-                currentPage?.TimerAction();
-            }
-        }
-
-        private void ErrorControl()
-        {
-            if (Globals.HataIcerigi != "")
-            {
-                txbError.Title = Globals.HataBasligi;
-                txbError.Visibility = Visibility.Visible;
-            }
-            else
-            {
-                txbError.Visibility = Visibility.Hidden;
-            }
-        }
-
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
 
-            ThreadTimer = new Timer(ThreadTimerTick, null, 0, 300);
 
             UItimer = new DispatcherTimer();
-            UItimer.Interval = TimeSpan.FromMilliseconds(500);
+            UItimer.Interval = TimeSpan.FromMilliseconds(700);
             UItimer.Tick += UItimerTick;
             UItimer.Start();
             ActivePage = "btnMainPage";
@@ -111,8 +91,112 @@ namespace AmerikaKamaraFirin.View
                 }
             }
 
+            ThreadTimer = new Timer(ThreadTimerTick, null, 0, 600);
             ilkacilis = false;
         }
+
+
+        private void ThreadTimerTick(object? state)
+        {
+            PlcFunction();
+        }
+        private void UItimerTick(object? sender, EventArgs e)
+        {
+            ErrorControl();
+            if (ActivePage == "btnAlarms")
+            {
+                txbError.Visibility = Visibility.Hidden;
+            }
+            var currentPage = Pages.Content as dynamic;
+            if (currentPage != null && currentPage?.GetType().GetMethod("TimerAction") != null)
+            {
+                currentPage?.TimerAction();
+            }
+
+            if (Plc.r_butonTime > 0)
+            {
+                lbl_geriSayim.Visibility = Visibility.Visible;
+                lbl_geriSayim.Content = ((Plc.r_butonBasmaTime - Plc.r_butonTime) / 1000).ToString();
+            }
+            else
+            {
+                lbl_geriSayim.Visibility = Visibility.Hidden;
+            }
+
+
+            if(((Plc.r_butonBasmaTime - Plc.r_butonTime) / 1000) < 0 || ((Plc.r_butonBasmaTime - Plc.r_butonTime) / 1000) > 10)
+            {
+                lbl_geriSayim.Visibility = Visibility.Hidden;
+            }
+        }
+
+
+        private void PlcFunction()
+        {
+
+            if (!Config.Plc.Connected)
+            {
+
+                int tryConnect = 0;
+                Config.PlcStatu = 1;
+                while (Config.PlcStatu != 0 && tryConnect < Globals.ConnectTryCount)
+                {
+                    Config.PlcStatu = Config.Plc.ConnectTo(Config.PlcIP, 0, 1);
+                    Task.Delay(500).Wait();
+                    tryConnect++;
+                }
+                if (Config.PlcStatu != 0) UpdateStatus($"{AmerikaKamaraFirin.Resources.fırın_PLC_Baglanamadi}: {Globals.PlcError(Config.PlcStatu)}", true, AmerikaKamaraFirin.Resources.program_acilirken_bazi_hatalar_olustu);
+                tryConnect = 0;
+            }
+            else
+            {
+                int plc_read = Plc.PlcRead();
+                if (plc_read != 0)
+                {
+                  
+                        UpdateStatus($"PLC Okuma hatası: {plc_read} - {Config.Plc.ErrorText(plc_read)}", true);
+                    
+                }
+                if (!Plc.plcoku)
+                {
+                    int plc_writeread = Plc.PlcWriteRead();
+                    if (plc_writeread != 0)
+                    {
+
+                        UpdateStatus($"PLC Okuma hatası: {plc_writeread} - {Config.Plc.ErrorText(plc_writeread)}", true);
+
+                    }
+                }
+            }
+
+        }
+
+
+        public static void UpdateStatus(string message, bool error = false, string title = "Bir Hatayla Karşılaşıldı!")
+        {
+            title = AmerikaKamaraFirin.Resources.bir_hatayla_karsilasildi;
+            if (lastErrorMessage != message)
+            {
+                if (error)
+                {
+                    Globals.UpdateStatus(message, error, title);
+                }
+                lastErrorMessage = message;
+            }
+        }
+        private void ErrorControl()
+        {
+            if (Globals.HataIcerigi != "")
+            {
+                txbError.Title = Globals.HataBasligi;
+                txbError.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                txbError.Visibility = Visibility.Hidden;
+            }
+        }
+
 
         private void MainFrame_Navigated(object sender, NavigationEventArgs e)
         {
@@ -148,12 +232,10 @@ namespace AmerikaKamaraFirin.View
                 ActivePage = "btnMainPage";
             }
         }
-
         private void Image_MouseDown(object sender, MouseButtonEventArgs e)
         {
             this.Close();
         }
-
         private void txbError_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             Pages.Navigate(new Alarms());

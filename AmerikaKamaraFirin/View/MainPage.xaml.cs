@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Sharp7;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -34,68 +35,152 @@ namespace AmerikaKamaraFirin.View
         }
         public void TimerAction()
         {
-            if (Globals.plc_firinDurum)
+
+            if (Plc.r_firinDurum)
             {
-                string statuMachine = AmerikaKamaraFirin.Resources.Machine_Statu + " " + AmerikaKamaraFirin.Resources.calisiyor + "(" + AmerikaKamaraFirin.Resources.adim + ":" + Globals.mevcutAdim + ")";
-                MachineStatu.Foreground = new SolidColorBrush(Color.FromArgb(255,0,255,0));
+                string statuMachine = AmerikaKamaraFirin.Resources.Machine_Statu + " " + AmerikaKamaraFirin.Resources.calisiyor + "(" + AmerikaKamaraFirin.Resources.adim + ":" + Plc.r_step + ")";
+                MachineStatu.Foreground = new SolidColorBrush(Color.FromArgb(255, 0, 255, 0));
                 string statuMachine2 = "";
                 ElapsedTime.Visibility = Visibility.Visible;
 
-                if(seciliRecete != null)
+                if (seciliRecete != null)
                 {
-                    statuMachine2 = "    " + AmerikaKamaraFirin.Resources.hedef_sicaklik + " : " + seciliRecete.Adimlar[Globals.mevcutAdim].HedefSicaklik1;
-                    statuMachine2 = statuMachine2 + "    " + AmerikaKamaraFirin.Resources.sure + " : " + seciliRecete.Adimlar[Globals.mevcutAdim].SureDakika;
-                    statuMachine2 = statuMachine2 + "    " + AmerikaKamaraFirin.Resources.baca_aciklik + " : " + seciliRecete.Adimlar[Globals.mevcutAdim].BacaAciklik;
+                    statuMachine2 = "    " + AmerikaKamaraFirin.Resources.hedef_sicaklik + " : " + seciliRecete.Adimlar[Plc.r_step].HedefSicaklik1;
+                    statuMachine2 = statuMachine2 + "    " + AmerikaKamaraFirin.Resources.sure + " : " + seciliRecete.Adimlar[Plc.r_step].SureDakika;
+                    statuMachine2 = statuMachine2 + "    " + AmerikaKamaraFirin.Resources.baca_aciklik + " : " + seciliRecete.Adimlar[Plc.r_step].BacaAciklik;
                 }
 
                 MachineStatu.Content = statuMachine;
                 MachineStatu2.Content = statuMachine2;
 
             }
-            else 
+            else
             {
                 MachineStatu.Content = AmerikaKamaraFirin.Resources.Machine_Statu + " " + AmerikaKamaraFirin.Resources.durduruldu;
-                MachineStatu.Foreground = new SolidColorBrush(Color.FromArgb(255, 255,0 , 0));
+                MachineStatu.Foreground = new SolidColorBrush(Color.FromArgb(255, 255, 0, 0));
                 ElapsedTime.Visibility = Visibility.Hidden;
             }
 
-            ElapsedTime.Content = AmerikaKamaraFirin.Resources.gecenZaman + " : " + Globals.gecenZaman + " " + AmerikaKamaraFirin.Resources.dk;
+            ElapsedTime.Content = AmerikaKamaraFirin.Resources.gecenZaman + " : " + Plc.r_total_elapsed_time + " " + AmerikaKamaraFirin.Resources.dk;
 
-            if (Globals.plc_solKapiAssada && Globals.plc_solKapiKapali)
+            if (Plc.r_solKapiAssada && Plc.r_solKapiKapali)
             {
                 solkapi.Source = new BitmapImage(new Uri("pack://application:,,,/View/images/solkapaliassa.png"));
             }
-            else if (Globals.plc_solKapiAssada && Globals.plc_solKapiAcik)
+            else if (Plc.r_solKapiAssada && Plc.r_solKapiAcik)
             {
                 solkapi.Source = new BitmapImage(new Uri("pack://application:,,,/View/images/solacikassa.png"));
             }
-            else if (Globals.plc_solKapiYukarda && Globals.plc_solKapiKapali)
+            else if (Plc.r_solKapiYukarda && Plc.r_solKapiKapali)
             {
                 solkapi.Source = new BitmapImage(new Uri("pack://application:,,,/View/images/solkapaliyukari.png"));
             }
-            else if (Globals.plc_solKapiYukarda && Globals.plc_solKapiAcik)
+            else if (Plc.r_solKapiYukarda && Plc.r_solKapiAcik)
             {
                 solkapi.Source = new BitmapImage(new Uri("pack://application:,,,/View/images/solacikyukari.png"));
             }
 
-            if (Globals.plc_sagKapiAssada && Globals.plc_sagKapiKapali)
+            if (Plc.r_sagKapiAssada && Plc.r_sagKapiKapali)
             {
                 sagkapi.Source = new BitmapImage(new Uri("pack://application:,,,/View/images/sagkapaliassa.png"));
             }
-            else if (Globals.plc_sagKapiAssada && Globals.plc_sagKapiAcik)
+            else if (Plc.r_sagKapiAssada && Plc.r_sagKapiAcik)
             {
                 sagkapi.Source = new BitmapImage(new Uri("pack://application:,,,/View/images/sagacikassa.png"));
             }
-            else if (Globals.plc_sagKapiYukarda && Globals.plc_sagKapiKapali)
+            else if (Plc.r_sagKapiYukarda && Plc.r_sagKapiKapali)
             {
                 sagkapi.Source = new BitmapImage(new Uri("pack://application:,,,/View/images/sagkapaliyukari.png"));
             }
-            else if (Globals.plc_sagKapiYukarda && Globals.plc_sagKapiAcik)
+            else if (Plc.r_sagKapiYukarda && Plc.r_sagKapiAcik)
             {
                 sagkapi.Source = new BitmapImage(new Uri("pack://application:,,,/View/images/sagacikyukari.png"));
             }
 
+
+
+            if(Plc.r_KapiMinTempError)
+            {
+
+            }
+
+
+            if (!Plc.r_veriGeldi)
+            {
+
+                Plc.plcoku = true;
+                int Plc_Writew = Plc.PlcWriteRead();
+                if (Plc_Writew != 0)
+                {
+
+                    MainWindow.UpdateStatus($"PLC Okuma hatası: {Plc_Writew} - {Config.Plc.ErrorText(Plc_Writew)}", true);
+
+                }
+                if (Plc.r_step < 0) Plc.r_step = 0;
+                if (Plc.r_step > 100) Plc.r_step = 0;
+
+                Plc.w_setTemp1 = seciliRecete.Adimlar[Plc.r_step].HedefSicaklik1;
+                Plc.w_setTemp2 = seciliRecete.Adimlar[Plc.r_step].HedefSicaklik2;
+                Plc.w_setTime = seciliRecete.Adimlar[Plc.r_step].SureDakika;
+                Plc.w_damper1 = seciliRecete.Adimlar[Plc.r_step].BacaAciklik;
+
+                S7.SetDIntAt(Plc.writereadBuffer,2, Plc.w_setTemp1);
+                S7.SetDIntAt(Plc.writereadBuffer, 10, Plc.w_setTime);
+                S7.SetDIntAt(Plc.writereadBuffer, 6, Plc.w_setTemp2);
+                S7.SetDIntAt(Plc.writereadBuffer, 22, Plc.w_damper1);
+                S7.SetBitAt(Plc.writereadBuffer, 42, 2,true);
+                S7.SetBitAt(Plc.writereadBuffer, 42, 3,true);
+                S7.SetDIntAt(Plc.writereadBuffer, 38, 10);
+
+                int Plc_Write = Plc.PlcWrite();
+                if (Plc_Write != 0)
+                {
+
+                    MainWindow.UpdateStatus($"PLC Okuma hatası: {Plc_Write} - {Config.Plc.ErrorText(Plc_Write)}", true);
+
+                }
+                Plc.plcoku = false;
+            }
+
+
+            if (Plc.w_sagdoorclose) sagLeftRight.RightButtonBackground = Brushes.Orange;
+            else sagLeftRight.RightButtonBackground = Brushes.Green;
+            if (Plc.w_sagdooropen) sagLeftRight.LeftButtonBackground = Brushes.Orange;
+            else sagLeftRight.LeftButtonBackground = Brushes.Green;
+
+            if (Plc.w_sagdoorup) sagUpDown.RightButtonBackground = Brushes.Orange;
+            else sagUpDown.RightButtonBackground = Brushes.Green;
+            if (Plc.w_sagdoordown) sagUpDown.LeftButtonBackground = Brushes.Orange;
+            else sagUpDown.LeftButtonBackground = Brushes.Green;
+
+
+
+
+            if (Plc.w_soldoorclose) solLeftRight.RightButtonBackground = Brushes.Orange;
+            else solLeftRight.RightButtonBackground = Brushes.Green;
+            if (Plc.w_soldooropen) solLeftRight.LeftButtonBackground = Brushes.Orange;
+            else solLeftRight.LeftButtonBackground = Brushes.Green;
+
+            if (Plc.w_soldoorup) solUpDown.RightButtonBackground = Brushes.Orange;
+            else solUpDown.RightButtonBackground = Brushes.Green;
+            if (Plc.w_soldoordown) solUpDown.LeftButtonBackground = Brushes.Orange;
+            else solUpDown.LeftButtonBackground = Brushes.Green;
+
+
+
+            if(Plc.r_sagKapiKapali) sagLeftRight.RightButtonBackground = Brushes.Gray;
+            if (Plc.r_sagKapiAcik) sagLeftRight.LeftButtonBackground = Brushes.Gray;
+            if (Plc.r_sagKapiYukarda) sagUpDown.RightButtonBackground = Brushes.Gray;
+            if (Plc.r_sagKapiAssada) sagUpDown.LeftButtonBackground = Brushes.Gray;
+
+            if (Plc.r_solKapiKapali) solLeftRight.RightButtonBackground = Brushes.Gray;
+            if (Plc.r_solKapiAcik) solLeftRight.LeftButtonBackground = Brushes.Gray;
+            if (Plc.r_solKapiYukarda) solUpDown.RightButtonBackground = Brushes.Gray;
+            if (Plc.r_solKapiAssada) solUpDown.LeftButtonBackground = Brushes.Gray;
         }
+
+
+
         public void LoadRecipe()
         {
             if (!Directory.Exists(RecipesFolder))
@@ -125,7 +210,7 @@ namespace AmerikaKamaraFirin.View
         Recete seciliRecete = null;
         public void CreateTrendCanvas()
         {
-            trendGraph.Children.Clear(); 
+            trendGraph.Children.Clear();
 
             seciliRecete = comboBox.SelectedItem as Recete;
             if (seciliRecete == null || seciliRecete.Adimlar == null || seciliRecete.Adimlar.Count < 1)
@@ -181,8 +266,8 @@ namespace AmerikaKamaraFirin.View
             double xScale2 = trendGraph.Width / totalSure2;
             double yScale2 = trendGraph.Height / maxSicaklik2;
 
-            double now2= 0;
-            polyline2.Points.Add(new Point(0, trendGraph.Height)); 
+            double now2 = 0;
+            polyline2.Points.Add(new Point(0, trendGraph.Height));
 
             foreach (var adim in seciliRecete.Adimlar)
             {
@@ -191,56 +276,204 @@ namespace AmerikaKamaraFirin.View
                 polyline2.Points.Add(new Point(now2, y));
             }
 
-            trendGraph.Children.Add(polyline2); 
+            trendGraph.Children.Add(polyline2);
 
         }
 
         private void solUpDown_ArrowLeftClicked(object sender, EventArgs e)
         {
-            Globals.plc_solKapiAssada = true;
-            Globals.plc_solKapiYukarda = false;
+            Plc.plcoku = true;
+            int Plc_Writew = Plc.PlcWriteRead();
+            if (Plc_Writew != 0)
+            {
+
+                MainWindow.UpdateStatus($"PLC Okuma hatası: {Plc_Writew} - {Config.Plc.ErrorText(Plc_Writew)}", true);
+
+            }
+
+            S7.SetBitAt(Plc.writereadBuffer, 0, 2, true);
+            S7.SetBitAt(Plc.writereadBuffer, 0, 3, false);
+
+            int Plc_Write = Plc.PlcWrite();
+            if (Plc_Write != 0)
+            {
+
+                MainWindow.UpdateStatus($"PLC Okuma hatası: {Plc_Write} - {Config.Plc.ErrorText(Plc_Write)}", true);
+
+            }
+            Plc.plcoku = false;
+
+
         }
 
         private void solUpDown_ArrowRightClicked(object sender, EventArgs e)
         {
-            Globals.plc_solKapiAssada = false;
-            Globals.plc_solKapiYukarda = true;
+            Plc.plcoku = true;
+            int Plc_Writew = Plc.PlcWriteRead();
+            if (Plc_Writew != 0)
+            {
+
+                MainWindow.UpdateStatus($"PLC Okuma hatası: {Plc_Writew} - {Config.Plc.ErrorText(Plc_Writew)}", true);
+
+            }
+
+            S7.SetBitAt(Plc.writereadBuffer, 0, 2, false);
+            S7.SetBitAt(Plc.writereadBuffer, 0, 3, true);
+
+            int Plc_Write = Plc.PlcWrite();
+            if (Plc_Write != 0)
+            {
+
+                MainWindow.UpdateStatus($"PLC Okuma hatası: {Plc_Write} - {Config.Plc.ErrorText(Plc_Write)}", true);
+
+            }
+            Plc.plcoku = false;
         }
 
         private void solLeftRight_ArrowLeftClicked(object sender, EventArgs e)
         {
-            Globals.plc_solKapiKapali = true;
-            Globals.plc_solKapiAcik = false;
+            Plc.plcoku = true;
+            int Plc_Writew = Plc.PlcWriteRead();
+            if (Plc_Writew != 0)
+            {
+
+                MainWindow.UpdateStatus($"PLC Okuma hatası: {Plc_Writew} - {Config.Plc.ErrorText(Plc_Writew)}", true);
+
+            }
+
+            S7.SetBitAt(Plc.writereadBuffer, 0, 0, false);
+            S7.SetBitAt(Plc.writereadBuffer, 0, 1, true);
+
+            int Plc_Write = Plc.PlcWrite();
+            if (Plc_Write != 0)
+            {
+
+                MainWindow.UpdateStatus($"PLC Okuma hatası: {Plc_Write} - {Config.Plc.ErrorText(Plc_Write)}", true);
+
+            }
+            Plc.plcoku = false;
         }
 
         private void solLeftRight_ArrowRightClicked(object sender, EventArgs e)
         {
-            Globals.plc_solKapiKapali = false;
-            Globals.plc_solKapiAcik = true;
+
+            Plc.plcoku = true;
+            int Plc_Writew = Plc.PlcWriteRead();
+            if (Plc_Writew != 0)
+            {
+
+                MainWindow.UpdateStatus($"PLC Okuma hatası: {Plc_Writew} - {Config.Plc.ErrorText(Plc_Writew)}", true);
+
+            }
+
+            S7.SetBitAt(Plc.writereadBuffer, 0, 0, true);
+            S7.SetBitAt(Plc.writereadBuffer, 0, 1, false);
+
+            int Plc_Write = Plc.PlcWrite();
+            if (Plc_Write != 0)
+            {
+
+                MainWindow.UpdateStatus($"PLC Okuma hatası: {Plc_Write} - {Config.Plc.ErrorText(Plc_Write)}", true);
+
+            }
+            Plc.plcoku = false;
         }
 
         private void sagUpDown_ArrowLeftClicked(object sender, EventArgs e)
         {
-            Globals.plc_sagKapiAssada = true;
-            Globals.plc_sagKapiYukarda = false;
+
+            Plc.plcoku = true;
+            int Plc_Writew = Plc.PlcWriteRead();
+            if (Plc_Writew != 0)
+            {
+
+                MainWindow.UpdateStatus($"PLC Okuma hatası: {Plc_Writew} - {Config.Plc.ErrorText(Plc_Writew)}", true);
+
+            }
+
+            S7.SetBitAt(Plc.writereadBuffer, 0, 7, false);
+            S7.SetBitAt(Plc.writereadBuffer, 0, 6, true);
+
+            int Plc_Write = Plc.PlcWrite();
+            if (Plc_Write != 0)
+            {
+
+                MainWindow.UpdateStatus($"PLC Okuma hatası: {Plc_Write} - {Config.Plc.ErrorText(Plc_Write)}", true);
+
+            }
+            Plc.plcoku = false;
         }
 
         private void sagUpDown_ArrowRightClicked(object sender, EventArgs e)
         {
-            Globals.plc_sagKapiAssada = false;
-            Globals.plc_sagKapiYukarda = true;
+            Plc.plcoku = true;
+            int Plc_Writew = Plc.PlcWriteRead();
+            if (Plc_Writew != 0)
+            {
+
+                MainWindow.UpdateStatus($"PLC Okuma hatası: {Plc_Writew} - {Config.Plc.ErrorText(Plc_Writew)}", true);
+
+            }
+
+            S7.SetBitAt(Plc.writereadBuffer, 0, 6, false);
+            S7.SetBitAt(Plc.writereadBuffer, 0, 7, true);
+
+            int Plc_Write = Plc.PlcWrite();
+            if (Plc_Write != 0)
+            {
+
+                MainWindow.UpdateStatus($"PLC Okuma hatası: {Plc_Write} - {Config.Plc.ErrorText(Plc_Write)}", true);
+
+            }
+            Plc.plcoku = false;
         }
 
         private void sagLeftRight_ArrowLeftClicked(object sender, EventArgs e)
         {
-            Globals.plc_sagKapiKapali = false;
-            Globals.plc_sagKapiAcik = true;
+            Plc.plcoku = true;
+            int Plc_Writew = Plc.PlcWriteRead();
+            if (Plc_Writew != 0)
+            {
+
+                MainWindow.UpdateStatus($"PLC Okuma hatası: {Plc_Writew} - {Config.Plc.ErrorText(Plc_Writew)}", true);
+
+            }
+
+            S7.SetBitAt(Plc.writereadBuffer, 0, 4, false);
+            S7.SetBitAt(Plc.writereadBuffer, 0, 5, true);
+
+            int Plc_Write = Plc.PlcWrite();
+            if (Plc_Write != 0)
+            {
+
+                MainWindow.UpdateStatus($"PLC Okuma hatası: {Plc_Write} - {Config.Plc.ErrorText(Plc_Write)}", true);
+
+            }
+            Plc.plcoku = false;
         }
 
         private void sagLeftRight_ArrowRightClicked(object sender, EventArgs e)
         {
-            Globals.plc_sagKapiKapali = true;
-            Globals.plc_sagKapiAcik = false;
+            Plc.plcoku = true;
+            int Plc_Writew = Plc.PlcWriteRead();
+            if (Plc_Writew != 0)
+            {
+
+                MainWindow.UpdateStatus($"PLC Okuma hatası: {Plc_Writew} - {Config.Plc.ErrorText(Plc_Writew)}", true);
+
+            }
+
+            S7.SetBitAt(Plc.writereadBuffer, 0, 5, false);
+            S7.SetBitAt(Plc.writereadBuffer, 0, 4, true);
+
+            int Plc_Write = Plc.PlcWrite();
+            if (Plc_Write != 0)
+            {
+
+                MainWindow.UpdateStatus($"PLC Okuma hatası: {Plc_Write} - {Config.Plc.ErrorText(Plc_Write)}", true);
+
+            }
+            Plc.plcoku = false;
         }
 
         private void btnReceteSec_Click(object sender, RoutedEventArgs e)
