@@ -133,42 +133,10 @@ namespace AmerikaKamaraFirin.View
 
         private void PlcFunction()
         {
-
-            if (!Config.Plc.Connected)
-            {
-
-                int tryConnect = 0;
-                Config.PlcStatu = 1;
-                while (Config.PlcStatu != 0 && tryConnect < Globals.ConnectTryCount)
-                {
-                    Config.PlcStatu = Config.Plc.ConnectTo(Config.PlcIP, 0, 1);
-                    Task.Delay(500).Wait();
-                    tryConnect++;
-                }
-                if (Config.PlcStatu != 0) UpdateStatus($"{AmerikaKamaraFirin.Resources.fırın_PLC_Baglanamadi}: {Globals.PlcError(Config.PlcStatu)}", true, AmerikaKamaraFirin.Resources.program_acilirken_bazi_hatalar_olustu);
-                tryConnect = 0;
-            }
+            if (!Config.Plc.Connected || !Globals.plcConnected)
+                Plc.PlcConnect();
             else
-            {
-                int plc_read = Plc.PlcRead();
-                if (plc_read != 0)
-                {
-                  
-                        UpdateStatus($"PLC Okuma hatası: {plc_read} - {Config.Plc.ErrorText(plc_read)}", true);
-                    
-                }
-                if (!Plc.plcoku)
-                {
-                    int plc_writeread = Plc.PlcWriteRead();
-                    if (plc_writeread != 0)
-                    {
-
-                        UpdateStatus($"PLC Okuma hatası: {plc_writeread} - {Config.Plc.ErrorText(plc_writeread)}", true);
-
-                    }
-                }
-            }
-
+                Plc.PlcCycle();
         }
 
 

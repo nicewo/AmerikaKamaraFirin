@@ -27,29 +27,33 @@ namespace AmerikaKamaraFirin.View
         {
             InitializeComponent();
         }
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            txb_frekans.Text = S7.GetWordAt(Plc.writereadBuffer, 48).ToString();
+
+            txb_frekans.TextChanged += txb_frekans_TextChanged;
+        }
+        
+        public void TimerAction()
+        {
+
+
+
+        }
 
         private void txb_frekans_TextChanged(object sender, TextChangedEventArgs e)
         {
-            Plc.plcoku = true;
-            int Plc_Writew = Plc.PlcWriteRead();
-            if (Plc_Writew != 0)
-            {
+            Array.Copy(Plc.writereadBuffer, Plc.writeBuffer, Plc.writereadBuffer.Length);
+            Plc.plcoku = false;
 
-                MainWindow.UpdateStatus($"PLC Okuma hatası: {Plc_Writew} - {Config.Plc.ErrorText(Plc_Writew)}", true);
 
-            }
 
             ushort deger = ushort.TryParse(txb_frekans.Text, out var val) ? val : (ushort)0;
-            S7.SetWordAt(Plc.writereadBuffer,48, deger);
-            S7.SetBitAt(Plc.writereadBuffer, 50, 0, true);
-            int Plc_Write = Plc.PlcWrite();
-            if (Plc_Write != 0)
-            {
+            S7.SetWordAt(Plc.writeBuffer, 48, deger);
+            S7.SetBitAt(Plc.writeBuffer, 50, 0, true);
 
-                MainWindow.UpdateStatus($"PLC Okuma hatası: {Plc_Write} - {Config.Plc.ErrorText(Plc_Write)}", true);
 
-            }
-            Plc.plcoku = false;
+            Plc.plcyaz = true;
         }
 
         private void GotFocus(object sender, RoutedEventArgs e)
@@ -63,5 +67,19 @@ namespace AmerikaKamaraFirin.View
                 }
             }
         }
+
+        private void MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (sender is TextBox txb)
+            {
+                num = new Numpad(txb.Text);
+                if (num.ShowDialog() == true)
+                {
+                    txb.Text = num.GirilenMetin;
+                }
+            }
+        }
+
+
     }
 }

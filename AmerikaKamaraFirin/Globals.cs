@@ -24,7 +24,8 @@ namespace AmerikaKamaraFirin
             HataBasligi = "",
             HataIcerigi = "";
         public static bool
-            IsError = false;
+            IsError = false,
+            plcConnected = false;
 
 
         public static int

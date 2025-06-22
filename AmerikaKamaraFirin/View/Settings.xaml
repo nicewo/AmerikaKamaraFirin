@@ -10,6 +10,7 @@
     d:DesignHeight="604"
     d:DesignWidth="1024"
     Foreground="White"
+    Loaded="Page_Loaded"
     mc:Ignorable="d">
 
     <Grid>
@@ -26,8 +27,8 @@
             FontSize="50"
             FontWeight="Bold"
             GotFocus="GotFocus"
+            MouseDown="MouseDown"
             Text="50"
-            TextChanged="txb_frekans_TextChanged"
             TextWrapping="Wrap" />
     </Grid>
 </Page>

@@ -105,17 +105,12 @@ namespace AmerikaKamaraFirin.View
             }
 
 
-            if (!Plc.r_veriGeldi)
+            if (!Plc.r_veriGeldi && !Plc.plcyaz)
             {
 
-                Plc.plcoku = true;
-                int Plc_Writew = Plc.PlcWriteRead();
-                if (Plc_Writew != 0)
-                {
+                Array.Copy(Plc.writereadBuffer, Plc.writeBuffer, Plc.writereadBuffer.Length);
+                Plc.plcoku = false;
 
-                    MainWindow.UpdateStatus($"PLC Okuma hatası: {Plc_Writew} - {Config.Plc.ErrorText(Plc_Writew)}", true);
-
-                }
                 if (Plc.r_step < 0) Plc.r_step = 0;
                 if (Plc.r_step > 100) Plc.r_step = 0;
 
@@ -124,22 +119,16 @@ namespace AmerikaKamaraFirin.View
                 Plc.w_setTime = seciliRecete.Adimlar[Plc.r_step].SureDakika;
                 Plc.w_damper1 = seciliRecete.Adimlar[Plc.r_step].BacaAciklik;
 
-                S7.SetDIntAt(Plc.writereadBuffer,2, Plc.w_setTemp1);
-                S7.SetDIntAt(Plc.writereadBuffer, 10, Plc.w_setTime);
-                S7.SetDIntAt(Plc.writereadBuffer, 6, Plc.w_setTemp2);
-                S7.SetDIntAt(Plc.writereadBuffer, 22, Plc.w_damper1);
-                S7.SetBitAt(Plc.writereadBuffer, 42, 2,true);
-                S7.SetBitAt(Plc.writereadBuffer, 42, 3,true);
-                S7.SetDIntAt(Plc.writereadBuffer, 38, 10);
+                S7.SetDIntAt(Plc.writeBuffer, 2, Plc.w_setTemp1);
+                S7.SetDIntAt(Plc.writeBuffer, 10, Plc.w_setTime);
+                S7.SetDIntAt(Plc.writeBuffer, 6, Plc.w_setTemp2);
+                S7.SetDIntAt(Plc.writeBuffer, 22, Plc.w_damper1);
+                S7.SetBitAt(Plc.writeBuffer, 42, 2,true);
+                S7.SetBitAt(Plc.writeBuffer, 42, 3,true);
+                S7.SetDIntAt(Plc.writeBuffer, 38, 10);
 
-                int Plc_Write = Plc.PlcWrite();
-                if (Plc_Write != 0)
-                {
+                Plc.plcyaz = true;
 
-                    MainWindow.UpdateStatus($"PLC Okuma hatası: {Plc_Write} - {Config.Plc.ErrorText(Plc_Write)}", true);
-
-                }
-                Plc.plcoku = false;
             }
 
 
@@ -282,198 +271,91 @@ namespace AmerikaKamaraFirin.View
 
         private void solUpDown_ArrowLeftClicked(object sender, EventArgs e)
         {
-            Plc.plcoku = true;
-            int Plc_Writew = Plc.PlcWriteRead();
-            if (Plc_Writew != 0)
-            {
-
-                MainWindow.UpdateStatus($"PLC Okuma hatası: {Plc_Writew} - {Config.Plc.ErrorText(Plc_Writew)}", true);
-
-            }
-
-            S7.SetBitAt(Plc.writereadBuffer, 0, 2, true);
-            S7.SetBitAt(Plc.writereadBuffer, 0, 3, false);
-
-            int Plc_Write = Plc.PlcWrite();
-            if (Plc_Write != 0)
-            {
-
-                MainWindow.UpdateStatus($"PLC Okuma hatası: {Plc_Write} - {Config.Plc.ErrorText(Plc_Write)}", true);
-
-            }
+            Array.Copy(Plc.writereadBuffer, Plc.writeBuffer, Plc.writereadBuffer.Length);
             Plc.plcoku = false;
 
+            S7.SetBitAt(Plc.writeBuffer, 0, 2, true);
+            S7.SetBitAt(Plc.writeBuffer, 0, 3, false);
 
+            Plc.plcyaz = true;
         }
 
         private void solUpDown_ArrowRightClicked(object sender, EventArgs e)
         {
-            Plc.plcoku = true;
-            int Plc_Writew = Plc.PlcWriteRead();
-            if (Plc_Writew != 0)
-            {
-
-                MainWindow.UpdateStatus($"PLC Okuma hatası: {Plc_Writew} - {Config.Plc.ErrorText(Plc_Writew)}", true);
-
-            }
-
-            S7.SetBitAt(Plc.writereadBuffer, 0, 2, false);
-            S7.SetBitAt(Plc.writereadBuffer, 0, 3, true);
-
-            int Plc_Write = Plc.PlcWrite();
-            if (Plc_Write != 0)
-            {
-
-                MainWindow.UpdateStatus($"PLC Okuma hatası: {Plc_Write} - {Config.Plc.ErrorText(Plc_Write)}", true);
-
-            }
+            Array.Copy(Plc.writereadBuffer, Plc.writeBuffer, Plc.writereadBuffer.Length);
             Plc.plcoku = false;
+
+            S7.SetBitAt(Plc.writeBuffer, 0, 2, false);
+            S7.SetBitAt(Plc.writeBuffer, 0, 3, true);
+            Plc.plcyaz = true;
         }
 
         private void solLeftRight_ArrowLeftClicked(object sender, EventArgs e)
         {
-            Plc.plcoku = true;
-            int Plc_Writew = Plc.PlcWriteRead();
-            if (Plc_Writew != 0)
-            {
-
-                MainWindow.UpdateStatus($"PLC Okuma hatası: {Plc_Writew} - {Config.Plc.ErrorText(Plc_Writew)}", true);
-
-            }
-
-            S7.SetBitAt(Plc.writereadBuffer, 0, 0, false);
-            S7.SetBitAt(Plc.writereadBuffer, 0, 1, true);
-
-            int Plc_Write = Plc.PlcWrite();
-            if (Plc_Write != 0)
-            {
-
-                MainWindow.UpdateStatus($"PLC Okuma hatası: {Plc_Write} - {Config.Plc.ErrorText(Plc_Write)}", true);
-
-            }
+            Array.Copy(Plc.writereadBuffer, Plc.writeBuffer, Plc.writereadBuffer.Length);
             Plc.plcoku = false;
+
+            S7.SetBitAt(Plc.writeBuffer, 0, 0, false);
+            S7.SetBitAt(Plc.writeBuffer, 0, 1, true);
+
+            Plc.plcyaz = true;
         }
 
         private void solLeftRight_ArrowRightClicked(object sender, EventArgs e)
         {
-
-            Plc.plcoku = true;
-            int Plc_Writew = Plc.PlcWriteRead();
-            if (Plc_Writew != 0)
-            {
-
-                MainWindow.UpdateStatus($"PLC Okuma hatası: {Plc_Writew} - {Config.Plc.ErrorText(Plc_Writew)}", true);
-
-            }
-
-            S7.SetBitAt(Plc.writereadBuffer, 0, 0, true);
-            S7.SetBitAt(Plc.writereadBuffer, 0, 1, false);
-
-            int Plc_Write = Plc.PlcWrite();
-            if (Plc_Write != 0)
-            {
-
-                MainWindow.UpdateStatus($"PLC Okuma hatası: {Plc_Write} - {Config.Plc.ErrorText(Plc_Write)}", true);
-
-            }
+            Array.Copy(Plc.writereadBuffer, Plc.writeBuffer, Plc.writereadBuffer.Length);
             Plc.plcoku = false;
+
+
+            S7.SetBitAt(Plc.writeBuffer, 0, 0, true);
+            S7.SetBitAt(Plc.writeBuffer, 0, 1, false);
+
+            Plc.plcyaz = true;
         }
 
         private void sagUpDown_ArrowLeftClicked(object sender, EventArgs e)
         {
-
-            Plc.plcoku = true;
-            int Plc_Writew = Plc.PlcWriteRead();
-            if (Plc_Writew != 0)
-            {
-
-                MainWindow.UpdateStatus($"PLC Okuma hatası: {Plc_Writew} - {Config.Plc.ErrorText(Plc_Writew)}", true);
-
-            }
-
-            S7.SetBitAt(Plc.writereadBuffer, 0, 7, false);
-            S7.SetBitAt(Plc.writereadBuffer, 0, 6, true);
-
-            int Plc_Write = Plc.PlcWrite();
-            if (Plc_Write != 0)
-            {
-
-                MainWindow.UpdateStatus($"PLC Okuma hatası: {Plc_Write} - {Config.Plc.ErrorText(Plc_Write)}", true);
-
-            }
+            Array.Copy(Plc.writereadBuffer, Plc.writeBuffer, Plc.writereadBuffer.Length);
             Plc.plcoku = false;
+
+            S7.SetBitAt(Plc.writeBuffer, 0, 7, false);
+            S7.SetBitAt(Plc.writeBuffer, 0, 6, true);
+
+            Plc.plcyaz = true;
         }
 
         private void sagUpDown_ArrowRightClicked(object sender, EventArgs e)
         {
-            Plc.plcoku = true;
-            int Plc_Writew = Plc.PlcWriteRead();
-            if (Plc_Writew != 0)
-            {
-
-                MainWindow.UpdateStatus($"PLC Okuma hatası: {Plc_Writew} - {Config.Plc.ErrorText(Plc_Writew)}", true);
-
-            }
-
-            S7.SetBitAt(Plc.writereadBuffer, 0, 6, false);
-            S7.SetBitAt(Plc.writereadBuffer, 0, 7, true);
-
-            int Plc_Write = Plc.PlcWrite();
-            if (Plc_Write != 0)
-            {
-
-                MainWindow.UpdateStatus($"PLC Okuma hatası: {Plc_Write} - {Config.Plc.ErrorText(Plc_Write)}", true);
-
-            }
+            Array.Copy(Plc.writereadBuffer, Plc.writeBuffer, Plc.writereadBuffer.Length);
             Plc.plcoku = false;
+
+            S7.SetBitAt(Plc.writeBuffer, 0, 6, false);
+            S7.SetBitAt(Plc.writeBuffer, 0, 7, true);
+
+            Plc.plcyaz = true;
         }
 
         private void sagLeftRight_ArrowLeftClicked(object sender, EventArgs e)
         {
-            Plc.plcoku = true;
-            int Plc_Writew = Plc.PlcWriteRead();
-            if (Plc_Writew != 0)
-            {
-
-                MainWindow.UpdateStatus($"PLC Okuma hatası: {Plc_Writew} - {Config.Plc.ErrorText(Plc_Writew)}", true);
-
-            }
-
-            S7.SetBitAt(Plc.writereadBuffer, 0, 4, false);
-            S7.SetBitAt(Plc.writereadBuffer, 0, 5, true);
-
-            int Plc_Write = Plc.PlcWrite();
-            if (Plc_Write != 0)
-            {
-
-                MainWindow.UpdateStatus($"PLC Okuma hatası: {Plc_Write} - {Config.Plc.ErrorText(Plc_Write)}", true);
-
-            }
+            Array.Copy(Plc.writereadBuffer, Plc.writeBuffer, Plc.writereadBuffer.Length);
             Plc.plcoku = false;
+
+            S7.SetBitAt(Plc.writeBuffer, 0, 4, false);
+            S7.SetBitAt(Plc.writeBuffer, 0, 5, true);
+
+            Plc.plcyaz = true;
         }
 
         private void sagLeftRight_ArrowRightClicked(object sender, EventArgs e)
         {
-            Plc.plcoku = true;
-            int Plc_Writew = Plc.PlcWriteRead();
-            if (Plc_Writew != 0)
-            {
-
-                MainWindow.UpdateStatus($"PLC Okuma hatası: {Plc_Writew} - {Config.Plc.ErrorText(Plc_Writew)}", true);
-
-            }
-
-            S7.SetBitAt(Plc.writereadBuffer, 0, 5, false);
-            S7.SetBitAt(Plc.writereadBuffer, 0, 4, true);
-
-            int Plc_Write = Plc.PlcWrite();
-            if (Plc_Write != 0)
-            {
-
-                MainWindow.UpdateStatus($"PLC Okuma hatası: {Plc_Write} - {Config.Plc.ErrorText(Plc_Write)}", true);
-
-            }
+            Array.Copy(Plc.writereadBuffer, Plc.writeBuffer, Plc.writereadBuffer.Length);
             Plc.plcoku = false;
+
+
+            S7.SetBitAt(Plc.writeBuffer, 0, 5, false);
+            S7.SetBitAt(Plc.writeBuffer, 0, 4, true);
+
+            Plc.plcyaz = true;
         }
 
         private void btnReceteSec_Click(object sender, RoutedEventArgs e)
