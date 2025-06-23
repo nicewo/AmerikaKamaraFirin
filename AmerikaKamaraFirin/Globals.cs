@@ -39,35 +39,31 @@ namespace AmerikaKamaraFirin
 
         public static void UpdateStatus(string message, bool error = false, string title = "Bir Hatayla Karşılaşıldı!")
         {
-            title = bir_hatayla_karsilasildi;
-            string logMessage = $"{DateTime.Now:yyyy-MM-dd HH:mm:ss} - {message}";
+            title = AmerikaKamaraFirin.Resources.bir_hatayla_karsilasildi;
 
             if (error)
             {
-                string filePath = "status_log.txt";
-                IsError = true;
-                HataBasligi = title;
-                HataIcerigi = Globals.HataIcerigi + "/" + logMessage;
-
-                lock (_lock) // Aynı anda birden fazla thread dosyaya yazmaya çalışmasın diye kilit koyduk
+                // Aynı hata daha önce HataIcerigi içinde varsa tekrar ekleme
+                if (!Globals.HataIcerigi.Contains(message))
                 {
-                    using (var stream = new FileStream(filePath, FileMode.Append, FileAccess.Write, FileShare.ReadWrite))
-                    using (var sw = new StreamWriter(stream))
+                    Globals.IsError = true;
+                    Globals.HataBasligi = title;
+                    Globals.HataIcerigi += "/" + $"{DateTime.Now:yyyy-MM-dd HH:mm:ss} - {message}";
+
+                    // Log dosyasına da yaz
+                    lock (_lock)
                     {
-                        sw.WriteLine(logMessage);
+                        File.AppendAllText("status_log.txt", $"{DateTime.Now:yyyy-MM-dd HH:mm:ss} - {message}\r\n");
                     }
                 }
-
-                // Task.Delay(3000).Wait(); // Bu satırı iptal etmeni öneririm, UI veya thread kilitlenebilir
             }
             else
             {
-                IsError = false;
-                HataBasligi = title;
-                HataIcerigi = Globals.HataIcerigi + "/" + logMessage;
+                Globals.IsError = false;
+                Globals.HataBasligi = title;
+                Globals.HataIcerigi += "/" + $"{DateTime.Now:yyyy-MM-dd HH:mm:ss} - {message}";
             }
         }
-
         public static string RemoveTurkishAndSpecialChars(string input)
         {
             string[] turkish = { "İ", "I", "Ş", "Ğ", "Ü", "Ö", "Ç", "ı", "ş", "ğ", "ü", "ö", "ç" };

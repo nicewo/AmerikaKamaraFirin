@@ -26,8 +26,7 @@
             Margin="82,124,812,407"
             FontSize="50"
             FontWeight="Bold"
-            GotFocus="GotFocus"
-            MouseDown="MouseDown"
+            PreviewMouseDown="PreviewMouseDown"
             Text="50"
             TextWrapping="Wrap" />
     </Grid>

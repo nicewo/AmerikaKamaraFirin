@@ -516,4 +516,46 @@
   <data name="recetede_en_az_1_adim_olmalı" xml:space="preserve">
     <value>A recipe must contain at least one step.</value>
   </data>
+  <data name="OutOfRange" xml:space="preserve">
+    <value>Value Out of Range</value>
+  </data>
+  <data name="genel_sistem_hatasi" xml:space="preserve">
+    <value>General System Error!</value>
+  </data>
+  <data name="acil_stop_aktif" xml:space="preserve">
+    <value>Emergency Stop is Active</value>
+  </data>
+  <data name="tc1_sicaklik_sensoru_hatali" xml:space="preserve">
+    <value>Group 1 Temperature Sensor Error</value>
+  </data>
+  <data name="tc2_sicaklik_sensoru_hatali" xml:space="preserve">
+    <value>Group 2 Temperature Sensor Error</value>
+  </data>
+  <data name="modbus_veri_yukleme_hatasi" xml:space="preserve">
+    <value>Modbus data loading error!</value>
+  </data>
+  <data name="modbus_frekans_okuma_hatasi" xml:space="preserve">
+    <value>Modbus frequency write error!</value>
+  </data>
+  <data name="grup1_faz1_akim_hatasi" xml:space="preserve">
+    <value>Group 1 Phase 1 current error!</value>
+  </data>
+  <data name="grup1_faz2_akim_hatasi" xml:space="preserve">
+    <value>Group 1 Phase 2 current error!</value>
+  </data>
+  <data name="grup1_faz3_akim_hatasi" xml:space="preserve">
+    <value>Group 1 Phase 3 current error!</value>
+  </data>
+  <data name="grup2_faz1_akim_hatasi" xml:space="preserve">
+    <value>Group 2 Phase 1 current error!</value>
+  </data>
+  <data name="grup2_faz2_akim_hatasi" xml:space="preserve">
+    <value>Group 2 Phase 2 current error!</value>
+  </data>
+  <data name="grup2_faz3_akim_hatasi" xml:space="preserve">
+    <value>Group 2 Phase 3 current error!</value>
+  </data>
+  <data name="kapi_acikken_min_sicaklik_asildi" xml:space="preserve">
+    <value>You cannot open the door before reaching the minimum temperature!</value>
+  </data>
 </root>

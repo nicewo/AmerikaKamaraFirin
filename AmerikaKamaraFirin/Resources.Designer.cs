@@ -61,6 +61,15 @@ namespace AmerikaKamaraFirin {
         }
         
         /// <summary>
+        ///   Emergency Stop is Active benzeri yerelleştirilmiş bir dize arar.
+        /// </summary>
+        public static string acil_stop_aktif {
+            get {
+                return ResourceManager.GetString("acil_stop_aktif", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Add   benzeri yerelleştirilmiş bir dize arar.
         /// </summary>
         public static string add {
@@ -493,11 +502,74 @@ namespace AmerikaKamaraFirin {
         }
         
         /// <summary>
+        ///   General System Error! benzeri yerelleştirilmiş bir dize arar.
+        /// </summary>
+        public static string genel_sistem_hatasi {
+            get {
+                return ResourceManager.GetString("genel_sistem_hatasi", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Please log in! benzeri yerelleştirilmiş bir dize arar.
         /// </summary>
         public static string giris_yapiniz {
             get {
                 return ResourceManager.GetString("giris_yapiniz", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Group 1 Phase 1 current error! benzeri yerelleştirilmiş bir dize arar.
+        /// </summary>
+        public static string grup1_faz1_akim_hatasi {
+            get {
+                return ResourceManager.GetString("grup1_faz1_akim_hatasi", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Group 1 Phase 2 current error! benzeri yerelleştirilmiş bir dize arar.
+        /// </summary>
+        public static string grup1_faz2_akim_hatasi {
+            get {
+                return ResourceManager.GetString("grup1_faz2_akim_hatasi", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Group 1 Phase 3 current error! benzeri yerelleştirilmiş bir dize arar.
+        /// </summary>
+        public static string grup1_faz3_akim_hatasi {
+            get {
+                return ResourceManager.GetString("grup1_faz3_akim_hatasi", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Group 2 Phase 1 current error! benzeri yerelleştirilmiş bir dize arar.
+        /// </summary>
+        public static string grup2_faz1_akim_hatasi {
+            get {
+                return ResourceManager.GetString("grup2_faz1_akim_hatasi", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Group 2 Phase 2 current error! benzeri yerelleştirilmiş bir dize arar.
+        /// </summary>
+        public static string grup2_faz2_akim_hatasi {
+            get {
+                return ResourceManager.GetString("grup2_faz2_akim_hatasi", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Group 2 Phase 3 current error! benzeri yerelleştirilmiş bir dize arar.
+        /// </summary>
+        public static string grup2_faz3_akim_hatasi {
+            get {
+                return ResourceManager.GetString("grup2_faz3_akim_hatasi", resourceCulture);
             }
         }
         
@@ -583,6 +655,15 @@ namespace AmerikaKamaraFirin {
         }
         
         /// <summary>
+        ///   You cannot open the door before reaching the minimum temperature! benzeri yerelleştirilmiş bir dize arar.
+        /// </summary>
+        public static string kapi_acikken_min_sicaklik_asildi {
+            get {
+                return ResourceManager.GetString("kapi_acikken_min_sicaklik_asildi", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Save   benzeri yerelleştirilmiş bir dize arar.
         /// </summary>
         public static string kaydet {
@@ -664,6 +745,24 @@ namespace AmerikaKamaraFirin {
         }
         
         /// <summary>
+        ///   Modbus frequency write error! benzeri yerelleştirilmiş bir dize arar.
+        /// </summary>
+        public static string modbus_frekans_okuma_hatasi {
+            get {
+                return ResourceManager.GetString("modbus_frekans_okuma_hatasi", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Modbus data loading error! benzeri yerelleştirilmiş bir dize arar.
+        /// </summary>
+        public static string modbus_veri_yukleme_hatasi {
+            get {
+                return ResourceManager.GetString("modbus_veri_yukleme_hatasi", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   MoveStoryboard benzeri yerelleştirilmiş bir dize arar.
         /// </summary>
         public static string movestoryboard {
@@ -714,6 +813,15 @@ namespace AmerikaKamaraFirin {
         public static string otomanual {
             get {
                 return ResourceManager.GetString("otomanual", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Value Out of Range benzeri yerelleştirilmiş bir dize arar.
+        /// </summary>
+        public static string OutOfRange {
+            get {
+                return ResourceManager.GetString("OutOfRange", resourceCulture);
             }
         }
         
@@ -1065,6 +1173,24 @@ namespace AmerikaKamaraFirin {
         public static string tampon_boyutu_cok_kucuk {
             get {
                 return ResourceManager.GetString("tampon_boyutu_cok_kucuk", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Group 1 Temperature Sensor Error benzeri yerelleştirilmiş bir dize arar.
+        /// </summary>
+        public static string tc1_sicaklik_sensoru_hatali {
+            get {
+                return ResourceManager.GetString("tc1_sicaklik_sensoru_hatali", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Group 2 Temperature Sensor Error benzeri yerelleştirilmiş bir dize arar.
+        /// </summary>
+        public static string tc2_sicaklik_sensoru_hatali {
+            get {
+                return ResourceManager.GetString("tc2_sicaklik_sensoru_hatali", resourceCulture);
             }
         }
         

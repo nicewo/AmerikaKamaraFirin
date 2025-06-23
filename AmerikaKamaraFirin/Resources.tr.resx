@@ -516,4 +516,46 @@
   <data name="recetede_en_az_1_adim_olmalı" xml:space="preserve">
     <value>Reçetede en az 1 adım olmalı...</value>
   </data>
+  <data name="OutOfRange" xml:space="preserve">
+    <value>Değer Aralık Dışında</value>
+  </data>
+  <data name="genel_sistem_hatasi" xml:space="preserve">
+    <value>Genel Sistem Hatası!</value>
+  </data>
+  <data name="acil_stop_aktif" xml:space="preserve">
+    <value>Acil Stop Aktif</value>
+  </data>
+  <data name="tc1_sicaklik_sensoru_hatali" xml:space="preserve">
+    <value>Grup 1 Sıcaklık Sensörü Hatalı</value>
+  </data>
+  <data name="tc2_sicaklik_sensoru_hatali" xml:space="preserve">
+    <value>Grup 2 Sıcaklık Sensörü Hatalı</value>
+  </data>
+  <data name="modbus_veri_yukleme_hatasi" xml:space="preserve">
+    <value>Modbus veri yükleme hatası!</value>
+  </data>
+  <data name="modbus_frekans_okuma_hatasi" xml:space="preserve">
+    <value>Modbus frekans yazma hatası!</value>
+  </data>
+  <data name="grup1_faz1_akim_hatasi" xml:space="preserve">
+    <value>Grup 1 Faz 1 akım hatası!</value>
+  </data>
+  <data name="grup1_faz2_akim_hatasi" xml:space="preserve">
+    <value>Grup 1 Faz 2 akım hatası!</value>
+  </data>
+  <data name="grup1_faz3_akim_hatasi" xml:space="preserve">
+    <value>Grup 1 Faz 3 akım hatası!</value>
+  </data>
+  <data name="grup2_faz1_akim_hatasi" xml:space="preserve">
+    <value>Grup 2 Faz 1 akım hatası!</value>
+  </data>
+  <data name="grup2_faz2_akim_hatasi" xml:space="preserve">
+    <value>Grup 2 Faz 2 akım hatası!</value>
+  </data>
+  <data name="grup2_faz3_akim_hatasi" xml:space="preserve">
+    <value>Grup 2 Faz 3 akım hatası!</value>
+  </data>
+  <data name="kapi_acikken_min_sicaklik_asildi" xml:space="preserve">
+    <value>Minimum sıcaklığa ulaşmadan kapıyı açamazsınız!</value>
+  </data>
 </root>

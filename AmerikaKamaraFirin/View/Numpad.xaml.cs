@@ -20,12 +20,17 @@ namespace AmerikaKamaraFirin.View
     public partial class Numpad : Window
     {
         public string GirilenMetin => KeyText.Text;
-
-        public Numpad(string str)
+        int miniValue, maxiValue;
+        public Numpad(string str,int minValue = 0, int maxValue = 100)
         {
             InitializeComponent();
+            miniValue = minValue;
+            maxiValue = maxValue;
+            lbl_min_value.Content = minValue.ToString();
+            lbl_max_value.Content = maxValue.ToString();
             KeyText.Text = str;
-            KeyText.CaretIndex = str.Length;
+            KeyText.Focus();
+            KeyText.SelectAll();
         }
 
         private void Close_Click(object sender, RoutedEventArgs e)
@@ -49,10 +54,19 @@ namespace AmerikaKamaraFirin.View
             {
                 var key = btn.Content.ToString();
 
-                int caret = KeyText.CaretIndex;
-                if (caret > 0) key = key.ToLower();
-                KeyText.Text = KeyText.Text.Insert(caret, key);
-                KeyText.CaretIndex = caret + key.Length;
+                if (!string.IsNullOrEmpty(KeyText.SelectedText))
+                {
+                    int selStart = KeyText.SelectionStart;
+                    KeyText.Text = KeyText.Text.Remove(selStart, KeyText.SelectionLength);
+                    KeyText.Text = KeyText.Text.Insert(selStart, key);
+                    KeyText.CaretIndex = selStart + key.Length;
+                }
+                else
+                {
+                    int caret = KeyText.CaretIndex;
+                    KeyText.Text = KeyText.Text.Insert(caret, key);
+                    KeyText.CaretIndex = caret + key.Length;
+                }
             }
         }
 
@@ -60,12 +74,28 @@ namespace AmerikaKamaraFirin.View
         {
 
             int caret = KeyText.CaretIndex;
-            KeyText.Text = KeyText.Text.Remove(caret - 1, 1);
-            KeyText.CaretIndex = caret - 1;
+            if (caret > 0)
+            {
+                KeyText.Text = KeyText.Text.Remove(caret - 1, 1);
+                KeyText.CaretIndex = caret - 1;
+            }
         }
 
         private void Enter_Click(object sender, RoutedEventArgs e)
         {
+            lbl_Error.Content = string.Empty;
+            int value = int.Parse(KeyText.Text);
+            if (value < miniValue)
+            {
+                lbl_Error.Content = AmerikaKamaraFirin.Resources.OutOfRange;
+                return;
+            }
+            if (value > maxiValue)
+            {
+                lbl_Error.Content = AmerikaKamaraFirin.Resources.OutOfRange;
+                return;
+            }
+
             this.DialogResult = true;
             this.Close();
         }
@@ -80,15 +110,15 @@ namespace AmerikaKamaraFirin.View
 
         private void Window_Deactivated(object sender, EventArgs e)
         {
-            if (!isClosing && this.IsLoaded && this.IsVisible)
-            {
-                // Hata almamak için Dispatcher ile kapat
-                this.Dispatcher.InvokeAsync(() =>
-                {
-                    if (!isClosing && this.IsLoaded && this.IsVisible)
-                        this.Close();
-                });
-            }
+            //if (!isClosing && this.IsLoaded && this.IsVisible)
+            //{
+            //    // Hata almamak için Dispatcher ile kapat
+            //    this.Dispatcher.InvokeAsync(() =>
+            //    {
+            //        if (!isClosing && this.IsLoaded && this.IsVisible)
+            //            this.Close();
+            //    });
+            //}
         }
 
     }

@@ -56,30 +56,16 @@ namespace AmerikaKamaraFirin.View
             Plc.plcyaz = true;
         }
 
-        private void GotFocus(object sender, RoutedEventArgs e)
+        private void PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
             if (sender is TextBox txb)
             {
-                num = new Numpad(txb.Text);
+                num = new Numpad(txb.Text,0,60);
                 if (num.ShowDialog() == true)
                 {
                     txb.Text = num.GirilenMetin;
                 }
             }
         }
-
-        private void MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            if (sender is TextBox txb)
-            {
-                num = new Numpad(txb.Text);
-                if (num.ShowDialog() == true)
-                {
-                    txb.Text = num.GirilenMetin;
-                }
-            }
-        }
-
-
     }
 }

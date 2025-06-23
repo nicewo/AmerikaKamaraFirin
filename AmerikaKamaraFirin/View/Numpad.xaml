@@ -12,6 +12,7 @@
     AllowsTransparency="True"
     Background="Transparent"
     Deactivated="Window_Deactivated"
+    Foreground="White"
     KeyDown="Window_KeyDown"
     MouseLeftButtonDown="Window_MouseLeftButtonDown"
     WindowStartupLocation="CenterScreen"
@@ -75,6 +76,8 @@
                     <Border.Background>
                         <ImageBrush ImageSource="/View/images/background2.png" Stretch="Fill" />
                     </Border.Background>
+
+
                 </Border>
 
                 <!--  Üst Başlık Alanı  -->
@@ -94,14 +97,44 @@
                             Foreground="White" />
                     </Grid>
                 </Border>
+                <Label
+                    x:Name="lbl_Error"
+                    Margin="58,0,66,507"
+                    Content=""
+                    FontSize="24"
+                    Foreground="Red" />
 
+                <Label
+                    x:Name="lbl_min"
+                    Margin="149,107,423,400"
+                    Content="Min : "
+                    FontSize="24"
+                    Foreground="#FFFFF9F9" />
+                <Label
+                    x:Name="lbl_min_value"
+                    Margin="222,107,350,400"
+                    Content="0"
+                    FontSize="24"
+                    Foreground="#FFFFF9F9" />
+                <Label
+                    x:Name="lbl_max"
+                    Margin="349,107,223,400"
+                    Content="Max : "
+                    FontSize="24"
+                    Foreground="#FFFFF9F9" />
+                <Label
+                    x:Name="lbl_max_value"
+                    Margin="417,107,141,400"
+                    Content="100"
+                    FontSize="24"
+                    Foreground="#FFFFF9F9" />
                 <!--  İçerik Alanı  -->
                 <StackPanel Margin="0">
                     <TextBox
                         x:Name="KeyText"
                         Width="500"
                         Height="50"
-                        Margin="0,20,0,0"
+                        Margin="0,50,0,0"
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center"
                         FontFamily="Arial"
@@ -111,10 +144,10 @@
                         Text="" />
 
 
-                    <Grid Height="462" Margin="0,10,0,0">
+                    <Grid Height="462" Margin="0,0,0,0">
                         <UniformGrid
                             Width="620"
-                            Margin="0,37,0,0"
+                            Margin="0,57,0,0"
                             HorizontalAlignment="Center"
                             Columns="3"
                             Rows="4">

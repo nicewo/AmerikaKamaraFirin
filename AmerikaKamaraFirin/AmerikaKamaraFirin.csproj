@@ -6,9 +6,11 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
+    <ApplicationIcon>iconOrange.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="View\firin.png" />
     <None Remove="View\images\1.gif" />
     <None Remove="View\images\2.gif" />
     <None Remove="View\images\3.gif" />
@@ -30,9 +32,17 @@
     <None Remove="View\images\solacikyukari.png" />
     <None Remove="View\images\solkapaliassa.png" />
     <None Remove="View\images\solkapaliyukari.png" />
+    <None Remove="View\klepeMerkez.png" />
+    <None Remove="View\sagKlepe.png" />
+    <None Remove="View\solKlepe.png" />
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="iconOrange.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="View\firin.png" />
     <Resource Include="View\images\sagacikassa.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
@@ -92,6 +102,9 @@
     <Resource Include="View\images\solkapaliyukari.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="View\klepeMerkez.png" />
+    <Resource Include="View\sagKlepe.png" />
+    <Resource Include="View\solKlepe.png" />
   </ItemGroup>
 
   <ItemGroup>
