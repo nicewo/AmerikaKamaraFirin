@@ -12,23 +12,16 @@
     AllowsTransparency="True"
     Background="Transparent"
     Deactivated="Window_Deactivated"
+    IsManipulationEnabled="True"
     KeyDown="Window_KeyDown"
+    Loaded="Window_Loaded"
     MouseLeftButtonDown="Window_MouseLeftButtonDown"
+    TouchDown="Window_TouchDown"
     WindowStartupLocation="CenterScreen"
     WindowStyle="None"
     mc:Ignorable="d">
 
     <Window.Resources>
-        <local:IndexToOneBasedConverter x:Key="IndexToOneBased" />
-        <Style x:Key="ShadowCard" TargetType="Border">
-            <Setter Property="Background" Value="#1e1e2e" />
-            <Setter Property="CornerRadius" Value="12" />
-            <Setter Property="BorderBrush" Value="#3a3a4a" />
-            <Setter Property="BorderThickness" Value="1" />
-            <Setter Property="Padding" Value="10" />
-            <Setter Property="Margin" Value="5" />
-        </Style>
-
         <Style x:Key="KeyboardButtonStyle" TargetType="Button">
             <Setter Property="Margin" Value="5" />
             <Setter Property="FontSize" Value="28" />
@@ -38,6 +31,7 @@
             <Setter Property="BorderBrush" Value="#666" />
             <Setter Property="BorderThickness" Value="1" />
             <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="IsManipulationEnabled" Value="True" />
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">

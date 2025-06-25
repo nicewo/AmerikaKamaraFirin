@@ -15,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Xml.Linq;
 using Path = System.IO.Path;
 
 namespace AmerikaKamaraFirin.View
@@ -25,6 +26,15 @@ namespace AmerikaKamaraFirin.View
     public partial class MainPage : Page
     {
         public static string RecipesFolder => Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Recipes");
+        static string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "settings.xml");
+        bool ilkokumatamam = true;
+        int damperSay = 0;
+        private Polyline polylineLiveTemp1 = new Polyline();
+        private Polyline polylineLiveTemp2 = new Polyline();
+        private double realtimeNow = 0;
+        Numpad num;
+
+
 
         public MainPage()
         {
@@ -33,10 +43,110 @@ namespace AmerikaKamaraFirin.View
             CreateTrendCanvas();
 
         }
-        bool ilkokumatamam = true;
-        int damperSay = 0;
-        public void TimerAction()
+        private void Page_Loaded(object sender, RoutedEventArgs e)
         {
+            txb_damper1.Text = GetSetting("Damper1").ToString();
+            txb_damper2.Text = GetSetting("Damper2").ToString();
+
+            LoadLiveDataFromJson(); // geri yükleme
+            DrawOldDataOnGraph();   // geçmiş grafiği çiz
+        }
+
+
+        public static int GetSetting(string name)
+        {
+            if (!File.Exists(filePath))
+            {
+
+                var docw = new XDocument(
+                    new XElement("Settings",
+                        new XElement("Damper1", 100),
+                        new XElement("Damper2", 100),
+                        new XElement("MinTemp", 500),
+                        new XElement("Frekans", 50),
+                        new XElement("TempFark", 15)
+                    )
+                );
+                docw.Save(filePath);
+
+            }
+            var doc = XDocument.Load(filePath);
+            var element = doc.Root.Element(name);
+            return element != null && int.TryParse(element.Value, out int result) ? result : 0;
+        }
+        public static void SetSetting(string name, int value)
+        {
+            if (!File.Exists(filePath))
+            {
+
+                var docw = new XDocument(
+                    new XElement("Settings",
+                        new XElement("Damper1", 100),
+                        new XElement("Damper2", 100),
+                        new XElement("MinTemp", 500),
+                        new XElement("Frekans", 50),
+                        new XElement("TempFark", 15)
+                    )
+                );
+                docw.Save(filePath);
+
+            }
+            var doc = XDocument.Load(filePath);
+            var element = doc.Root.Element(name);
+
+            if (element == null)
+                doc.Root.Add(new XElement(name, value.ToString()));
+            else
+                element.Value = value.ToString();
+
+            doc.Save(filePath);
+        }
+
+
+
+        public async void TimerAction()
+        {
+            if (Plc.plcokundu)
+            {
+
+                int frek = GetSetting("Frekans");
+                int mtemp = GetSetting("MinTemp");
+                int tfark = GetSetting("TempFark");
+                bool degisti = false;
+                if(Plc.plcyazokundu)
+                {
+                    if(Plc.w_surucuFrekans != frek) degisti = true;
+                    if(Plc.w_tcfarkhata != tfark) degisti = true;
+                    if(Plc.w_minTemp != mtemp) degisti = true;
+                    if (degisti)
+                    {
+                        Array.Copy(Plc.writereadBuffer, Plc.writeBuffer, Plc.writereadBuffer.Length);
+                        Plc.plcoku = false;
+                        S7.SetDIntAt(Plc.writeBuffer, 38, tfark);
+                        S7.SetWordAt(Plc.writeBuffer, 48, (ushort)frek);
+                        S7.SetDIntAt(Plc.writeBuffer, 52, mtemp);
+                        Plc.plcyaz = true;
+                    }
+                }
+
+
+                if (Plc.r_receteTamam && Plc.plcyazokundu)
+                {
+
+                    var msg = new Message(AmerikaKamaraFirin.Resources.receteTamam);
+
+                    Array.Copy(Plc.writereadBuffer, Plc.writeBuffer, Plc.writereadBuffer.Length);
+                    Plc.plcoku = false;
+
+
+                    S7.SetBitAt(Plc.writeBuffer,42, 5, false);
+
+                    Plc.plcyaz = true;
+                    msg.Show();
+                }
+            }
+
+
 
             if (Plc.r_firinDurum)
             {
@@ -45,11 +155,11 @@ namespace AmerikaKamaraFirin.View
                 string statuMachine2 = "";
                 ElapsedTime.Visibility = Visibility.Visible;
 
-                if (seciliRecete != null)
+                if (Globals.seciliRecete != null)
                 {
-                    statuMachine2 = "    " + AmerikaKamaraFirin.Resources.hedef_sicaklik + " : " + seciliRecete.Adimlar[Plc.r_step].HedefSicaklik1;
-                    statuMachine2 = statuMachine2 + "    " + AmerikaKamaraFirin.Resources.sure + " : " + seciliRecete.Adimlar[Plc.r_step].SureDakika;
-                    statuMachine2 = statuMachine2 + "    " + AmerikaKamaraFirin.Resources.baca_aciklik + " : " + seciliRecete.Adimlar[Plc.r_step].BacaAciklik;
+                    statuMachine2 = "    " + AmerikaKamaraFirin.Resources.hedef_sicaklik + " : " + Globals.seciliRecete.Adimlar[Plc.r_step].HedefSicaklik1 + " - " + Globals.seciliRecete.Adimlar[Plc.r_step].HedefSicaklik2;
+                    statuMachine2 = statuMachine2 + "    " + AmerikaKamaraFirin.Resources.sure + " : " + Globals.seciliRecete.Adimlar[Plc.r_step].SureDakika;
+                    statuMachine2 = statuMachine2 + "    " + AmerikaKamaraFirin.Resources.baca_aciklik + " : " + Globals.seciliRecete.Adimlar[Plc.r_step].BacaAciklik1 + " - " + Globals.seciliRecete.Adimlar[Plc.r_step].BacaAciklik2;
                 }
 
                 MachineStatu.Content = statuMachine;
@@ -57,11 +167,10 @@ namespace AmerikaKamaraFirin.View
 
 
                 txb_damper1.IsEnabled = false; txb_damper2.IsEnabled = false;
-                if (Plc.plcoku)
-                {
-                    txb_damper1.Text = Plc.r_damper1.ToString();
-                    txb_damper2.Text = Plc.r_damper3.ToString();
-                }
+
+
+                lblG1Akim.Content = Plc.r_akim1Ort.ToString() + " A";
+                lblG2Akim.Content = Plc.r_akim2Ort.ToString() + " A";
 
             }
             else
@@ -74,7 +183,9 @@ namespace AmerikaKamaraFirin.View
 
             }
 
-            ElapsedTime.Content = AmerikaKamaraFirin.Resources.gecenZaman + " : " + Plc.r_total_elapsed_time + " " + AmerikaKamaraFirin.Resources.dk;
+            TimeSpan elapsed = TimeSpan.FromSeconds(Plc.r_total_elapsed_time);
+
+            ElapsedTime.Content = $"{AmerikaKamaraFirin.Resources.gecenZaman} : {elapsed.Hours:D2}:{elapsed.Minutes:D2}:{elapsed.Seconds:D2}";
 
             if (Plc.r_solKapiAssada && Plc.r_solKapiKapali)
             {
@@ -112,23 +223,9 @@ namespace AmerikaKamaraFirin.View
 
 
 
-            if (Plc.r_KapiMinTempError)
-            {
-
-            }
 
 
-            if(Plc.plcokundu && ilkokumatamam && !Plc.r_firinDurum && damperSay > 4)
-            {
-                txb_damper1.Text = Plc.r_damper1.ToString();
-                txb_damper2.Text = Plc.r_damper3.ToString();
-                ilkokumatamam = false;
-                txb_damper1.TextChanged += txb_damper1_TextChanged;
-                txb_damper2.TextChanged += txb_damper2_TextChanged;
-
-            } else { damperSay++; }
-
-            if (!Plc.r_veriGeldi && !Plc.plcyaz && Plc.plcokundu)
+            if (!Plc.r_veriGeldi && !Plc.plcyaz && Plc.plcyazokundu)
             {
 
                 Array.Copy(Plc.writereadBuffer, Plc.writeBuffer, Plc.writereadBuffer.Length);
@@ -137,26 +234,32 @@ namespace AmerikaKamaraFirin.View
                 if (Plc.r_step < 0) Plc.r_step = 0;
                 if (Plc.r_step > 100) Plc.r_step = 0;
 
-                Plc.w_setTemp1 = seciliRecete.Adimlar[Plc.r_step].HedefSicaklik1;
-                Plc.w_setTemp2 = seciliRecete.Adimlar[Plc.r_step].HedefSicaklik2;
-                Plc.w_setTime = seciliRecete.Adimlar[Plc.r_step].SureDakika;
-                Plc.w_damper1 = seciliRecete.Adimlar[Plc.r_step].BacaAciklik;
+                Plc.w_setTemp1 = Globals.seciliRecete.Adimlar[Plc.r_step].HedefSicaklik1;
+                Plc.w_setTemp2 = Globals.seciliRecete.Adimlar[Plc.r_step].HedefSicaklik2;
+                Plc.w_setTime = Globals.seciliRecete.Adimlar[Plc.r_step].SureDakika * 60;
+                Plc.w_damper1 = Globals.seciliRecete.Adimlar[Plc.r_step].BacaAciklik1;
+                Plc.w_damper3 = Globals.seciliRecete.Adimlar[Plc.r_step].BacaAciklik2;
+                Plc.w_adimSayisi = Globals.seciliRecete.Adimlar.Count();
 
                 S7.SetDIntAt(Plc.writeBuffer, 2, Plc.w_setTemp1);
-                S7.SetDIntAt(Plc.writeBuffer, 10, Plc.w_setTime);
-                S7.SetDIntAt(Plc.writeBuffer, 6, Plc.w_setTemp2);
+                S7.SetDIntAt(Plc.writeBuffer, 6, Plc.w_setTime);
+                S7.SetDIntAt(Plc.writeBuffer, 10, Plc.w_setTemp2);
                 S7.SetDIntAt(Plc.writeBuffer, 22, Plc.w_damper1);
+                S7.SetDIntAt(Plc.writeBuffer, 26, Plc.w_damper3);
                 S7.SetBitAt(Plc.writeBuffer, 42, 2, true);
                 S7.SetBitAt(Plc.writeBuffer, 42, 3, true);
                 S7.SetDIntAt(Plc.writeBuffer, 38, 10);
+                S7.SetDIntAt(Plc.writeBuffer, 64, Plc.w_adimSayisi);
 
                 Plc.plcyaz = true;
 
             }
 
-            if(Plc.plcokundu)
+            if (Plc.plcokundu && Plc.r_firinDurum)
             {
-                LiveTemp();
+                double toplamSure = Globals.seciliRecete?.Adimlar?.Sum(a => a.SureDakika) * 60 ?? 3600;
+                Plc.UpdateLiveTempData(toplamSure); // yeni veri topla
+                LiveTemp();                         // sadece son noktayı çiz
             }
 
             if (Plc.w_sagdoorclose) sagLeftRight.RightButtonBackground = Brushes.Orange;
@@ -194,35 +297,42 @@ namespace AmerikaKamaraFirin.View
             if (Plc.r_solKapiYukarda) solUpDown.RightButtonBackground = Brushes.Gray;
             if (Plc.r_solKapiAssada) solUpDown.LeftButtonBackground = Brushes.Gray;
 
-            SolKlepeRotate.Angle = (Plc.r_damper1 / 2) * -1;
-            SagKlepeRotate.Angle = (Plc.r_damper3 / 2);
+
+            SolKlepeRotate.Angle = (Plc.w_damper3 / 2) * -1;
+            SagKlepeRotate.Angle = (Plc.w_damper4 / 2);
+
+
+
+
+
+            lbl_tc1.Content = Plc.r_Tc1.ToString() + " C";
+            lbl_tc2.Content = Plc.r_Tc2.ToString() + " C";
 
         }
 
 
 
-        private Polyline polylineLiveTemp1 = new Polyline();
-        private Polyline polylineLiveTemp2 = new Polyline();
-        private double realtimeNow = 0;
 
         private void LiveTemp()
         {
-            if (seciliRecete == null || seciliRecete.Adimlar == null || seciliRecete.Adimlar.Count == 0)
+            if (Globals.seciliRecete == null || Globals.seciliRecete.Adimlar == null || Globals.seciliRecete.Adimlar.Count == 0)
                 return;
 
-            double totalSure = seciliRecete.Adimlar.Sum(a => a.SureDakika);
+            if (Globals.LiveDataList.Count == 0) return;
+
+            double totalSure = Globals.seciliRecete.Adimlar.Sum(a => a.SureDakika) * 60;
             double xScale = trendGraph.Width / totalSure;
-            double yScale = trendGraph.Height / seciliRecete.Adimlar.Max(a => a.HedefSicaklik1);
+            double yScale = trendGraph.Height / Globals.seciliRecete.Adimlar.Max(a => a.HedefSicaklik1);
 
-            double y1 = trendGraph.Height - (Plc.r_Tc1 * yScale);
-            double y2 = trendGraph.Height - (Plc.r_Tc2 * yScale);
+            var last = Globals.LiveDataList.Last();
+            double x = last.Time * xScale;
+            if (x > trendGraph.Width) return;
 
-            realtimeNow = Plc.r_total_elapsed_time * xScale;
+            double y1 = trendGraph.Height - (last.Tc1 * yScale);
+            double y2 = trendGraph.Height - (last.Tc2 * yScale);
 
-            if (realtimeNow > trendGraph.Width) return; // graph dışında kalmasın
-
-            polylineLiveTemp1.Points.Add(new Point(realtimeNow, y1));
-            polylineLiveTemp2.Points.Add(new Point(realtimeNow, y2));
+            polylineLiveTemp1.Points.Add(new Point(x, y1));
+            polylineLiveTemp2.Points.Add(new Point(x, y2));
         }
         public void LoadRecipe()
         {
@@ -250,13 +360,12 @@ namespace AmerikaKamaraFirin.View
             }
             comboBox.SelectedIndex = 0;
         }
-        Recete seciliRecete = null;
         public void CreateTrendCanvas()
         {
             trendGraph.Children.Clear();
 
-            seciliRecete = comboBox.SelectedItem as Recete;
-            if (seciliRecete == null || seciliRecete.Adimlar == null || seciliRecete.Adimlar.Count < 1)
+            Globals.seciliRecete = comboBox.SelectedItem as Recete;
+            if (Globals.seciliRecete == null || Globals.seciliRecete.Adimlar == null || Globals.seciliRecete.Adimlar.Count < 1)
                 return;
 
             var polyline = new Polyline
@@ -266,12 +375,12 @@ namespace AmerikaKamaraFirin.View
                 StrokeLineJoin = PenLineJoin.Round
             };
 
-            double maxSicaklik = seciliRecete.Adimlar.Max(a => a.HedefSicaklik1);
-            double minSicaklik = seciliRecete.Adimlar.Min(a => a.HedefSicaklik1);
+            double maxSicaklik = Globals.seciliRecete.Adimlar.Max(a => a.HedefSicaklik1);
+            double minSicaklik = Globals.seciliRecete.Adimlar.Min(a => a.HedefSicaklik1);
             double range = maxSicaklik - minSicaklik;
             if (range == 0) range = 1;
 
-            double totalSure = seciliRecete.Adimlar.Sum(a => a.SureDakika);
+            double totalSure = Globals.seciliRecete.Adimlar.Sum(a => a.SureDakika);
 
             double xScale = trendGraph.Width / totalSure;
             double yScale = trendGraph.Height / maxSicaklik;
@@ -279,7 +388,7 @@ namespace AmerikaKamaraFirin.View
             double now = 0;
             polyline.Points.Add(new Point(0, trendGraph.Height)); // ilk nokta alt köşe
 
-            foreach (var adim in seciliRecete.Adimlar)
+            foreach (var adim in Globals.seciliRecete.Adimlar)
             {
                 now += adim.SureDakika * xScale;
                 double y = trendGraph.Height - (adim.HedefSicaklik1 * yScale);
@@ -307,12 +416,12 @@ namespace AmerikaKamaraFirin.View
                 StrokeLineJoin = PenLineJoin.Round
             };
 
-            double maxSicaklik2 = seciliRecete.Adimlar.Max(a => a.HedefSicaklik2);
-            double minSicaklik2 = seciliRecete.Adimlar.Min(a => a.HedefSicaklik2);
+            double maxSicaklik2 = Globals.seciliRecete.Adimlar.Max(a => a.HedefSicaklik2);
+            double minSicaklik2 = Globals.seciliRecete.Adimlar.Min(a => a.HedefSicaklik2);
             double range2 = maxSicaklik2 - minSicaklik2;
             if (range2 == 0) range2 = 1;
 
-            double totalSure2 = seciliRecete.Adimlar.Sum(a => a.SureDakika);
+            double totalSure2 = Globals.seciliRecete.Adimlar.Sum(a => a.SureDakika);
 
             double xScale2 = trendGraph.Width / totalSure2;
             double yScale2 = trendGraph.Height / maxSicaklik2;
@@ -320,7 +429,7 @@ namespace AmerikaKamaraFirin.View
             double now2 = 0;
             polyline2.Points.Add(new Point(0, trendGraph.Height));
 
-            foreach (var adim in seciliRecete.Adimlar)
+            foreach (var adim in Globals.seciliRecete.Adimlar)
             {
                 now2 += adim.SureDakika * xScale;
                 double y = trendGraph.Height - (adim.HedefSicaklik2 * yScale2);
@@ -356,7 +465,7 @@ namespace AmerikaKamaraFirin.View
 
         private void solLeftRight_ArrowLeftClicked(object sender, EventArgs e)
         {
-            solLeftRight.LeftButtonBackground= Brushes.Orange;
+            solLeftRight.LeftButtonBackground = Brushes.Orange;
             Array.Copy(Plc.writereadBuffer, Plc.writeBuffer, Plc.writereadBuffer.Length);
             Plc.plcoku = false;
 
@@ -368,7 +477,7 @@ namespace AmerikaKamaraFirin.View
 
         private void solLeftRight_ArrowRightClicked(object sender, EventArgs e)
         {
-            solLeftRight.RightButtonBackground= Brushes.Orange;
+            solLeftRight.RightButtonBackground = Brushes.Orange;
             Array.Copy(Plc.writereadBuffer, Plc.writeBuffer, Plc.writereadBuffer.Length);
             Plc.plcoku = false;
 
@@ -405,7 +514,7 @@ namespace AmerikaKamaraFirin.View
 
         private void sagLeftRight_ArrowLeftClicked(object sender, EventArgs e)
         {
-            sagLeftRight.LeftButtonBackground= Brushes.Orange;
+            sagLeftRight.LeftButtonBackground = Brushes.Orange;
             Array.Copy(Plc.writereadBuffer, Plc.writeBuffer, Plc.writereadBuffer.Length);
             Plc.plcoku = false;
 
@@ -417,7 +526,7 @@ namespace AmerikaKamaraFirin.View
 
         private void sagLeftRight_ArrowRightClicked(object sender, EventArgs e)
         {
-            sagLeftRight.RightButtonBackground= Brushes.Orange;
+            sagLeftRight.RightButtonBackground = Brushes.Orange;
             Array.Copy(Plc.writereadBuffer, Plc.writeBuffer, Plc.writereadBuffer.Length);
             Plc.plcoku = false;
 
@@ -431,8 +540,11 @@ namespace AmerikaKamaraFirin.View
         private void btnReceteSec_Click(object sender, RoutedEventArgs e)
         {
             CreateTrendCanvas();
+
+            Globals.LiveDataList.Clear();
+            Globals.lastRecordedTime = 0;
+            try { File.Delete(Globals.LiveDataJsonPath); } catch { }
         }
-        Numpad num;
 
 
         private void txb_damper1_TextChanged(object sender, TextChangedEventArgs e)
@@ -442,8 +554,9 @@ namespace AmerikaKamaraFirin.View
 
             ushort deger = ushort.TryParse(txb_damper1.Text, out var val) ? val : (ushort)0;
 
-            S7.SetDIntAt(Plc.writeBuffer, 22, deger);
-            S7.SetDIntAt(Plc.writeBuffer, 26, deger);
+            SetSetting("Damper1", deger);
+
+            S7.SetDIntAt(Plc.writeBuffer, 30, deger);
 
             Plc.plcyaz = true;
 
@@ -455,25 +568,61 @@ namespace AmerikaKamaraFirin.View
             Plc.plcoku = false;
 
             ushort deger = ushort.TryParse(txb_damper2.Text, out var val) ? val : (ushort)0;
+            SetSetting("Damper2", deger);
 
-            S7.SetDIntAt(Plc.writeBuffer, 30, deger);
             S7.SetDIntAt(Plc.writeBuffer, 34, deger);
 
             Plc.plcyaz = true;
         }
 
 
-        private void Page_Loaded(object sender, RoutedEventArgs e)
+        private void LoadLiveDataFromJson()
         {
-
+            if (File.Exists(Globals.LiveDataJsonPath))
+            {
+                try
+                {
+                    string json = File.ReadAllText(Globals.LiveDataJsonPath);
+                    var data = JsonSerializer.Deserialize<List<LiveDataPoint>>(json);
+                    if (data != null)
+                    {
+                        Globals.LiveDataList = data;
+                        Globals.lastRecordedTime = data.LastOrDefault()?.Time ?? 0;
+                    }
+                }
+                catch { Globals.LiveDataList.Clear(); }
+            }
         }
+        private void DrawOldDataOnGraph()
+        {
+            if (Globals.seciliRecete == null || Globals.seciliRecete.Adimlar == null || Globals.seciliRecete.Adimlar.Count == 0)
+                return;
 
+            double totalSure = Globals.seciliRecete.Adimlar.Sum(a => a.SureDakika) * 60;
+            double xScale = trendGraph.Width / totalSure;
+            double yScale = trendGraph.Height / Globals.seciliRecete.Adimlar.Max(a => a.HedefSicaklik1);
+
+            polylineLiveTemp1.Points.Clear();
+            polylineLiveTemp2.Points.Clear();
+
+            foreach (var data in Globals.LiveDataList)
+            {
+                double x = data.Time * xScale;
+                if (x > trendGraph.Width) continue;
+
+                double y1 = trendGraph.Height - (data.Tc1 * yScale);
+                double y2 = trendGraph.Height - (data.Tc2 * yScale);
+
+                polylineLiveTemp1.Points.Add(new Point(x, y1));
+                polylineLiveTemp2.Points.Add(new Point(x, y2));
+            }
+        }
         private void PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
             Plc.plcoku = false;
             if (sender is TextBox txb)
             {
-                num = new Numpad(txb.Text,0,100);
+                num = new Numpad(txb.Text, 0, 100);
                 if (num.ShowDialog() == true)
                 {
                     txb.Text = num.GirilenMetin;

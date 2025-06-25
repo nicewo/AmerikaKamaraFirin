@@ -97,7 +97,8 @@ namespace AmerikaKamaraFirin.View
             if (int.TryParse(txtYeniSicaklik1.Text, out int sicaklik1) &&
                 int.TryParse(txtYeniSicaklik2.Text, out int sicaklik2) &&
                 int.TryParse(txtYeniSure.Text, out int sure) &&
-                int.TryParse(txtYeniBaca.Text, out int baca))
+                int.TryParse(txtYeniBaca1.Text, out int baca1) &&
+                int.TryParse(txtYeniBaca2.Text, out int baca2))
             {
                 // Yeni adım nesnesi oluştur
                 var yeniAdim = new Adim
@@ -105,7 +106,8 @@ namespace AmerikaKamaraFirin.View
                     AdimNo = _recete.Adimlar.Count + 1,
                     HedefSicaklik1 = sicaklik1,
                     SureDakika = sure,
-                    BacaAciklik = baca
+                    BacaAciklik1 = baca1,
+                    BacaAciklik2 = baca2
                 };
 
                 // Listeye ekle
@@ -157,7 +159,7 @@ namespace AmerikaKamaraFirin.View
         {
             if (sender is TextBox txb)
             {
-                num = new Numpad(txb.Text);
+                num = new Numpad(txb.Text,0,1600);
                 if (num.ShowDialog() == true)
                 {
                     txb.Text = num.GirilenMetin;

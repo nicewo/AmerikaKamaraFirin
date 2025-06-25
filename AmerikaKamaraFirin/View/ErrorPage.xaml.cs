@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Sharp7;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -45,6 +46,13 @@ namespace AmerikaKamaraFirin.View
 
         private async void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
+            Array.Copy(Plc.writereadBuffer, Plc.writeBuffer, Plc.writereadBuffer.Length);
+            Plc.plcoku = false;
+
+            S7.SetBitAt(Plc.writeBuffer, 42, 4, true);
+
+            Plc.plcyaz = true;
+
             var msg = new Message(AmerikaKamaraFirin.Resources.hata_icerigi_gunluge_kaydedildi);
             await msg.ShowWithTimeout(1000);
             Globals.HataIcerigi = "";

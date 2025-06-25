@@ -187,17 +187,44 @@
                                                     Margin="20,0,10,0"
                                                     Content="{x:Static resx:Resources.baca_aciklik}"
                                                     Foreground="White" />
-                                                <TextBox
-                                                    Grid.Row="2"
-                                                    Grid.Column="2"
-                                                    Width="50"
-                                                    Height="25"
-                                                    VerticalAlignment="Bottom"
-                                                    Background="#444"
-                                                    BorderBrush="#666"
-                                                    Foreground="White"
-                                                    GotFocus="Keyboard_GotFocus1"
-                                                    Text="{Binding BacaAciklik}" />
+                                                <Grid Grid.Row="2" Grid.Column="2">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition />
+                                                        <ColumnDefinition />
+                                                    </Grid.ColumnDefinitions>
+                                                    <Label
+                                                        Grid.Column="0"
+                                                        Margin="0,0,10,0"
+                                                        Content="{x:Static resx:Resources.G1degeri}"
+                                                        Foreground="White" />
+                                                    <TextBox
+                                                        Grid.Column="0"
+                                                        Width="50"
+                                                        Height="25"
+                                                        Margin="0,0,10,0"
+                                                        VerticalAlignment="Bottom"
+                                                        Background="#444"
+                                                        BorderBrush="#666"
+                                                        Foreground="White"
+                                                        GotFocus="Keyboard_GotFocus1"
+                                                        Text="{Binding BacaAciklik1}" />
+                                                    <Label
+                                                        Grid.Column="1"
+                                                        Margin="0,0,10,0"
+                                                        Content="{x:Static resx:Resources.G2Degeri}"
+                                                        Foreground="White" />
+                                                    <TextBox
+                                                        Grid.Column="1"
+                                                        Width="50"
+                                                        Height="25"
+                                                        Margin="0,0,10,0"
+                                                        VerticalAlignment="Bottom"
+                                                        Background="#444"
+                                                        BorderBrush="#666"
+                                                        Foreground="White"
+                                                        GotFocus="Keyboard_GotFocus1"
+                                                        Text="{Binding BacaAciklik2}" />
+                                                </Grid>
                                             </Grid>
 
                                         </StackPanel>
@@ -318,18 +345,46 @@
                                         Margin="20,0,10,0"
                                         Content="{x:Static resx:Resources.baca_aciklik}"
                                         Foreground="White" />
-                                    <TextBox
-                                        x:Name="txtYeniBaca"
-                                        Grid.Row="2"
-                                        Grid.Column="2"
-                                        Width="50"
-                                        Height="25"
-                                        VerticalAlignment="Bottom"
-                                        Background="#444"
-                                        BorderBrush="#666"
-                                        Foreground="White"
-                                        GotFocus="Keyboard_GotFocus1"
-                                        Text="0" />
+                                    <Grid Grid.Row="2" Grid.Column="2">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition />
+                                            <ColumnDefinition />
+                                        </Grid.ColumnDefinitions>
+                                        <Label
+                                            Grid.Column="0"
+                                            Margin="0,0,10,0"
+                                            Content="{x:Static resx:Resources.G1degeri}"
+                                            Foreground="White" />
+                                        <TextBox
+                                            x:Name="txtYeniBaca1"
+                                            Grid.Column="0"
+                                            Width="50"
+                                            Height="25"
+                                            Margin="0,0,10,0"
+                                            VerticalAlignment="Bottom"
+                                            Background="#444"
+                                            BorderBrush="#666"
+                                            Foreground="White"
+                                            GotFocus="Keyboard_GotFocus1"
+                                            Text="0" />
+                                        <Label
+                                            Grid.Column="1"
+                                            Margin="0,0,10,0"
+                                            Content="{x:Static resx:Resources.G2Degeri}"
+                                            Foreground="White" />
+                                        <TextBox
+                                            x:Name="txtYeniBaca2"
+                                            Grid.Column="1"
+                                            Width="50"
+                                            Height="25"
+                                            Margin="0,0,10,0"
+                                            VerticalAlignment="Bottom"
+                                            Background="#444"
+                                            BorderBrush="#666"
+                                            Foreground="White"
+                                            GotFocus="Keyboard_GotFocus1"
+                                            Text="0" />
+                                    </Grid>
                                 </Grid>
 
                             </StackPanel>

@@ -558,4 +558,13 @@
   <data name="kapi_acikken_min_sicaklik_asildi" xml:space="preserve">
     <value>You cannot open the door before reaching the minimum temperature!</value>
   </data>
+  <data name="inverterError" xml:space="preserve">
+    <value>Hydraulic pump inverter fault</value>
+  </data>
+  <data name="rezistansError" xml:space="preserve">
+    <value>Heater is faulty</value>
+  </data>
+  <data name="receteTamam" xml:space="preserve">
+    <value>The recipe has been completed.</value>
+  </data>
 </root>

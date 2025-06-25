@@ -610,6 +610,15 @@ namespace AmerikaKamaraFirin {
         }
         
         /// <summary>
+        ///   Hydraulic pump inverter fault benzeri yerelleştirilmiş bir dize arar.
+        /// </summary>
+        public static string inverterError {
+            get {
+                return ResourceManager.GetString("inverterError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Operation timed out. benzeri yerelleştirilmiş bir dize arar.
         /// </summary>
         public static string islem_zaman_asimina_ugradi {
@@ -1078,6 +1087,15 @@ namespace AmerikaKamaraFirin {
         }
         
         /// <summary>
+        ///   The recipe has been completed. benzeri yerelleştirilmiş bir dize arar.
+        /// </summary>
+        public static string receteTamam {
+            get {
+                return ResourceManager.GetString("receteTamam", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recipe   benzeri yerelleştirilmiş bir dize arar.
         /// </summary>
         public static string recipe {
@@ -1092,6 +1110,15 @@ namespace AmerikaKamaraFirin {
         public static string recipes {
             get {
                 return ResourceManager.GetString("recipes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Heater is faulty benzeri yerelleştirilmiş bir dize arar.
+        /// </summary>
+        public static string rezistansError {
+            get {
+                return ResourceManager.GetString("rezistansError", resourceCulture);
             }
         }
         

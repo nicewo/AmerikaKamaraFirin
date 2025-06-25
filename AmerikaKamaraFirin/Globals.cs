@@ -37,6 +37,18 @@ namespace AmerikaKamaraFirin
 
         private static readonly object _lock = new object();
 
+
+
+        public static List<LiveDataPoint> LiveDataList = new List<LiveDataPoint>();
+        public static double lastRecordedTime = 0;
+
+        public static string LiveDataJsonPath =>
+            Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "LiveTempData.json");
+
+        public static Recete seciliRecete = null; // varsa burada tutabilirsin
+
+
+
         public static void UpdateStatus(string message, bool error = false, string title = "Bir Hatayla Karşılaşıldı!")
         {
             title = AmerikaKamaraFirin.Resources.bir_hatayla_karsilasildi;

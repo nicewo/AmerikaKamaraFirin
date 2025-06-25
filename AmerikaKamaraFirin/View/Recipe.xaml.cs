@@ -283,7 +283,8 @@ namespace AmerikaKamaraFirin.View
                     HedefSicaklik1 = rnd.Next(100, 300),
                     HedefSicaklik2 = rnd.Next(100, 300),
                     SureDakika = rnd.Next(10, 60),
-                    BacaAciklik = rnd.Next(0, 100)
+                    BacaAciklik1 = rnd.Next(0, 100),
+                     BacaAciklik2 = rnd.Next(0, 100)
                 });
             }
 

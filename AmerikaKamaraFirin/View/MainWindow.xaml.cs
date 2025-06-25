@@ -130,6 +130,9 @@ namespace AmerikaKamaraFirin.View
             {
                 lbl_geriSayim.Visibility = Visibility.Hidden;
             }
+
+
+
         }
 
 

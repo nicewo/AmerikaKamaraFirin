@@ -1,27 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace AmerikaKamaraFirin.View
 {
-    /// <summary>
-    /// Numpad.xaml etkileşim mantığı
-    /// </summary>
     public partial class Numpad : Window
     {
         public string GirilenMetin => KeyText.Text;
         int miniValue, maxiValue;
-        public Numpad(string str,int minValue = 0, int maxValue = 100)
+
+        public Numpad(string str, int minValue = 0, int maxValue = 100)
         {
             InitializeComponent();
             miniValue = minValue;
@@ -29,14 +19,26 @@ namespace AmerikaKamaraFirin.View
             lbl_min_value.Content = minValue.ToString();
             lbl_max_value.Content = maxValue.ToString();
             KeyText.Text = str;
+        }
+
+        private async void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            await Task.Delay(100); // dokunmatik cihazlarda güvenli başlatma
             KeyText.Focus();
             KeyText.SelectAll();
+        }
+
+        private void Window_TouchDown(object sender, TouchEventArgs e)
+        {
+            this.Focus();
+            KeyText.Focus();
         }
 
         private void Close_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
+
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed)
@@ -48,12 +50,12 @@ namespace AmerikaKamaraFirin.View
             if (e.Key == Key.Escape)
                 this.Close();
         }
+
         private void Key_Click(object sender, RoutedEventArgs e)
         {
             if (sender is Button btn && btn.Content != null)
             {
                 var key = btn.Content.ToString();
-
                 if (!string.IsNullOrEmpty(KeyText.SelectedText))
                 {
                     int selStart = KeyText.SelectionStart;
@@ -72,7 +74,6 @@ namespace AmerikaKamaraFirin.View
 
         private void Backspace_Click(object sender, RoutedEventArgs e)
         {
-
             int caret = KeyText.CaretIndex;
             if (caret > 0)
             {
@@ -84,20 +85,21 @@ namespace AmerikaKamaraFirin.View
         private void Enter_Click(object sender, RoutedEventArgs e)
         {
             lbl_Error.Content = string.Empty;
-            int value = int.Parse(KeyText.Text);
-            if (value < miniValue)
+            if (int.TryParse(KeyText.Text, out int value))
             {
-                lbl_Error.Content = AmerikaKamaraFirin.Resources.OutOfRange;
-                return;
-            }
-            if (value > maxiValue)
-            {
-                lbl_Error.Content = AmerikaKamaraFirin.Resources.OutOfRange;
-                return;
-            }
+                if (value < miniValue || value > maxiValue)
+                {
+                    lbl_Error.Content = AmerikaKamaraFirin.Resources.OutOfRange;
+                    return;
+                }
 
-            this.DialogResult = true;
-            this.Close();
+                this.DialogResult = true;
+                this.Close();
+            }
+            else
+            {
+                lbl_Error.Content = AmerikaKamaraFirin.Resources.OutOfRange;
+            }
         }
 
         private bool isClosing = false;
@@ -107,19 +109,9 @@ namespace AmerikaKamaraFirin.View
             base.OnClosing(e);
         }
 
-
         private void Window_Deactivated(object sender, EventArgs e)
         {
-            //if (!isClosing && this.IsLoaded && this.IsVisible)
-            //{
-            //    // Hata almamak için Dispatcher ile kapat
-            //    this.Dispatcher.InvokeAsync(() =>
-            //    {
-            //        if (!isClosing && this.IsLoaded && this.IsVisible)
-            //            this.Close();
-            //    });
-            //}
+            // istersen aktifken kapanmasını yine açarsın
         }
-
     }
 }

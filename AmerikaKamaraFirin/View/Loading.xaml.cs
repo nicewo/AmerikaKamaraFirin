@@ -46,12 +46,26 @@ namespace AmerikaKamaraFirin.View
             Config.PlcStatu = 1;
             while (Config.PlcStatu != 0 && tryConnect < Globals.ConnectTryCount)
             {
-                Config.PlcStatu = Config.Plc.ConnectTo(Config.PlcIP, 0, 0);
+                Config.PlcStatu = Config.Plc.ConnectTo(Config.PlcIP, 0, 1);
                 Task.Delay(500).Wait();
                 tryConnect++;
             }
             if (Config.PlcStatu != 0) UpdateStatus($"{AmerikaKamaraFirin.Resources.fırın_PLC_Baglanamadi}: {Globals.PlcError(Config.PlcStatu)}", true, AmerikaKamaraFirin.Resources.program_acilirken_bazi_hatalar_olustu);
             tryConnect = 0;
+            if(Config.PlcStatu == 0)
+            {
+                while(!Plc.plcyazokundu && tryConnect < Globals.ConnectTryCount)
+                {
+                    Plc.PlcCycle();
+                    Task.Delay(500).Wait();
+                    tryConnect++;
+                }
+                if(Plc.plcokundu && Plc.plcyazokundu)
+                {
+                    Array.Copy(Plc.writereadBuffer, Plc.writeBuffer, Plc.writereadBuffer.Length);
+                }
+
+            }
 
                 UpdateStatus(AmerikaKamaraFirin.Resources.receteler_kontrol_ediliyor);
                 Task.Delay(3 * DelayCarpan).Wait();
@@ -102,7 +116,8 @@ namespace AmerikaKamaraFirin.View
                             HedefSicaklik1 = rnd.Next(100, 1300),
                             HedefSicaklik2 = rnd.Next(100, 1300),
                             SureDakika = rnd.Next(10, 120),
-                            BacaAciklik = rnd.Next(0, 100)
+                            BacaAciklik1 = rnd.Next(0, 100),
+                            BacaAciklik2 = rnd.Next(0, 100)
                         });
                     }
 

@@ -106,6 +106,7 @@
                 FontWeight="Bold"
                 PreviewMouseDown="PreviewMouseDown"
                 Text="25"
+                TextChanged="txb_damper1_TextChanged"
                 TextWrapping="Wrap" />
             <TextBox
                 x:Name="txb_damper2"
@@ -115,6 +116,7 @@
                 FontWeight="Bold"
                 PreviewMouseDown="PreviewMouseDown"
                 Text="25"
+                TextChanged="txb_damper2_TextChanged"
                 TextWrapping="Wrap" />
             <Image
                 x:Name="SolKlepe"
@@ -299,6 +301,20 @@
                             Text="{x:Static resx:Resources.G2Degeri}" />
                     </StackPanel>
                 </StackPanel>
+                <Label
+                    x:Name="lbl_tc1"
+                    Margin="10,105,606,67"
+                    Content="0 C"
+                    FontSize="16"
+                    FontWeight="Bold"
+                    Foreground="Yellow" />
+                <Label
+                    x:Name="lbl_tc2"
+                    Margin="10,162,606,10"
+                    Content="0 C"
+                    FontSize="16"
+                    FontWeight="Bold"
+                    Foreground="Orange" />
             </Grid>
 
             <Grid Grid.Column="1">
@@ -375,6 +391,30 @@
                         </DataTemplate>
                     </ComboBox.ItemTemplate>
                 </ComboBox>
+                <Label
+                    x:Name="label"
+                    Margin="200,54,48,67"
+                    Content="Group 2"
+                    Foreground="White" />
+                <Label
+                    x:Name="lblG2Akim"
+                    Margin="213,77,35,34"
+                    Content="0 A"
+                    FontSize="16"
+                    FontWeight="Bold"
+                    Foreground="White" />
+                <Label
+                    x:Name="label2"
+                    Margin="56,53,192,67"
+                    Content="Group 1"
+                    Foreground="White" />
+                <Label
+                    x:Name="lblG1Akim"
+                    Margin="68,77,180,39"
+                    Content="0 A"
+                    FontSize="16"
+                    FontWeight="Bold"
+                    Foreground="White" />
             </Grid>
 
         </Grid>

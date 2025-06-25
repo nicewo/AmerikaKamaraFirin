@@ -29,11 +29,16 @@ namespace AmerikaKamaraFirin.View
         }
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            txb_frekans.Text = S7.GetWordAt(Plc.writereadBuffer, 48).ToString();
+
+            txb_frekans.Text = Plc.w_surucuFrekans.ToString();
+            txb_minTemp.Text = Plc.w_minTemp.ToString();
+            txb_tempFark.Text = Plc.w_tcfarkhata.ToString();
 
             txb_frekans.TextChanged += txb_frekans_TextChanged;
+            txb_minTemp.TextChanged += txb_minTemp_TextChanged;
+            txb_tempFark.TextChanged += txb_tempFark_TextChanged;
         }
-        
+
         public void TimerAction()
         {
 
@@ -50,8 +55,36 @@ namespace AmerikaKamaraFirin.View
 
             ushort deger = ushort.TryParse(txb_frekans.Text, out var val) ? val : (ushort)0;
             S7.SetWordAt(Plc.writeBuffer, 48, deger);
-            S7.SetBitAt(Plc.writeBuffer, 50, 0, true);
 
+            MainPage.SetSetting("Frekans", deger);
+
+            Plc.plcyaz = true;
+        }
+        private void txb_minTemp_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Array.Copy(Plc.writereadBuffer, Plc.writeBuffer, Plc.writereadBuffer.Length);
+            Plc.plcoku = false;
+
+
+
+            ushort deger = ushort.TryParse(txb_minTemp.Text, out var val) ? val : (ushort)0;
+            S7.SetDIntAt(Plc.writeBuffer, 52, deger);
+
+            MainPage.SetSetting("MinTemp", deger);
+
+            Plc.plcyaz = true;
+        }
+        private void txb_tempFark_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Array.Copy(Plc.writereadBuffer, Plc.writeBuffer, Plc.writereadBuffer.Length);
+            Plc.plcoku = false;
+
+
+
+            ushort deger = ushort.TryParse(txb_tempFark.Text, out var val) ? val : (ushort)0;
+            S7.SetDIntAt(Plc.writeBuffer, 38, deger);
+
+            MainPage.SetSetting("TempFark", deger);
 
             Plc.plcyaz = true;
         }
@@ -60,7 +93,11 @@ namespace AmerikaKamaraFirin.View
         {
             if (sender is TextBox txb)
             {
-                num = new Numpad(txb.Text,0,60);
+                int max = 1000;
+                if (txb.Name == "txb_frekans") max = 60;
+                if (txb.Name == "txb_minTemp") max = 900;
+                if (txb.Name == "txb_tempFark") max = 200;
+                num = new Numpad(txb.Text,0,max);
                 if (num.ShowDialog() == true)
                 {
                     txb.Text = num.GirilenMetin;

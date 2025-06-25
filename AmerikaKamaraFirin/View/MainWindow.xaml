@@ -239,8 +239,8 @@
         <controls:Errors
             x:Name="txbError"
             Width="316"
-            Margin="57,104,0,564"
-            HorizontalAlignment="Left"
+            Margin="0,102,0,566"
+            HorizontalAlignment="Center"
             IsError="True"
             MouseLeftButtonDown="txbError_MouseLeftButtonDown" />
         <Label

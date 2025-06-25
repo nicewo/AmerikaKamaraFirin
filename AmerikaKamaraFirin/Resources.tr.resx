@@ -558,4 +558,13 @@
   <data name="kapi_acikken_min_sicaklik_asildi" xml:space="preserve">
     <value>Minimum sıcaklığa ulaşmadan kapıyı açamazsınız!</value>
   </data>
+  <data name="inverterError" xml:space="preserve">
+    <value>Hidrolik Pompa Sürücü Hatası</value>
+  </data>
+  <data name="rezistansError" xml:space="preserve">
+    <value>Rezistans Hatası</value>
+  </data>
+  <data name="receteTamam" xml:space="preserve">
+    <value>Reçete Tamamlandı.</value>
+  </data>
 </root>

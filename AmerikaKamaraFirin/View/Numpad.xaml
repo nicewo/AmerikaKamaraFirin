@@ -8,28 +8,21 @@
     xmlns:resx="clr-namespace:AmerikaKamaraFirin"
     Title="Numpad"
     Width="840"
-    Height="450"
+    Height="508"
     AllowsTransparency="True"
     Background="Transparent"
     Deactivated="Window_Deactivated"
     Foreground="White"
+    IsManipulationEnabled="True"
     KeyDown="Window_KeyDown"
+    Loaded="Window_Loaded"
     MouseLeftButtonDown="Window_MouseLeftButtonDown"
+    TouchDown="Window_TouchDown"
     WindowStartupLocation="CenterScreen"
     WindowStyle="None"
     mc:Ignorable="d">
 
     <Window.Resources>
-        <local:IndexToOneBasedConverter x:Key="IndexToOneBased" />
-        <Style x:Key="ShadowCard" TargetType="Border">
-            <Setter Property="Background" Value="#1e1e2e" />
-            <Setter Property="CornerRadius" Value="12" />
-            <Setter Property="BorderBrush" Value="#3a3a4a" />
-            <Setter Property="BorderThickness" Value="1" />
-            <Setter Property="Padding" Value="10" />
-            <Setter Property="Margin" Value="5" />
-        </Style>
-
         <Style x:Key="KeyboardButtonStyle" TargetType="Button">
             <Setter Property="Margin" Value="5" />
             <Setter Property="FontSize" Value="28" />
@@ -39,6 +32,7 @@
             <Setter Property="BorderBrush" Value="#666" />
             <Setter Property="BorderThickness" Value="1" />
             <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="IsManipulationEnabled" Value="True" />
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
@@ -72,15 +66,12 @@
                 Width="640"
                 Height="550"
                 Background="Black">
-                <Border CornerRadius="0" Opacity="0.5">
+                <Border Opacity="0.5">
                     <Border.Background>
                         <ImageBrush ImageSource="/View/images/background2.png" Stretch="Fill" />
                     </Border.Background>
-
-
                 </Border>
 
-                <!--  Üst Başlık Alanı  -->
                 <Border
                     Height="35"
                     VerticalAlignment="Top"
@@ -97,10 +88,10 @@
                             Foreground="White" />
                     </Grid>
                 </Border>
+
                 <Label
                     x:Name="lbl_Error"
                     Margin="58,0,66,507"
-                    Content=""
                     FontSize="24"
                     Foreground="Red" />
 
@@ -109,26 +100,26 @@
                     Margin="149,107,423,400"
                     Content="Min : "
                     FontSize="24"
-                    Foreground="#FFFFF9F9" />
+                    Foreground="White" />
                 <Label
                     x:Name="lbl_min_value"
                     Margin="222,107,350,400"
                     Content="0"
                     FontSize="24"
-                    Foreground="#FFFFF9F9" />
+                    Foreground="White" />
                 <Label
                     x:Name="lbl_max"
                     Margin="349,107,223,400"
                     Content="Max : "
                     FontSize="24"
-                    Foreground="#FFFFF9F9" />
+                    Foreground="White" />
                 <Label
                     x:Name="lbl_max_value"
                     Margin="417,107,141,400"
                     Content="100"
                     FontSize="24"
-                    Foreground="#FFFFF9F9" />
-                <!--  İçerik Alanı  -->
+                    Foreground="White" />
+
                 <StackPanel Margin="0">
                     <TextBox
                         x:Name="KeyText"
@@ -136,22 +127,18 @@
                         Height="50"
                         Margin="0,50,0,0"
                         HorizontalAlignment="Center"
-                        VerticalAlignment="Center"
-                        FontFamily="Arial"
                         FontSize="25"
                         FontWeight="Bold"
                         Foreground="#FF100202"
                         Text="" />
 
-
-                    <Grid Height="462" Margin="0,0,0,0">
+                    <Grid Height="452">
                         <UniformGrid
                             Width="620"
                             Margin="0,57,0,0"
                             HorizontalAlignment="Center"
                             Columns="3"
                             Rows="4">
-
                             <Button
                                 Click="Key_Click"
                                 Content="1"
@@ -188,31 +175,24 @@
                                 Click="Key_Click"
                                 Content="9"
                                 Style="{StaticResource KeyboardButtonStyle}" />
-
-
                             <Button
                                 Click="Backspace_Click"
                                 Content="←"
-                                Foreground="#FFF90000"
+                                Foreground="Red"
                                 Style="{StaticResource KeyboardButtonStyle}" />
                             <Button
                                 Click="Key_Click"
                                 Content="0"
                                 Style="{StaticResource KeyboardButtonStyle}" />
-
                             <Button
                                 Click="Enter_Click"
                                 Content="OK"
-                                Foreground="#FF32EA00"
+                                Foreground="Lime"
                                 Style="{StaticResource KeyboardButtonStyle}" />
                         </UniformGrid>
                     </Grid>
-
-
-
                 </StackPanel>
             </Grid>
         </Viewbox>
     </Border>
-
 </Window>

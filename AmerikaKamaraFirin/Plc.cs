@@ -3,7 +3,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
+using System.IO;
+
 
 namespace AmerikaKamaraFirin
 {
@@ -26,10 +29,11 @@ namespace AmerikaKamaraFirin
 
             r_error = false,              // 1.0
             r_emergencyPano = false,      // 1.1
+            r_inverterError = false,      // 1.2
             r_Tc1Hata = false,            // 1.3
             r_Tc2Hata = false,            // 1.4
 
-            r_firinDurum = true,          // 54.0
+            r_firinDurum = false,          // 54.0
             r_veriGeldi = true,           // 60.0
             r_KapiAcMinTempError = false, // 60.1
 
@@ -40,7 +44,10 @@ namespace AmerikaKamaraFirin
             r_MbAkim1_3Error = false,     // 86.4
             r_MbAkim2_1Error = false,     // 86.5
             r_MbAkim2_2Error = false,     // 86.6
-            r_MbAkim2_3Error = false;     // 86.7
+            r_MbAkim2_3Error = false,     // 86.7
+            r_rezistansError = false,     // 120.0
+            r_receteTamam = false;        // 120.1
+
 
         // DInt (4 byte - int türünde)
         public static int
@@ -57,7 +64,9 @@ namespace AmerikaKamaraFirin
             r_step = 1,                   // 42
             r_butonTime = 0,              // 46
             r_total_elapsed_time = 0,     // 50
-            r_butonBasmaTime = 0;         // 56
+            r_butonBasmaTime = 0,         // 56
+            r_akim1Ort = 0,               // 112
+            r_akim2Ort = 0;               // 116
 
         // Real (4 byte - float türünde)
         public static float
@@ -84,6 +93,8 @@ namespace AmerikaKamaraFirin
             w_Group2Run = false,          // 42.1
             w_G1veriGeldi = false,        // 42.2
             w_G2veriGeldi = false,        // 42.3
+            w_inverterReset = false,      // 42.4
+            w_receteTamam = false,        // 42.5
             w_frekansYaz = false;         // 50.0
 
         // DInt (4 byte - int türü)
@@ -99,7 +110,8 @@ namespace AmerikaKamaraFirin
             w_damper4 = 0,                // 34
             w_tcfarkhata = 10,            // 38
             w_butonbasmatime = 0,         // 44
-            w_minTemp = 0;                // 52
+            w_minTemp = 0,                // 52
+            w_adimSayisi = 0;             // 64
 
         // Word (2 byte - ushort türü)
         public static ushort
@@ -107,9 +119,9 @@ namespace AmerikaKamaraFirin
 
         //-----------------------------------------------------------------------------------------------------------------------------------------------
 
-        public static byte[] readBuffer = new byte[87];
-        public static byte[] writeBuffer = new byte[56];
-        public static byte[] writereadBuffer = new byte[56];
+        public static byte[] readBuffer = new byte[121];
+        public static byte[] writeBuffer = new byte[68];
+        public static byte[] writereadBuffer = new byte[68];
 
         //-----------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -146,10 +158,11 @@ namespace AmerikaKamaraFirin
         public static int PlcCycle()
         {
             int result = 0;
-
+            plcoku = true;
 
             if (plcoku && !plcyaz)
             {
+                plcoku = false;
                 plcokundu = false;
                 plcyazokundu = false;
 
@@ -165,6 +178,11 @@ namespace AmerikaKamaraFirin
                 {
                     deneme = 0;
                     plcokundu = true;
+                    if (Globals.seciliRecete != null && Globals.seciliRecete.Adimlar.Count > 0)
+                    {
+                        double toplamSureSn = Globals.seciliRecete.Adimlar.Sum(a => a.SureDakika) * 60;
+                        UpdateLiveTempData(toplamSureSn);
+                    }
                 }
 
                 result = PlcWriteRead();
@@ -189,23 +207,27 @@ namespace AmerikaKamaraFirin
 
             if (plcyaz)
             {
-                plcoku = false;
-                plcyazildi = false;
+                int farkf = S7.GetDIntAt(writeBuffer, 38);
+                if (farkf > 1)
+                {
+                    plcoku = false;
+                    plcyazildi = false;
 
-                result = PlcWrite();
-                if (result != 0)
-                {
-                    yazdeneme++;
-                    if (IsConnectionError(result))
-                        Globals.plcConnected = false;
-                    if (yazdeneme >= 5) { yazdeneme = 0; return result; }
-                }
-                if (result == 0)
-                {
-                    yazdeneme = 0;
-                    plcyazildi = true;
-                    plcyaz = false;
-                    plcoku = true;
+                    result = PlcWrite();
+                    if (result != 0)
+                    {
+                        yazdeneme++;
+                        if (IsConnectionError(result))
+                            Globals.plcConnected = false;
+                        if (yazdeneme >= 5) { yazdeneme = 0; return result; }
+                    }
+                    if (result == 0)
+                    {
+                        yazdeneme = 0;
+                        plcyazildi = true;
+                        plcyaz = false;
+                        plcoku = true;
+                    }
                 }
             }
 
@@ -244,6 +266,7 @@ namespace AmerikaKamaraFirin
 
             r_error = S7.GetBitAt(readBuffer, 1, 0);
             r_emergencyPano = S7.GetBitAt(readBuffer, 1, 1);
+            r_inverterError = S7.GetBitAt(readBuffer, 1, 2);
             r_Tc1Hata = S7.GetBitAt(readBuffer, 1, 3);
             r_Tc2Hata = S7.GetBitAt(readBuffer, 1, 4);
 
@@ -257,6 +280,10 @@ namespace AmerikaKamaraFirin
             r_MbAkim2_1Error = S7.GetBitAt(readBuffer, 86, 5);
             r_MbAkim2_2Error = S7.GetBitAt(readBuffer, 86, 6);
             r_MbAkim2_3Error = S7.GetBitAt(readBuffer, 86, 7);
+
+            r_rezistansError = S7.GetBitAt(readBuffer, 120, 0);
+            r_receteTamam = S7.GetBitAt(readBuffer, 120, 1);
+
 
             // DInt (4 byte)
             r_Tc1 = S7.GetDIntAt(readBuffer, 2);
@@ -273,6 +300,8 @@ namespace AmerikaKamaraFirin
             r_butonTime = S7.GetDIntAt(readBuffer, 46);
             r_total_elapsed_time = S7.GetDIntAt(readBuffer, 50);
             r_butonBasmaTime = S7.GetDIntAt(readBuffer, 56); // Time tipinde ama DInt gibi okunuyor genelde
+            r_akim1Ort = S7.GetDIntAt(readBuffer, 112);
+            r_akim2Ort = S7.GetDIntAt(readBuffer, 116); 
 
             // Real (4 byte)
             r_Akim1_1 = S7.GetRealAt(readBuffer, 62);
@@ -311,6 +340,8 @@ namespace AmerikaKamaraFirin
             w_Group2Run = S7.GetBitAt(writereadBuffer, 42, 1);     // 42.1
             w_G1veriGeldi = S7.GetBitAt(writereadBuffer, 42, 2);   // 42.2
             w_G2veriGeldi = S7.GetBitAt(writereadBuffer, 42, 3);   // 42.3
+            w_inverterReset = S7.GetBitAt(writereadBuffer, 42, 4); // 42.4
+            w_receteTamam = S7.GetBitAt(writereadBuffer, 42, 5);   // 42.5
             w_frekansYaz = S7.GetBitAt(writereadBuffer, 50, 0);    // 50.0
 
             // DInt değişkenler (4 byte)
@@ -326,6 +357,7 @@ namespace AmerikaKamaraFirin
             w_tcfarkhata = S7.GetDIntAt(writereadBuffer, 38);      // 38
             w_butonbasmatime = S7.GetDIntAt(writereadBuffer, 44);  // 44
             w_minTemp = S7.GetDIntAt(writereadBuffer, 52);         // 52
+            w_adimSayisi = S7.GetDIntAt(writereadBuffer, 64);      // 64
 
             // Word (2 byte)
             w_surucuFrekans = S7.GetWordAt(writereadBuffer, 48);   // 48
@@ -336,6 +368,40 @@ namespace AmerikaKamaraFirin
 
 
 
+        public static void UpdateLiveTempData(double toplamSureSn, int hedefVeriSayisi = 1000)
+        {
+            double orneklemeAraligi = toplamSureSn / hedefVeriSayisi;
+            double now = Plc.r_total_elapsed_time;
+
+            // Reçete sıfırlandıysa (zaman geri gittiyse)
+            if (now < Globals.lastRecordedTime)
+            {
+                Globals.LiveDataList.Clear();
+                Globals.lastRecordedTime = 0;
+                try { File.Delete(Globals.LiveDataJsonPath); } catch { }
+            }
+
+            if (now - Globals.lastRecordedTime >= orneklemeAraligi)
+            {
+                Globals.LiveDataList.Add(new LiveDataPoint
+                {
+                    Time = now,
+                    Tc1 = Plc.r_Tc1,
+                    Tc2 = Plc.r_Tc2
+                });
+
+                Globals.lastRecordedTime = now;
+
+                try
+                {
+                    var json = JsonSerializer.Serialize(Globals.LiveDataList);
+                    File.WriteAllText(Globals.LiveDataJsonPath, json);
+                }
+                catch { }
+            }
+        }
+
+
 
         public static void CheckPlcErrors()
         {
@@ -344,6 +410,12 @@ namespace AmerikaKamaraFirin
 
             if (Plc.r_emergencyPano)
                 Globals.UpdateStatus(Resources.acil_stop_aktif, true);
+
+            if (Plc.r_rezistansError)
+                Globals.UpdateStatus(Resources.rezistansError, true);
+
+            if (Plc.r_inverterError)
+                Globals.UpdateStatus(Resources.inverterError, true);
 
             if (Plc.r_Tc1Hata)
                 Globals.UpdateStatus(Resources.tc1_sicaklik_sensoru_hatali, true);

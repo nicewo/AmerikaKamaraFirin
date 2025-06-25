@@ -29,5 +29,35 @@
             PreviewMouseDown="PreviewMouseDown"
             Text="50"
             TextWrapping="Wrap" />
+        <Label
+            x:Name="lbl_minTemp"
+            Margin="276,79,482,480"
+            Content="Min. Door Opening Temp."
+            FontSize="20"
+            FontWeight="Bold"
+            Foreground="White" />
+        <TextBox
+            x:Name="txb_minTemp"
+            Margin="344,124,550,407"
+            FontSize="50"
+            FontWeight="Bold"
+            PreviewMouseDown="PreviewMouseDown"
+            Text="50"
+            TextWrapping="Wrap" />
+        <Label
+            x:Name="lbl_tempFark"
+            Margin="568,79,190,480"
+            Content="Thermocouple Error Tolerance"
+            FontSize="20"
+            FontWeight="Bold"
+            Foreground="White" />
+        <TextBox
+            x:Name="txb_tempFark"
+            Margin="636,124,258,407"
+            FontSize="50"
+            FontWeight="Bold"
+            PreviewMouseDown="PreviewMouseDown"
+            Text="50"
+            TextWrapping="Wrap" />
     </Grid>
 </Page>

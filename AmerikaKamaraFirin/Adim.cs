@@ -12,7 +12,8 @@ namespace AmerikaKamaraFirin
         public int HedefSicaklik1 { get; set; }
         public int HedefSicaklik2 { get; set; }
         public int SureDakika { get; set; }
-        public int BacaAciklik { get; set; }
+        public int BacaAciklik1 { get; set; }
+        public int BacaAciklik2 { get; set; }
 
         [JsonIgnore] // kaydetmesin
         public int AdimNo { get; set; }
