@@ -105,6 +105,7 @@ namespace AmerikaKamaraFirin.View
                 {
                     AdimNo = _recete.Adimlar.Count + 1,
                     HedefSicaklik1 = sicaklik1,
+                    HedefSicaklik2 = sicaklik2,
                     SureDakika = sure,
                     BacaAciklik1 = baca1,
                     BacaAciklik2 = baca2
