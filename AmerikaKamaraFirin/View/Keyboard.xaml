@@ -12,7 +12,8 @@
     AllowsTransparency="True"
     Background="Transparent"
     Deactivated="Window_Deactivated"
-    IsManipulationEnabled="True"
+    <!-- Allow touch input to generate mouse events for buttons -->
+    IsManipulationEnabled="False"
     KeyDown="Window_KeyDown"
     Loaded="Window_Loaded"
     MouseLeftButtonDown="Window_MouseLeftButtonDown"
@@ -31,7 +32,6 @@
             <Setter Property="BorderBrush" Value="#666" />
             <Setter Property="BorderThickness" Value="1" />
             <Setter Property="Cursor" Value="Hand" />
-            <Setter Property="IsManipulationEnabled" Value="True" />
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
