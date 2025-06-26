@@ -69,6 +69,8 @@ namespace AmerikaKamaraFirin.View
                     KeyText.Text = KeyText.Text.Insert(caret, key);
                     KeyText.CaretIndex = caret + key.Length;
                 }
+                // keep caret visible after pressing a key
+                KeyText.Focus();
             }
         }
 
@@ -80,6 +82,8 @@ namespace AmerikaKamaraFirin.View
                 KeyText.Text = KeyText.Text.Remove(caret - 1, 1);
                 KeyText.CaretIndex = caret - 1;
             }
+            // keep caret visible after removing a character
+            KeyText.Focus();
         }
 
         private void Enter_Click(object sender, RoutedEventArgs e)
