@@ -132,6 +132,15 @@ namespace AmerikaKamaraFirin.View
             }
 
 
+            if(Plc.r_siren)
+            {
+                btn_siren.Visibility = Visibility.Visible;
+            } else
+            {
+                btn_siren.Visibility= Visibility.Hidden;
+            }
+
+
 
         }
 
@@ -227,6 +236,16 @@ namespace AmerikaKamaraFirin.View
                 System.Diagnostics.Process.Start(exePath);
                 Application.Current.Shutdown();
             }
+        }
+
+        private void btn_siren_Click(object sender, RoutedEventArgs e)
+        {
+            Array.Copy(Plc.writereadBuffer, Plc.writeBuffer, Plc.writereadBuffer.Length);
+            Plc.plcoku = false;
+
+            S7.SetBitAt(Plc.writeBuffer, 50, 1, true);
+
+            Plc.plcyaz = true;
         }
     }
 }

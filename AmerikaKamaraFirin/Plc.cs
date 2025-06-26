@@ -46,7 +46,10 @@ namespace AmerikaKamaraFirin
             r_MbAkim2_2Error = false,     // 86.6
             r_MbAkim2_3Error = false,     // 86.7
             r_rezistansError = false,     // 120.0
-            r_receteTamam = false;        // 120.1
+            r_receteTamam = false,        // 120.1
+            r_kapiacildi = false,        // 120.2
+            r_Error_1 = false,        // 120.3
+            r_siren = false;        // 120.4
 
 
         // DInt (4 byte - int türünde)
@@ -66,7 +69,8 @@ namespace AmerikaKamaraFirin
             r_total_elapsed_time = 0,     // 50
             r_butonBasmaTime = 0,         // 56
             r_akim1Ort = 0,               // 112
-            r_akim2Ort = 0;               // 116
+            r_akim2Ort = 0,               // 116
+            r_elapsedTime = 0;
 
         // Real (4 byte - float türünde)
         public static float
@@ -95,8 +99,8 @@ namespace AmerikaKamaraFirin
             w_G2veriGeldi = false,        // 42.3
             w_inverterReset = false,      // 42.4
             w_receteTamam = false,        // 42.5
-            w_frekansYaz = false;         // 50.0
-
+            w_frekansYaz = false,         // 50.0
+            w_sirenSustur = false;        // 50.1
         // DInt (4 byte - int türü)
         public static int
             w_setTemp1 = 0,               // 2
@@ -119,7 +123,7 @@ namespace AmerikaKamaraFirin
 
         //-----------------------------------------------------------------------------------------------------------------------------------------------
 
-        public static byte[] readBuffer = new byte[121];
+        public static byte[] readBuffer = new byte[126];
         public static byte[] writeBuffer = new byte[68];
         public static byte[] writereadBuffer = new byte[68];
 
@@ -283,6 +287,10 @@ namespace AmerikaKamaraFirin
 
             r_rezistansError = S7.GetBitAt(readBuffer, 120, 0);
             r_receteTamam = S7.GetBitAt(readBuffer, 120, 1);
+            r_kapiacildi = S7.GetBitAt(readBuffer, 120, 2);
+            r_Error_1 = S7.GetBitAt(readBuffer, 120, 3);
+            r_siren = S7.GetBitAt(readBuffer, 120, 4);
+
 
 
             // DInt (4 byte)
@@ -299,6 +307,7 @@ namespace AmerikaKamaraFirin
             r_step = S7.GetDIntAt(readBuffer, 42);
             r_butonTime = S7.GetDIntAt(readBuffer, 46);
             r_total_elapsed_time = S7.GetDIntAt(readBuffer, 50);
+            r_elapsedTime = S7.GetDIntAt(readBuffer, 122);
             r_butonBasmaTime = S7.GetDIntAt(readBuffer, 56); // Time tipinde ama DInt gibi okunuyor genelde
             r_akim1Ort = S7.GetDIntAt(readBuffer, 112);
             r_akim2Ort = S7.GetDIntAt(readBuffer, 116); 
@@ -343,6 +352,7 @@ namespace AmerikaKamaraFirin
             w_inverterReset = S7.GetBitAt(writereadBuffer, 42, 4); // 42.4
             w_receteTamam = S7.GetBitAt(writereadBuffer, 42, 5);   // 42.5
             w_frekansYaz = S7.GetBitAt(writereadBuffer, 50, 0);    // 50.0
+            w_sirenSustur = S7.GetBitAt(writereadBuffer, 50, 1);   // 50.1
 
             // DInt değişkenler (4 byte)
             w_setTemp1 = S7.GetDIntAt(writereadBuffer, 2);         // 2

@@ -1024,6 +1024,15 @@ namespace AmerikaKamaraFirin {
         }
         
         /// <summary>
+        ///   Are you sure you want to delete this recipe? benzeri yerelleştirilmiş bir dize arar.
+        /// </summary>
+        public static string recete_silinecek_onay {
+            get {
+                return ResourceManager.GetString("recete_silinecek_onay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   A recipe must contain at least one step. benzeri yerelleştirilmiş bir dize arar.
         /// </summary>
         public static string recetede_en_az_1_adim_olmalı {
@@ -1105,6 +1114,15 @@ namespace AmerikaKamaraFirin {
         }
         
         /// <summary>
+        ///   Elapsed Time for Step benzeri yerelleştirilmiş bir dize arar.
+        /// </summary>
+        public static string recipegecenZaman {
+            get {
+                return ResourceManager.GetString("recipegecenZaman", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recipes benzeri yerelleştirilmiş bir dize arar.
         /// </summary>
         public static string recipes {
@@ -1173,6 +1191,15 @@ namespace AmerikaKamaraFirin {
         public static string sikistirma_islemi_basarisiz_oldu {
             get {
                 return ResourceManager.GetString("sikistirma_islemi_basarisiz_oldu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Silence the siren. benzeri yerelleştirilmiş bir dize arar.
+        /// </summary>
+        public static string sirenSustur {
+            get {
+                return ResourceManager.GetString("sirenSustur", resourceCulture);
             }
         }
         

@@ -14,29 +14,26 @@ namespace AmerikaKamaraFirin.View
     public partial class ReceteDuzenle : Window
     {
         private Recete _recete;
-        public Recete eskirecete;
+        public string eskirecete;
+        public Recete recete;
         Keyboard key;
         Numpad num;
 
-        public ReceteDuzenle(Recete recete)
+        public ReceteDuzenle(Recete recetes)
         {
             InitializeComponent();
-            for (int i = 0; i < recete.Adimlar.Count; i++)
-                recete.Adimlar[i].AdimNo = i + 1;
-            _recete = recete;
-            txtReceteAdi.Text = recete.Adi;
-            lstAdimlar.ItemsSource = _recete.Adimlar;
-            eskirecete = recete;
+            recete = recetes;
+            eskirecete = recete.Adi;
         }
 
         private void Save_Click(object sender, RoutedEventArgs e)
         {
             _recete.Adi = txtReceteAdi.Text;
 
-            if (_recete.Adi != eskirecete.Adi)
+            if (_recete.Adi != eskirecete)
             {
                 // Reçete adı değiştiğinde eski dosyayı sil
-                string eskiDosyaAdi = Globals.RemoveTurkishAndSpecialChars(eskirecete.Adi);
+                string eskiDosyaAdi = Globals.RemoveTurkishAndSpecialChars(eskirecete);
                 string eskiKlasor = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Recipes");
                 string eskiYol = Path.Combine(eskiKlasor, eskiDosyaAdi + ".json");
                 if (File.Exists(eskiYol))
@@ -167,7 +164,13 @@ namespace AmerikaKamaraFirin.View
             }
         }
 
-
-
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            for (int i = 0; i < recete.Adimlar.Count; i++)
+                recete.Adimlar[i].AdimNo = i + 1;
+            _recete = recete;
+            txtReceteAdi.Text = recete.Adi;
+            lstAdimlar.ItemsSource = _recete.Adimlar;
+        }
     }
 }

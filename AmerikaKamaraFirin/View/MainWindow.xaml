@@ -68,7 +68,17 @@
                         NavigationUIVisibility="Hidden"
                         Source="/View/MainPage.xaml" />
                 </StackPanel>
-                <Grid />
+                <Grid>
+                    <Button
+                        x:Name="btn_siren"
+                        Margin="304,0,304,0"
+                        Background="Red"
+                        Click="btn_siren_Click"
+                        Content="{x:Static resx:Resources.sirenSustur}"
+                        FontSize="36"
+                        FontWeight="Bold"
+                        Foreground="White" />
+                </Grid>
                 <Grid Grid.Row="2" Background="Black">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition />

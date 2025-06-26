@@ -567,4 +567,13 @@
   <data name="receteTamam" xml:space="preserve">
     <value>Reçete Tamamlandı.</value>
   </data>
+  <data name="recipegecenZaman" xml:space="preserve">
+    <value>Adım Geçen Zaman</value>
+  </data>
+  <data name="sirenSustur" xml:space="preserve">
+    <value>Sireni Sustur.</value>
+  </data>
+  <data name="recete_silinecek_onay" xml:space="preserve">
+    <value>Bu reçeteyi silmek istediğinizden emin misiniz?</value>
+  </data>
 </root>

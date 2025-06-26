@@ -335,6 +335,19 @@
                     FontSize="18"
                     FontWeight="Bold"
                     Foreground="#FFFDFDFD" />
+                <Label
+                    x:Name="ElapsedTimeStep"
+                    Grid.Row="0"
+                    Height="35"
+                    Margin="0,31,0,0"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Top"
+                    Background="{x:Null}"
+                    BorderBrush="{x:Null}"
+                    Content="{x:Static resx:Resources.recipegecenZaman}"
+                    FontSize="18"
+                    FontWeight="Bold"
+                    Foreground="#FFFDFDFD" />
 
                 <Label
                     Grid.Row="0"
@@ -393,24 +406,24 @@
                 </ComboBox>
                 <Label
                     x:Name="label"
-                    Margin="200,54,48,67"
+                    Margin="198,63,50,56"
                     Content="Group 2"
                     Foreground="White" />
                 <Label
                     x:Name="lblG2Akim"
-                    Margin="213,77,35,34"
+                    Margin="211,88,37,23"
                     Content="0 A"
                     FontSize="16"
                     FontWeight="Bold"
                     Foreground="White" />
                 <Label
                     x:Name="label2"
-                    Margin="56,53,192,67"
+                    Margin="53,63,195,56"
                     Content="Group 1"
                     Foreground="White" />
                 <Label
                     x:Name="lblG1Akim"
-                    Margin="68,77,180,39"
+                    Margin="66,88,182,28"
                     Content="0 A"
                     FontSize="16"
                     FontWeight="Bold"

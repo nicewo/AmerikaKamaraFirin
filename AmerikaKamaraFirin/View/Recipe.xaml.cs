@@ -62,6 +62,32 @@ namespace AmerikaKamaraFirin.View
             grid.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
             grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(30) });
 
+            // DELETE BUTTON
+            var delButton = new Button
+            {
+                Content = "DEL",
+                Background = Brushes.Red,
+                Foreground = Brushes.White,
+                FontWeight = FontWeights.Bold,
+                BorderBrush = Brushes.DarkRed,
+                Width = 50,
+                Height = 35,
+                Margin = new Thickness(5,0,0,0),
+                HorizontalAlignment = HorizontalAlignment.Left,
+                VerticalAlignment = VerticalAlignment.Top,
+                Cursor = Cursors.Hand
+            };
+            delButton.Click += (s, e) =>
+            {
+                if (MessageBox.Show($"'{recete.Adi}' {AmerikaKamaraFirin.Resources.recete_silinecek_onay}", "Silme Onayı", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+                {
+                    ReceteSil(recete);
+                }
+                e.Handled = true; // border click tetiklenmesin
+            };
+            Grid.SetRow(delButton, 0);
+            grid.Children.Add(delButton);
+
             // Reçete adı
             string adi = recete.Adi;
             if (adi.Length > 25)
@@ -76,16 +102,18 @@ namespace AmerikaKamaraFirin.View
                 HorizontalAlignment = HorizontalAlignment.Center,
                 Margin = new Thickness(0, 0, 0, 8),
                 IsHitTestVisible = false
-            }; grid.Children.Add(textblock);
+            };
+            grid.Children.Add(textblock);
 
             // Grafik
             var grafik = CreateTrendCanvas(recete);
             Grid.SetRow(grafik, 1);
-            grafik.IsHitTestVisible = false; // olaylar grid'e geçsin
+            grafik.IsHitTestVisible = false;
             grid.Children.Add(grafik);
 
             int toplamsüre = recete.Adimlar.Sum(a => a.SureDakika);
-            string toplamsüreStr = (toplamsüre / 60) + ":" + (toplamsüre % 60);
+            string toplamsüreStr = (toplamsüre / 60) + ":" + (toplamsüre % 60).ToString("D2");
+
             var buton = new TextBlock
             {
                 Text = AmerikaKamaraFirin.Resources.toplam_süre + "  " + toplamsüreStr,
@@ -97,8 +125,8 @@ namespace AmerikaKamaraFirin.View
                 Width = 150,
                 IsHitTestVisible = false
             };
-            grid.Children.Add(buton);
             Grid.SetRow(buton, 2);
+            grid.Children.Add(buton);
 
             var border = new Border
             {
@@ -109,11 +137,10 @@ namespace AmerikaKamaraFirin.View
                 CornerRadius = new CornerRadius(12),
                 BorderBrush = Brushes.LightGray,
                 BorderThickness = new Thickness(1),
-                Cursor = System.Windows.Input.Cursors.Hand,
+                Cursor = Cursors.Hand,
                 Child = grid
             };
 
-            // Tıklama olayını sadece bir yerde tanımla
             border.MouseLeftButtonUp += (s, e) =>
             {
                 var duzenlePencere = new ReceteDuzenle(recete);
@@ -122,7 +149,6 @@ namespace AmerikaKamaraFirin.View
 
             return border;
         }
-
 
         public static Canvas CreateTrendCanvas(Recete recete)
         {

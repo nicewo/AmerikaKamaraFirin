@@ -154,6 +154,7 @@ namespace AmerikaKamaraFirin.View
                 MachineStatu.Foreground = new SolidColorBrush(Color.FromArgb(255, 0, 255, 0));
                 string statuMachine2 = "";
                 ElapsedTime.Visibility = Visibility.Visible;
+                ElapsedTimeStep.Visibility = Visibility.Visible;
 
                 if (Globals.seciliRecete != null)
                 {
@@ -178,12 +179,14 @@ namespace AmerikaKamaraFirin.View
                 MachineStatu.Content = AmerikaKamaraFirin.Resources.Machine_Statu + " " + AmerikaKamaraFirin.Resources.durduruldu;
                 MachineStatu.Foreground = new SolidColorBrush(Color.FromArgb(255, 255, 0, 0));
                 ElapsedTime.Visibility = Visibility.Hidden;
+                ElapsedTimeStep.Visibility = Visibility.Hidden;
 
                 txb_damper1.IsEnabled = true; txb_damper2.IsEnabled = true;
 
             }
 
             TimeSpan elapsed = TimeSpan.FromSeconds(Plc.r_total_elapsed_time);
+            TimeSpan elapsedstep = TimeSpan.FromSeconds(Plc.r_total_elapsed_time);
 
             ElapsedTime.Content = $"{AmerikaKamaraFirin.Resources.gecenZaman} : {elapsed.Hours:D2}:{elapsed.Minutes:D2}:{elapsed.Seconds:D2}";
 
