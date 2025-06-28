@@ -309,12 +309,27 @@
                     FontWeight="Bold"
                     Foreground="Yellow" />
                 <Label
+                    x:Name="lbl_tc1recete"
+                    Margin="10,67,606,105"
+                    Content="0 C"
+                    FontSize="16"
+                    FontWeight="Bold"
+                    Foreground="LightGreen" />
+                <Label
                     x:Name="lbl_tc2"
-                    Margin="10,162,606,10"
+                    Grid.Row="1"
+                    Margin="10,0,606,16"
                     Content="0 C"
                     FontSize="16"
                     FontWeight="Bold"
                     Foreground="Orange" />
+                <Label
+                    x:Name="lbl_tc2recete"
+                    Margin="10,172,606,0"
+                    Content="0 C"
+                    FontSize="16"
+                    FontWeight="Bold"
+                    Foreground="LightSkyBlue" />
             </Grid>
 
             <Grid Grid.Column="1">

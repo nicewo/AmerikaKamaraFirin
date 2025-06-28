@@ -10,6 +10,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Ink;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -113,11 +114,11 @@ namespace AmerikaKamaraFirin.View
                 int mtemp = GetSetting("MinTemp");
                 int tfark = GetSetting("TempFark");
                 bool degisti = false;
-                if(Plc.plcyazokundu)
+                if (Plc.plcyazokundu)
                 {
-                    if(Plc.w_surucuFrekans != frek) degisti = true;
-                    if(Plc.w_tcfarkhata != tfark) degisti = true;
-                    if(Plc.w_minTemp != mtemp) degisti = true;
+                    if (Plc.w_surucuFrekans != frek) degisti = true;
+                    if (Plc.w_tcfarkhata != tfark) degisti = true;
+                    if (Plc.w_minTemp != mtemp) degisti = true;
                     if (degisti)
                     {
                         Array.Copy(Plc.writereadBuffer, Plc.writeBuffer, Plc.writereadBuffer.Length);
@@ -139,7 +140,7 @@ namespace AmerikaKamaraFirin.View
                     Plc.plcoku = false;
 
 
-                    S7.SetBitAt(Plc.writeBuffer,42, 5, false);
+                    S7.SetBitAt(Plc.writeBuffer, 42, 5, false);
 
                     Plc.plcyaz = true;
                     msg.Show();
@@ -310,6 +311,9 @@ namespace AmerikaKamaraFirin.View
 
             lbl_tc1.Content = Plc.r_Tc1.ToString() + " C";
             lbl_tc2.Content = Plc.r_Tc2.ToString() + " C";
+            lbl_tc1recete.Content = Plc.r_Tc1recete.ToString() + " C";
+            lbl_tc2recete.Content = Plc.r_Tc2recete.ToString() + " C";
+
 
         }
 
@@ -439,7 +443,37 @@ namespace AmerikaKamaraFirin.View
                 polyline2.Points.Add(new Point(now2, y));
             }
 
+
             trendGraph.Children.Add(polyline2);
+
+
+
+            var polyline3 = new Polyline[Globals.seciliRecete.Adimlar.Count()];
+
+            double xAdimSonu = 0;
+
+            for (int i = 0; i < Globals.seciliRecete.Adimlar.Count(); i++)
+            {
+                if (i < Globals.seciliRecete.Adimlar.Count() - 1)
+                {
+                    polyline3[i] = new Polyline
+                    {
+                        Stroke = Brushes.Gray,
+                        StrokeThickness = 1,
+                        StrokeLineJoin = PenLineJoin.Round
+
+                    };
+
+                    xAdimSonu += Globals.seciliRecete.Adimlar[i].SureDakika * xScale;
+
+                    polyline3[i].Points.Add(new Point(xAdimSonu, 0));
+                    polyline3[i].Points.Add(new Point(xAdimSonu, trendGraph.Height));
+
+                    trendGraph.Children.Add(polyline3[i]);
+                }
+            }
+
+
 
         }
 

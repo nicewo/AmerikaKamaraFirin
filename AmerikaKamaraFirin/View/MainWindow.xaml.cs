@@ -91,7 +91,7 @@ namespace AmerikaKamaraFirin.View
                 }
             }
 
-            ThreadTimer = new Timer(ThreadTimerTick, null, 0, 600);
+            ThreadTimer = new Timer(ThreadTimerTick, null, 0, 300);
             ilkacilis = false;
             Plc.plcoku = true;
 

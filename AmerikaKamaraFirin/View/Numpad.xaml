@@ -13,7 +13,6 @@
     Background="Transparent"
     Deactivated="Window_Deactivated"
     Foreground="White"
-    <!-- Allow touch input to generate mouse events for buttons -->
     IsManipulationEnabled="False"
     KeyDown="Window_KeyDown"
     Loaded="Window_Loaded"

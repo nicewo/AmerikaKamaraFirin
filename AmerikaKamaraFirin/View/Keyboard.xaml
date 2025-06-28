@@ -12,7 +12,6 @@
     AllowsTransparency="True"
     Background="Transparent"
     Deactivated="Window_Deactivated"
-    <!-- Allow touch input to generate mouse events for buttons -->
     IsManipulationEnabled="False"
     KeyDown="Window_KeyDown"
     Loaded="Window_Loaded"

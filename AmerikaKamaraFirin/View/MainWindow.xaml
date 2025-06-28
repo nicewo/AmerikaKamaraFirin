@@ -11,13 +11,15 @@
     Width="1024"
     Height="768"
     AllowsTransparency="True"
-    Background="#FF000035"
     DataContext="{Binding RelativeSource={RelativeSource Self}}"
     ResizeMode="NoResize"
     WindowStartupLocation="CenterScreen"
     WindowState="Normal"
     WindowStyle="None"
     mc:Ignorable="d">
+    <Window.Background>
+        <ImageBrush ImageSource="/View/images/background.png" />
+    </Window.Background>
     <Grid>
 
         <Border>
@@ -29,14 +31,15 @@
                 </Grid.RowDefinitions>
                 <Grid Grid.Row="0">
                     <Image
-                        Height="70"
-                        Margin="10,0,0,0"
+                        Width="70"
+                        Height="62"
+                        Margin="5,0,0,0"
                         HorizontalAlignment="Left"
-                        VerticalAlignment="Top"
+                        VerticalAlignment="Center"
                         Cursor="Hand"
                         MouseDown="Image_MouseDown"
                         Source="/View/images/logo.png"
-                        Stretch="Uniform" />
+                        Stretch="Fill" />
                     <ComboBox
                         x:Name="cmbLanguage"
                         Width="80"
@@ -71,13 +74,29 @@
                 <Grid>
                     <Button
                         x:Name="btn_siren"
-                        Margin="304,0,304,0"
-                        Background="Red"
+                        Height="75"
+                        Margin="304,12,304,-17"
+                        Background="#B2000000"
+                        BorderBrush="Red"
+                        BorderThickness="3"
                         Click="btn_siren_Click"
+                        ClipToBounds="True"
                         Content="{x:Static resx:Resources.sirenSustur}"
                         FontSize="36"
                         FontWeight="Bold"
-                        Foreground="White" />
+                        Foreground="White">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border
+                                    Background="{TemplateBinding Background}"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                    CornerRadius="20">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
                 </Grid>
                 <Grid Grid.Row="2" Background="Black">
                     <Grid.ColumnDefinitions>

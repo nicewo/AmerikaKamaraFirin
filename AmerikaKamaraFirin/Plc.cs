@@ -70,7 +70,9 @@ namespace AmerikaKamaraFirin
             r_butonBasmaTime = 0,         // 56
             r_akim1Ort = 0,               // 112
             r_akim2Ort = 0,               // 116
-            r_elapsedTime = 0;
+            r_elapsedTime = 0,
+            r_Tc1recete = 0,              // 126
+            r_Tc2recete = 0;              // 130
 
         // Real (4 byte - float türünde)
         public static float
@@ -123,7 +125,7 @@ namespace AmerikaKamaraFirin
 
         //-----------------------------------------------------------------------------------------------------------------------------------------------
 
-        public static byte[] readBuffer = new byte[126];
+        public static byte[] readBuffer = new byte[134];
         public static byte[] writeBuffer = new byte[68];
         public static byte[] writereadBuffer = new byte[68];
 
@@ -308,9 +310,11 @@ namespace AmerikaKamaraFirin
             r_butonTime = S7.GetDIntAt(readBuffer, 46);
             r_total_elapsed_time = S7.GetDIntAt(readBuffer, 50);
             r_elapsedTime = S7.GetDIntAt(readBuffer, 122);
-            r_butonBasmaTime = S7.GetDIntAt(readBuffer, 56); // Time tipinde ama DInt gibi okunuyor genelde
+            r_butonBasmaTime = S7.GetDIntAt(readBuffer, 56);
             r_akim1Ort = S7.GetDIntAt(readBuffer, 112);
-            r_akim2Ort = S7.GetDIntAt(readBuffer, 116); 
+            r_akim2Ort = S7.GetDIntAt(readBuffer, 116);
+            r_Tc1recete = S7.GetDIntAt(readBuffer, 126);
+            r_Tc2recete = S7.GetDIntAt(readBuffer, 130);
 
             // Real (4 byte)
             r_Akim1_1 = S7.GetRealAt(readBuffer, 62);
