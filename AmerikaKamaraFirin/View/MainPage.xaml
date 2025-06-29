@@ -106,7 +106,6 @@
                 FontWeight="Bold"
                 PreviewMouseDown="PreviewMouseDown"
                 Text="25"
-                TextChanged="txb_damper1_TextChanged"
                 TextWrapping="Wrap" />
             <TextBox
                 x:Name="txb_damper2"
@@ -116,7 +115,6 @@
                 FontWeight="Bold"
                 PreviewMouseDown="PreviewMouseDown"
                 Text="25"
-                TextChanged="txb_damper2_TextChanged"
                 TextWrapping="Wrap" />
             <Image
                 x:Name="SolKlepe"

@@ -584,33 +584,6 @@ namespace AmerikaKamaraFirin.View
         }
 
 
-        private void txb_damper1_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            Array.Copy(Plc.writereadBuffer, Plc.writeBuffer, Plc.writereadBuffer.Length);
-            Plc.plcoku = false;
-
-            ushort deger = ushort.TryParse(txb_damper1.Text, out var val) ? val : (ushort)0;
-
-            SetSetting("Damper1", deger);
-
-            S7.SetDIntAt(Plc.writeBuffer, 30, deger);
-
-            Plc.plcyaz = true;
-
-        }
-
-        private void txb_damper2_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            Array.Copy(Plc.writereadBuffer, Plc.writeBuffer, Plc.writereadBuffer.Length);
-            Plc.plcoku = false;
-
-            ushort deger = ushort.TryParse(txb_damper2.Text, out var val) ? val : (ushort)0;
-            SetSetting("Damper2", deger);
-
-            S7.SetDIntAt(Plc.writeBuffer, 34, deger);
-
-            Plc.plcyaz = true;
-        }
 
 
         private void LoadLiveDataFromJson()
@@ -656,12 +629,34 @@ namespace AmerikaKamaraFirin.View
         }
         private void PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
-            Plc.plcoku = false;
             if (sender is TextBox txb)
             {
                 num = new Numpad(txb.Text, 0, 100);
                 if (num.ShowDialog() == true)
                 {
+                    string damper = "";
+                    int plcByte = 30;
+                    if(txb.Name == "txb_damper1")
+                    {
+                        damper = "Damper1";
+                        plcByte = 30;
+                    }
+                    else if (txb.Name == "txb_damper2")
+                    {
+                        damper = "Damper2";
+                        plcByte = 34;
+                    }
+                    Array.Copy(Plc.writereadBuffer, Plc.writeBuffer, Plc.writereadBuffer.Length);
+                    Plc.plcoku = false;
+
+                    ushort deger = ushort.TryParse(num.GirilenMetin, out var val) ? val : (ushort)0;
+
+                    SetSetting(damper, deger);
+
+                    S7.SetDIntAt(Plc.writeBuffer, plcByte, deger);
+
+                    Plc.plcyaz = true;
+
                     txb.Text = num.GirilenMetin;
                 }
             }

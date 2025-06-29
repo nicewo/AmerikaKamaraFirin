@@ -9,7 +9,6 @@
     Height="750"
     AllowsTransparency="True"
     Background="Transparent"
-    KeyDown="Window_KeyDown"
     Loaded="Window_Loaded"
     MouseLeftButtonDown="Window_MouseLeftButtonDown"
     WindowStartupLocation="CenterScreen"
@@ -137,6 +136,7 @@
                                                         Content="{x:Static resx:Resources.G1degeri}"
                                                         Foreground="White" />
                                                     <TextBox
+                                                        x:Name="hedefTemp1"
                                                         Grid.Column="0"
                                                         Width="50"
                                                         Height="25"
@@ -153,6 +153,7 @@
                                                         Content="{x:Static resx:Resources.G2Degeri}"
                                                         Foreground="White" />
                                                     <TextBox
+                                                        x:Name="hedefTemp2"
                                                         Grid.Column="1"
                                                         Width="50"
                                                         Height="25"
@@ -171,6 +172,7 @@
                                                     Content="{x:Static resx:Resources.sure}"
                                                     Foreground="White" />
                                                 <TextBox
+                                                    x:Name="hedefSure"
                                                     Grid.Row="2"
                                                     Grid.Column="1"
                                                     Width="40"
@@ -199,6 +201,7 @@
                                                         Content="{x:Static resx:Resources.G1degeri}"
                                                         Foreground="White" />
                                                     <TextBox
+                                                        x:Name="hedefBaca1"
                                                         Grid.Column="0"
                                                         Width="50"
                                                         Height="25"
@@ -215,6 +218,7 @@
                                                         Content="{x:Static resx:Resources.G2Degeri}"
                                                         Foreground="White" />
                                                     <TextBox
+                                                        x:Name="hedefBaca2"
                                                         Grid.Column="1"
                                                         Width="50"
                                                         Height="25"

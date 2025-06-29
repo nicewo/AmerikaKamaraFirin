@@ -135,11 +135,6 @@ namespace AmerikaKamaraFirin.View
                 DragMove();
         }
 
-        private void Window_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.Escape)
-                this.Close();
-        }
 
         private void Keyboard_GotFocus(object sender, RoutedEventArgs e)
         {
@@ -157,7 +152,20 @@ namespace AmerikaKamaraFirin.View
         {
             if (sender is TextBox txb)
             {
-                num = new Numpad(txb.Text,0,1600);
+                int maxx = 1000;
+                if(txb.Name == "txtYeniSicaklik1") maxx = 1600;
+                else if(txb.Name == "txtYeniSicaklik2") maxx = 1600;
+                else if(txb.Name == "txtYeniSure") maxx = 1200;
+                else if(txb.Name == "txtYeniBaca1") maxx = 100;
+                else if(txb.Name == "txtYeniBaca2") maxx = 100;
+                else if(txb.Name == "hedefTemp1") maxx = 1600;
+                else if(txb.Name == "hedefTemp2") maxx = 1600;
+                else if(txb.Name == "hedefSure") maxx = 1200;
+                else if(txb.Name == "hedefBaca1") maxx = 100;
+                else if(txb.Name == "hedefBaca2") maxx = 100;
+
+
+                num = new Numpad(txb.Text, 0, maxx);
                 if (num.ShowDialog() == true)
                 {
                     txb.Text = num.GirilenMetin;

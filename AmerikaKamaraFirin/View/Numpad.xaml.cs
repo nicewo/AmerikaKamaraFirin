@@ -19,36 +19,13 @@ namespace AmerikaKamaraFirin.View
             lbl_min_value.Content = minValue.ToString();
             lbl_max_value.Content = maxValue.ToString();
             KeyText.Text = str;
-        }
-
-        private async void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            await Task.Delay(100); // dokunmatik cihazlarda güvenli başlatma
-            KeyText.Focus();
             KeyText.SelectAll();
         }
 
-        private void Window_TouchDown(object sender, TouchEventArgs e)
-        {
-            this.Focus();
-            KeyText.Focus();
-        }
 
         private void Close_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
-        }
-
-        private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            if (e.LeftButton == MouseButtonState.Pressed)
-                DragMove();
-        }
-
-        private void Window_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.Escape)
-                this.Close();
         }
 
         private void Key_Click(object sender, RoutedEventArgs e)
@@ -100,18 +77,6 @@ namespace AmerikaKamaraFirin.View
             {
                 lbl_Error.Content = AmerikaKamaraFirin.Resources.OutOfRange;
             }
-        }
-
-        private bool isClosing = false;
-        protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
-        {
-            isClosing = true;
-            base.OnClosing(e);
-        }
-
-        private void Window_Deactivated(object sender, EventArgs e)
-        {
-            // istersen aktifken kapanmasını yine açarsın
         }
     }
 }

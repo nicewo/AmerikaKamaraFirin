@@ -11,12 +11,6 @@
     Height="450"
     AllowsTransparency="True"
     Background="Transparent"
-    Deactivated="Window_Deactivated"
-    IsManipulationEnabled="False"
-    KeyDown="Window_KeyDown"
-    Loaded="Window_Loaded"
-    MouseLeftButtonDown="Window_MouseLeftButtonDown"
-    TouchDown="Window_TouchDown"
     WindowStartupLocation="CenterScreen"
     WindowStyle="None"
     mc:Ignorable="d">
@@ -44,14 +38,6 @@
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="#555" />
-                </Trigger>
-                <Trigger Property="IsPressed" Value="True">
-                    <Setter Property="Background" Value="#777" />
-                </Trigger>
-            </Style.Triggers>
         </Style>
     </Window.Resources>
 
