@@ -56,51 +56,97 @@ namespace AmerikaKamaraFirin.View
 
         public static int GetSetting(string name)
         {
-            if (!File.Exists(filePath))
+            try
             {
+                if (!File.Exists(filePath))
+                {
+                    var docw = new XDocument(
+                        new XElement("Settings",
+                            new XElement("Damper1", 100),
+                            new XElement("Damper2", 100),
+                            new XElement("MinTemp", 500),
+                            new XElement("Frekans", 50),
+                            new XElement("TempFark", 15)
+                        )
+                    );
+                    docw.Save(filePath);
+                }
 
-                var docw = new XDocument(
-                    new XElement("Settings",
-                        new XElement("Damper1", 100),
-                        new XElement("Damper2", 100),
-                        new XElement("MinTemp", 500),
-                        new XElement("Frekans", 50),
-                        new XElement("TempFark", 15)
-                    )
-                );
-                docw.Save(filePath);
+                var doc = XDocument.Load(filePath);
 
+                // İstenen eleman eksikse varsayılanla ekle
+                if (doc.Root.Element(name) == null)
+                {
+                    int defaultValue = name switch
+                    {
+                        "Damper1" => 100,
+                        "Damper2" => 100,
+                        "MinTemp" => 500,
+                        "Frekans" => 50,
+                        "TempFark" => 15,
+                        _ => 0
+                    };
+                    doc.Root.Add(new XElement(name, defaultValue));
+                    doc.Save(filePath);
+                }
+
+                var element = doc.Root.Element(name);
+                return element != null && int.TryParse(element.Value, out int result) ? result : 0;
             }
-            var doc = XDocument.Load(filePath);
-            var element = doc.Root.Element(name);
-            return element != null && int.TryParse(element.Value, out int result) ? result : 0;
+            catch
+            {
+                return 0;
+            }
         }
         public static void SetSetting(string name, int value)
         {
-            if (!File.Exists(filePath))
+            try
             {
+                if (!File.Exists(filePath))
+                {
+                    var docw = new XDocument(
+                        new XElement("Settings",
+                            new XElement("Damper1", 100),
+                            new XElement("Damper2", 100),
+                            new XElement("MinTemp", 500),
+                            new XElement("Frekans", 50),
+                            new XElement("TempFark", 15)
+                        )
+                    );
+                    docw.Save(filePath);
+                }
 
-                var docw = new XDocument(
-                    new XElement("Settings",
-                        new XElement("Damper1", 100),
-                        new XElement("Damper2", 100),
-                        new XElement("MinTemp", 500),
-                        new XElement("Frekans", 50),
-                        new XElement("TempFark", 15)
-                    )
-                );
-                docw.Save(filePath);
+                var doc = XDocument.Load(filePath);
 
+                // Gerekli tüm default ayarların olup olmadığını kontrol et, eksikleri ekle
+                var defaultSettings = new Dictionary<string, int>
+        {
+            { "Damper1", 100 },
+            { "Damper2", 100 },
+            { "MinTemp", 500 },
+            { "Frekans", 50 },
+            { "TempFark", 15 }
+        };
+
+                foreach (var kvp in defaultSettings)
+                {
+                    if (doc.Root.Element(kvp.Key) == null)
+                        doc.Root.Add(new XElement(kvp.Key, kvp.Value));
+                }
+
+                // Çağrılan parametreyi ayarla (varsa güncelle, yoksa ekle)
+                var element = doc.Root.Element(name);
+                if (element == null)
+                    doc.Root.Add(new XElement(name, value.ToString()));
+                else
+                    element.Value = value.ToString();
+
+                doc.Save(filePath);
             }
-            var doc = XDocument.Load(filePath);
-            var element = doc.Root.Element(name);
-
-            if (element == null)
-                doc.Root.Add(new XElement(name, value.ToString()));
-            else
-                element.Value = value.ToString();
-
-            doc.Save(filePath);
+            catch
+            {
+                // Hataları sessizce yut, istenirse loglanabilir
+            }
         }
 
 

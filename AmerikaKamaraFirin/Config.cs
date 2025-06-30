@@ -13,7 +13,7 @@ namespace AmerikaKamaraFirin
         public static int
             PlcStatu = 0;
         public static string
-            PlcIP = "192.168.0.1";
+            PlcIP = "192.168.10.5";
 
         public static void LoadConfig()
         {
