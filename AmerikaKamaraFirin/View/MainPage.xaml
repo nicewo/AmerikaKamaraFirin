@@ -138,6 +138,14 @@
                 VerticalAlignment="Top"
                 Source="/View/klepeMerkez.png"
                 Stretch="Fill" />
+            <Label
+                x:Name="lblDamper1"
+                Grid.Column="2"
+                Margin="39,88,339,215"
+                Padding="0"
+                Content="0"
+                FontWeight="Bold"
+                Foreground="Red" />
 
             <Image
                 x:Name="SagKlepe"
@@ -163,6 +171,14 @@
                 VerticalAlignment="Top"
                 Source="/View/klepeMerkez.png"
                 Stretch="Fill" />
+            <Label
+                x:Name="lblDamper2"
+                Grid.Column="2"
+                Margin="340,88,38,215"
+                Padding="0"
+                Content="0"
+                FontWeight="Bold"
+                Foreground="Red" />
 
         </Grid>
         <Grid Grid.Row="2">

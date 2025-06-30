@@ -160,13 +160,13 @@ namespace AmerikaKamaraFirin.View
             var polyline = new Polyline
             {
                 Stroke = Brushes.LightGreen,
-                StrokeThickness = 3,
+                StrokeThickness = 1,
                 StrokeLineJoin = PenLineJoin.Round
             };
             var polyline2 = new Polyline
             {
                 Stroke = Brushes.LightSkyBlue,
-                StrokeThickness = 3,
+                StrokeThickness = 1,
                 StrokeLineJoin = PenLineJoin.Round
             };
 
@@ -273,7 +273,7 @@ namespace AmerikaKamaraFirin.View
             {
                 Stroke = Brushes.LightGreen,
                 StrokeLineJoin = PenLineJoin.Round,
-                StrokeThickness = 3,
+                StrokeThickness = 1,
                 Points = new PointCollection
         {
             new Point(0, 80),

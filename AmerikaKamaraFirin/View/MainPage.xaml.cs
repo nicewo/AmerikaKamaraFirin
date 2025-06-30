@@ -236,6 +236,7 @@ namespace AmerikaKamaraFirin.View
             TimeSpan elapsedstep = TimeSpan.FromSeconds(Plc.r_total_elapsed_time);
 
             ElapsedTime.Content = $"{AmerikaKamaraFirin.Resources.gecenZaman} : {elapsed.Hours:D2}:{elapsed.Minutes:D2}:{elapsed.Seconds:D2}";
+            ElapsedTimeStep.Content = $"{AmerikaKamaraFirin.Resources.recipegecenZaman} : {elapsedstep.Hours:D2}:{elapsedstep.Minutes:D2}:{elapsedstep.Seconds:D2}";
 
             if (Plc.r_solKapiAssada && Plc.r_solKapiKapali)
             {
@@ -348,9 +349,10 @@ namespace AmerikaKamaraFirin.View
             if (Plc.r_solKapiAssada) solUpDown.LeftButtonBackground = Brushes.Gray;
 
 
-            SolKlepeRotate.Angle = (Plc.w_damper3 / 2) * -1;
-            SagKlepeRotate.Angle = (Plc.w_damper4 / 2);
-
+            SolKlepeRotate.Angle = (Plc.r_damper1 / 2) * -1;
+            SagKlepeRotate.Angle = (Plc.r_damper3 / 2);
+            lblDamper1.Content = Plc.r_damper1.ToString() + " %";
+            lblDamper2.Content = Plc.r_damper3.ToString() + " %";
 
 
 
@@ -424,7 +426,7 @@ namespace AmerikaKamaraFirin.View
             var polyline = new Polyline
             {
                 Stroke = Brushes.LightGreen,
-                StrokeThickness = 3,
+                StrokeThickness = 1,
                 StrokeLineJoin = PenLineJoin.Round
             };
 
@@ -451,10 +453,10 @@ namespace AmerikaKamaraFirin.View
             trendGraph.Children.Add(polyline); // yeni çizim
 
             polylineLiveTemp1.Stroke = Brushes.Red;
-            polylineLiveTemp1.StrokeThickness = 2;
+            polylineLiveTemp1.StrokeThickness = 1;
 
             polylineLiveTemp2.Stroke = Brushes.Orange;
-            polylineLiveTemp2.StrokeThickness = 2;
+            polylineLiveTemp2.StrokeThickness = 1;
 
             trendGraph.Children.Add(polylineLiveTemp1);
             trendGraph.Children.Add(polylineLiveTemp2);
@@ -465,7 +467,7 @@ namespace AmerikaKamaraFirin.View
             var polyline2 = new Polyline
             {
                 Stroke = Brushes.LightSkyBlue,
-                StrokeThickness = 3,
+                StrokeThickness = 1,
                 StrokeLineJoin = PenLineJoin.Round
             };
 
