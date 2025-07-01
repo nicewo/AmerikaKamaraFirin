@@ -28,11 +28,8 @@ namespace AmerikaKamaraFirin.View
     {
         public static string RecipesFolder => Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Recipes");
         static string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "settings.xml");
-        bool ilkokumatamam = true;
-        int damperSay = 0;
         private Polyline polylineLiveTemp1 = new Polyline();
         private Polyline polylineLiveTemp2 = new Polyline();
-        private double realtimeNow = 0;
         Numpad num;
 
 
@@ -40,14 +37,15 @@ namespace AmerikaKamaraFirin.View
         public MainPage()
         {
             InitializeComponent();
-            LoadRecipe();
-            CreateTrendCanvas();
 
         }
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             txb_damper1.Text = GetSetting("Damper1").ToString();
             txb_damper2.Text = GetSetting("Damper2").ToString();
+
+            LoadRecipe();
+            CreateTrendCanvas();
 
             LoadLiveDataFromJson(); // geri yükleme
             DrawOldDataOnGraph();   // geçmiş grafiği çiz
@@ -220,15 +218,28 @@ namespace AmerikaKamaraFirin.View
                 lblG1Akim.Content = Plc.r_akim1Ort.ToString() + " A";
                 lblG2Akim.Content = Plc.r_akim2Ort.ToString() + " A";
 
+                comboBox.IsEnabled = false;
+                btnReceteSec.IsEnabled = false;
+
             }
             else
             {
-                MachineStatu.Content = AmerikaKamaraFirin.Resources.Machine_Statu + " " + AmerikaKamaraFirin.Resources.durduruldu;
-                MachineStatu.Foreground = new SolidColorBrush(Color.FromArgb(255, 255, 0, 0));
-                ElapsedTime.Visibility = Visibility.Hidden;
-                ElapsedTimeStep.Visibility = Visibility.Hidden;
-
                 txb_damper1.IsEnabled = true; txb_damper2.IsEnabled = true;
+                if (Plc.r_total_elapsed_time == 0)
+                {
+                    MachineStatu.Content = AmerikaKamaraFirin.Resources.Machine_Statu + " " + AmerikaKamaraFirin.Resources.durduruldu;
+                    MachineStatu.Foreground = new SolidColorBrush(Color.FromArgb(255, 255, 0, 0));
+
+                    ElapsedTime.Visibility = Visibility.Hidden;
+                    ElapsedTimeStep.Visibility = Visibility.Hidden;
+                    comboBox.IsEnabled = true;
+                    btnReceteSec.IsEnabled = true;
+                }
+                else
+                {
+                    MachineStatu.Content = AmerikaKamaraFirin.Resources.Machine_Statu + " " + AmerikaKamaraFirin.Resources.durakladi;
+                    MachineStatu.Foreground = new SolidColorBrush(Color.FromArgb(255, 255, 255, 0));
+                }
 
             }
 
@@ -413,7 +424,14 @@ namespace AmerikaKamaraFirin.View
                     MessageBox.Show($"{AmerikaKamaraFirin.Resources.recete_okunurken_hata_olustu}:\n{ex.Message}");
                 }
             }
-            comboBox.SelectedIndex = 0;
+            if (comboBox.Items.Count > Globals.comboIndex)
+            {
+                comboBox.SelectedIndex = Globals.comboIndex;
+            }
+            else
+            {
+                comboBox.SelectedIndex = 0;
+            }
         }
         public void CreateTrendCanvas()
         {
@@ -625,7 +643,7 @@ namespace AmerikaKamaraFirin.View
         private void btnReceteSec_Click(object sender, RoutedEventArgs e)
         {
             CreateTrendCanvas();
-
+            Globals.comboIndex = comboBox.SelectedIndex;
             Globals.LiveDataList.Clear();
             Globals.lastRecordedTime = 0;
             try { File.Delete(Globals.LiveDataJsonPath); } catch { }
@@ -684,7 +702,7 @@ namespace AmerikaKamaraFirin.View
                 {
                     string damper = "";
                     int plcByte = 30;
-                    if(txb.Name == "txb_damper1")
+                    if (txb.Name == "txb_damper1")
                     {
                         damper = "Damper1";
                         plcByte = 30;

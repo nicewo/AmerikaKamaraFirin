@@ -29,7 +29,8 @@ namespace AmerikaKamaraFirin
 
 
         public static int
-            ConnectTryCount = 3;
+            ConnectTryCount = 3,
+            comboIndex = 0;
 
             public static List<User> Users = new();
             public static User LoggedInUser;

@@ -9,37 +9,12 @@
     Title="Keyboard"
     Width="840"
     Height="450"
-    AllowsTransparency="True"
-    Background="Transparent"
+    Background="#000000"
+    Loaded="Window_Loaded"
+    ResizeMode="NoResize"
     WindowStartupLocation="CenterScreen"
     WindowStyle="None"
     mc:Ignorable="d">
-
-    <Window.Resources>
-        <Style x:Key="KeyboardButtonStyle" TargetType="Button">
-            <Setter Property="Margin" Value="5" />
-            <Setter Property="FontSize" Value="28" />
-            <Setter Property="FontWeight" Value="Bold" />
-            <Setter Property="Foreground" Value="White" />
-            <Setter Property="Background" Value="#333" />
-            <Setter Property="BorderBrush" Value="#666" />
-            <Setter Property="BorderThickness" Value="1" />
-            <Setter Property="Cursor" Value="Hand" />
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="Button">
-                        <Border
-                            Background="{TemplateBinding Background}"
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}"
-                            CornerRadius="8">
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
-                        </Border>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-    </Window.Resources>
 
     <Border
         Background="#7F000000"
@@ -70,7 +45,8 @@
                             Background="#FFCE2626"
                             Click="Close_Click"
                             Content="X"
-                            Foreground="White" />
+                            Foreground="White"
+                            PreviewTouchDown="Close_PreviewTouchDown" />
                     </Grid>
                 </Border>
 
@@ -100,174 +76,332 @@
 
                             <!--  0. Satır  -->
                             <Button
+                                Background="#FF162355"
                                 Click="Key_Click"
                                 Content="0"
-                                Style="{StaticResource KeyboardButtonStyle}" />
+                                FontSize="36"
+                                FontWeight="Bold"
+                                Foreground="White"
+                                PreviewTouchDown="Key_PreviewTouchDown" />
                             <Button
+                                Background="#FF162355"
                                 Click="Key_Click"
                                 Content="1"
-                                Style="{StaticResource KeyboardButtonStyle}" />
+                                FontSize="36"
+                                FontWeight="Bold"
+                                Foreground="White"
+                                PreviewTouchDown="Key_PreviewTouchDown" />
                             <Button
+                                Background="#FF162355"
                                 Click="Key_Click"
                                 Content="2"
-                                Style="{StaticResource KeyboardButtonStyle}" />
+                                FontSize="36"
+                                FontWeight="Bold"
+                                Foreground="White"
+                                PreviewTouchDown="Key_PreviewTouchDown" />
                             <Button
+                                Background="#FF162355"
                                 Click="Key_Click"
                                 Content="3"
-                                Style="{StaticResource KeyboardButtonStyle}" />
+                                FontSize="36"
+                                FontWeight="Bold"
+                                Foreground="White"
+                                PreviewTouchDown="Key_PreviewTouchDown" />
                             <Button
+                                Background="#FF162355"
                                 Click="Key_Click"
                                 Content="4"
-                                Style="{StaticResource KeyboardButtonStyle}" />
+                                FontSize="36"
+                                FontWeight="Bold"
+                                Foreground="White"
+                                PreviewTouchDown="Key_PreviewTouchDown" />
                             <Button
+                                Background="#FF162355"
                                 Click="Key_Click"
                                 Content="5"
-                                Style="{StaticResource KeyboardButtonStyle}" />
+                                FontSize="36"
+                                FontWeight="Bold"
+                                Foreground="White"
+                                PreviewTouchDown="Key_PreviewTouchDown" />
                             <Button
+                                Background="#FF162355"
                                 Click="Key_Click"
                                 Content="6"
-                                Style="{StaticResource KeyboardButtonStyle}" />
+                                FontSize="36"
+                                FontWeight="Bold"
+                                Foreground="White"
+                                PreviewTouchDown="Key_PreviewTouchDown" />
                             <Button
+                                Background="#FF162355"
                                 Click="Key_Click"
                                 Content="7"
-                                Style="{StaticResource KeyboardButtonStyle}" />
+                                FontSize="36"
+                                FontWeight="Bold"
+                                Foreground="White"
+                                PreviewTouchDown="Key_PreviewTouchDown" />
                             <Button
+                                Background="#FF162355"
                                 Click="Key_Click"
                                 Content="8"
-                                Style="{StaticResource KeyboardButtonStyle}" />
+                                FontSize="36"
+                                FontWeight="Bold"
+                                Foreground="White"
+                                PreviewTouchDown="Key_PreviewTouchDown" />
                             <Button
+                                Background="#FF162355"
                                 Click="Key_Click"
                                 Content="9"
-                                Style="{StaticResource KeyboardButtonStyle}" />
+                                FontSize="36"
+                                FontWeight="Bold"
+                                Foreground="White"
+                                PreviewTouchDown="Key_PreviewTouchDown" />
 
 
                             <!--  1. Satır  -->
                             <Button
+                                Background="#FF162355"
                                 Click="Key_Click"
                                 Content="Q"
-                                Style="{StaticResource KeyboardButtonStyle}" />
+                                FontSize="36"
+                                FontWeight="Bold"
+                                Foreground="White"
+                                PreviewTouchDown="Key_PreviewTouchDown" />
                             <Button
+                                Background="#FF162355"
                                 Click="Key_Click"
                                 Content="W"
-                                Style="{StaticResource KeyboardButtonStyle}" />
+                                FontSize="36"
+                                FontWeight="Bold"
+                                Foreground="White"
+                                PreviewTouchDown="Key_PreviewTouchDown" />
                             <Button
+                                Background="#FF162355"
                                 Click="Key_Click"
                                 Content="E"
-                                Style="{StaticResource KeyboardButtonStyle}" />
+                                FontSize="36"
+                                FontWeight="Bold"
+                                Foreground="White"
+                                PreviewTouchDown="Key_PreviewTouchDown" />
                             <Button
+                                Background="#FF162355"
                                 Click="Key_Click"
                                 Content="R"
-                                Style="{StaticResource KeyboardButtonStyle}" />
+                                FontSize="36"
+                                FontWeight="Bold"
+                                Foreground="White"
+                                PreviewTouchDown="Key_PreviewTouchDown" />
                             <Button
+                                Background="#FF162355"
                                 Click="Key_Click"
                                 Content="T"
-                                Style="{StaticResource KeyboardButtonStyle}" />
+                                FontSize="36"
+                                FontWeight="Bold"
+                                Foreground="White"
+                                PreviewTouchDown="Key_PreviewTouchDown" />
                             <Button
+                                Background="#FF162355"
                                 Click="Key_Click"
                                 Content="Y"
-                                Style="{StaticResource KeyboardButtonStyle}" />
+                                FontSize="36"
+                                FontWeight="Bold"
+                                Foreground="White"
+                                PreviewTouchDown="Key_PreviewTouchDown" />
                             <Button
+                                Background="#FF162355"
                                 Click="Key_Click"
                                 Content="U"
-                                Style="{StaticResource KeyboardButtonStyle}" />
+                                FontSize="36"
+                                FontWeight="Bold"
+                                Foreground="White"
+                                PreviewTouchDown="Key_PreviewTouchDown" />
                             <Button
+                                Background="#FF162355"
                                 Click="Key_Click"
                                 Content="I"
-                                Style="{StaticResource KeyboardButtonStyle}" />
+                                FontSize="36"
+                                FontWeight="Bold"
+                                Foreground="White"
+                                PreviewTouchDown="Key_PreviewTouchDown" />
                             <Button
+                                Background="#FF162355"
                                 Click="Key_Click"
                                 Content="O"
-                                Style="{StaticResource KeyboardButtonStyle}" />
+                                FontSize="36"
+                                FontWeight="Bold"
+                                Foreground="White"
+                                PreviewTouchDown="Key_PreviewTouchDown" />
                             <Button
+                                Background="#FF162355"
                                 Click="Key_Click"
                                 Content="P"
-                                Style="{StaticResource KeyboardButtonStyle}" />
+                                FontSize="36"
+                                FontWeight="Bold"
+                                Foreground="White"
+                                PreviewTouchDown="Key_PreviewTouchDown" />
 
                             <!--  2. Satır  -->
                             <Button
+                                Background="#FF162355"
                                 Click="Key_Click"
                                 Content="A"
-                                Style="{StaticResource KeyboardButtonStyle}" />
+                                FontSize="36"
+                                FontWeight="Bold"
+                                Foreground="White"
+                                PreviewTouchDown="Key_PreviewTouchDown" />
                             <Button
+                                Background="#FF162355"
                                 Click="Key_Click"
                                 Content="S"
-                                Style="{StaticResource KeyboardButtonStyle}" />
+                                FontSize="36"
+                                FontWeight="Bold"
+                                Foreground="White"
+                                PreviewTouchDown="Key_PreviewTouchDown" />
                             <Button
+                                Background="#FF162355"
                                 Click="Key_Click"
                                 Content="D"
-                                Style="{StaticResource KeyboardButtonStyle}" />
+                                FontSize="36"
+                                FontWeight="Bold"
+                                Foreground="White"
+                                PreviewTouchDown="Key_PreviewTouchDown" />
                             <Button
+                                Background="#FF162355"
                                 Click="Key_Click"
                                 Content="F"
-                                Style="{StaticResource KeyboardButtonStyle}" />
+                                FontSize="36"
+                                FontWeight="Bold"
+                                Foreground="White"
+                                PreviewTouchDown="Key_PreviewTouchDown" />
                             <Button
+                                Background="#FF162355"
                                 Click="Key_Click"
                                 Content="G"
-                                Style="{StaticResource KeyboardButtonStyle}" />
+                                FontSize="36"
+                                FontWeight="Bold"
+                                Foreground="White"
+                                PreviewTouchDown="Key_PreviewTouchDown" />
                             <Button
+                                Background="#FF162355"
                                 Click="Key_Click"
                                 Content="H"
-                                Style="{StaticResource KeyboardButtonStyle}" />
+                                FontSize="36"
+                                FontWeight="Bold"
+                                Foreground="White"
+                                PreviewTouchDown="Key_PreviewTouchDown" />
                             <Button
+                                Background="#FF162355"
                                 Click="Key_Click"
                                 Content="J"
-                                Style="{StaticResource KeyboardButtonStyle}" />
+                                FontSize="36"
+                                FontWeight="Bold"
+                                Foreground="White"
+                                PreviewTouchDown="Key_PreviewTouchDown" />
                             <Button
+                                Background="#FF162355"
                                 Click="Key_Click"
                                 Content="K"
-                                Style="{StaticResource KeyboardButtonStyle}" />
+                                FontSize="36"
+                                FontWeight="Bold"
+                                Foreground="White"
+                                PreviewTouchDown="Key_PreviewTouchDown" />
                             <Button
+                                Background="#FF162355"
                                 Click="Key_Click"
                                 Content="L"
-                                Style="{StaticResource KeyboardButtonStyle}" />
+                                FontSize="36"
+                                FontWeight="Bold"
+                                Foreground="White"
+                                PreviewTouchDown="Key_PreviewTouchDown" />
                             <Button
+                                Background="#FF162355"
                                 Click="Backspace_Click"
                                 Content="←"
+                                FontSize="36"
+                                FontWeight="Bold"
                                 Foreground="#FFF90000"
-                                Style="{StaticResource KeyboardButtonStyle}" />
+                                PreviewTouchDown="Backspace_PreviewTouchDown" />
 
                             <!--  3. Satır  -->
                             <Button
+                                Background="#FF162355"
                                 Click="Key_Click"
                                 Content="Z"
-                                Style="{StaticResource KeyboardButtonStyle}" />
+                                FontSize="36"
+                                FontWeight="Bold"
+                                Foreground="White"
+                                PreviewTouchDown="Key_PreviewTouchDown" />
                             <Button
+                                Background="#FF162355"
                                 Click="Key_Click"
                                 Content="X"
-                                Style="{StaticResource KeyboardButtonStyle}" />
+                                FontSize="36"
+                                FontWeight="Bold"
+                                Foreground="White"
+                                PreviewTouchDown="Key_PreviewTouchDown" />
                             <Button
+                                Background="#FF162355"
                                 Click="Key_Click"
                                 Content="C"
-                                Style="{StaticResource KeyboardButtonStyle}" />
+                                FontSize="36"
+                                FontWeight="Bold"
+                                Foreground="White"
+                                PreviewTouchDown="Key_PreviewTouchDown" />
                             <Button
+                                Background="#FF162355"
                                 Click="Key_Click"
                                 Content="V"
-                                Style="{StaticResource KeyboardButtonStyle}" />
+                                FontSize="36"
+                                FontWeight="Bold"
+                                Foreground="White"
+                                PreviewTouchDown="Key_PreviewTouchDown" />
                             <Button
+                                Background="#FF162355"
                                 Click="Key_Click"
                                 Content="B"
-                                Style="{StaticResource KeyboardButtonStyle}" />
+                                FontSize="36"
+                                FontWeight="Bold"
+                                Foreground="White"
+                                PreviewTouchDown="Key_PreviewTouchDown" />
                             <Button
+                                Background="#FF162355"
                                 Click="Key_Click"
                                 Content="N"
-                                Style="{StaticResource KeyboardButtonStyle}" />
+                                FontSize="36"
+                                FontWeight="Bold"
+                                Foreground="White"
+                                PreviewTouchDown="Key_PreviewTouchDown" />
                             <Button
+                                Background="#FF162355"
                                 Click="Key_Click"
                                 Content="M"
-                                Style="{StaticResource KeyboardButtonStyle}" />
+                                FontSize="36"
+                                FontWeight="Bold"
+                                Foreground="White"
+                                PreviewTouchDown="Key_PreviewTouchDown" />
                             <Button
+                                Background="#FF162355"
                                 Click="Key_Click"
                                 Content="."
-                                Style="{StaticResource KeyboardButtonStyle}" />
+                                FontSize="36"
+                                FontWeight="Bold"
+                                Foreground="White"
+                                PreviewTouchDown="Key_PreviewTouchDown" />
                             <Button
+                                Background="#FF162355"
                                 Click="Key_Click"
                                 Content=" "
-                                Style="{StaticResource KeyboardButtonStyle}" />
+                                FontSize="36"
+                                FontWeight="Bold"
+                                Foreground="White"
+                                PreviewTouchDown="Key_PreviewTouchDown" />
                             <Button
+                                Background="#FF162355"
                                 Click="Enter_Click"
                                 Content="OK"
+                                FontSize="36"
+                                FontWeight="Bold"
                                 Foreground="#FF32EA00"
-                                Style="{StaticResource KeyboardButtonStyle}" />
+                                PreviewTouchDown="Enter_PreviewTouchDown" />
                         </UniformGrid>
                     </Grid>
 

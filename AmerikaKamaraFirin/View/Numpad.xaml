@@ -7,177 +7,188 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:resx="clr-namespace:AmerikaKamaraFirin"
     Title="Numpad"
-    Width="840"
-    Height="508"
-    AllowsTransparency="True"
-    Background="Transparent"
+    Width="844"
+    Height="573"
+    VerticalAlignment="Top"
+    Background="#000000"
+    Focusable="True"
     Foreground="White"
+    Loaded="Window_Loaded"
+    ResizeMode="NoResize"
+    Topmost="True"
     WindowStartupLocation="CenterScreen"
     WindowStyle="None"
     mc:Ignorable="d">
 
-    <Window.Resources>
-        <Style x:Key="KeyboardButtonStyle" TargetType="Button">
-            <Setter Property="Margin" Value="5" />
-            <Setter Property="FontSize" Value="28" />
-            <Setter Property="FontWeight" Value="Bold" />
-            <Setter Property="Foreground" Value="White" />
-            <Setter Property="Background" Value="#333" />
-            <Setter Property="BorderBrush" Value="#666" />
-            <Setter Property="BorderThickness" Value="1" />
-            <Setter Property="Cursor" Value="Hand" />
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="Button">
-                        <Border
-                            Background="{TemplateBinding Background}"
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}"
-                            CornerRadius="8">
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
-                        </Border>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-    </Window.Resources>
 
-    <Border
-        Background="#7F000000"
-        BorderBrush="Blue"
-        BorderThickness="2">
-        <Viewbox Stretch="Fill">
-            <Grid
-                Width="640"
-                Height="550"
-                Background="Black">
-                <Border Opacity="0.5">
-                    <Border.Background>
-                        <ImageBrush ImageSource="/View/images/background2.png" Stretch="Fill" />
-                    </Border.Background>
-                </Border>
+    <Grid
+        Width="844"
+        Height="573"
+        Background="Black">
 
-                <Border
-                    Height="35"
-                    VerticalAlignment="Top"
-                    Background="#FF000319">
-                    <Grid>
-                        <Button
-                            Width="38"
-                            Height="35"
-                            HorizontalAlignment="Right"
-                            VerticalAlignment="Top"
-                            Background="#FFCE2626"
-                            Click="Close_Click"
-                            Content="X"
-                            Foreground="White" />
-                    </Grid>
-                </Border>
+        <Grid>
+            <Button
+                Width="84"
+                Height="51"
+                Margin="760,0,0,0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Background="#FFCE2626"
+                Click="Close_Click"
+                Content="X"
+                Foreground="White"
+                PreviewTouchDown="Close_PreviewTouchDown" />
+        </Grid>
 
-                <Label
-                    x:Name="lbl_Error"
-                    Margin="58,0,66,507"
-                    FontSize="24"
-                    Foreground="Red" />
+        <Label
+            x:Name="lbl_Error"
+            Margin="58,0,66,507"
+            FontSize="24"
+            Foreground="Red" />
 
-                <Label
-                    x:Name="lbl_min"
-                    Margin="149,107,423,400"
-                    Content="Min : "
-                    FontSize="24"
-                    Foreground="White" />
-                <Label
-                    x:Name="lbl_min_value"
-                    Margin="222,107,350,400"
-                    Content="0"
-                    FontSize="24"
-                    Foreground="White" />
-                <Label
-                    x:Name="lbl_max"
-                    Margin="349,107,223,400"
-                    Content="Max : "
-                    FontSize="24"
-                    Foreground="White" />
-                <Label
-                    x:Name="lbl_max_value"
-                    Margin="417,107,141,400"
-                    Content="100"
-                    FontSize="24"
-                    Foreground="White" />
+        <Label
+            x:Name="lbl_min"
+            Margin="149,107,423,400"
+            Content="Min : "
+            FontSize="24"
+            Foreground="White" />
+        <Label
+            x:Name="lbl_min_value"
+            Margin="222,107,350,400"
+            Content="0"
+            FontSize="24"
+            Foreground="White" />
+        <Label
+            x:Name="lbl_max"
+            Margin="475,107,97,400"
+            Content="Max : "
+            FontSize="24"
+            Foreground="White" />
+        <Label
+            x:Name="lbl_max_value"
+            Margin="543,107,15,400"
+            Content="100"
+            FontSize="24"
+            Foreground="White" />
 
-                <StackPanel Margin="0">
-                    <TextBox
-                        x:Name="KeyText"
-                        Width="500"
-                        Height="50"
-                        Margin="0,50,0,0"
-                        HorizontalAlignment="Center"
-                        FontSize="25"
+        <StackPanel Margin="0">
+            <TextBox
+                x:Name="KeyText"
+                Width="500"
+                Height="50"
+                Margin="0,50,0,0"
+                HorizontalAlignment="Center"
+                Focusable="True"
+                FontSize="25"
+                FontWeight="Bold"
+                Foreground="#FF100202"
+                Text="" />
+
+            <Grid Height="452">
+                <UniformGrid
+                    Width="820"
+                    Margin="0,57,0,0"
+                    HorizontalAlignment="Center"
+                    Columns="3"
+                    Rows="4">
+                    <Button
+                        Background="#FF12344E"
+                        Click="Key_Click"
+                        Content="1"
+                        FontSize="36"
                         FontWeight="Bold"
-                        Foreground="#FF100202"
-                        Text="" />
-
-                    <Grid Height="452">
-                        <UniformGrid
-                            Width="620"
-                            Margin="0,57,0,0"
-                            HorizontalAlignment="Center"
-                            Columns="3"
-                            Rows="4">
-                            <Button
-                                Click="Key_Click"
-                                Content="1"
-                                Style="{StaticResource KeyboardButtonStyle}" />
-                            <Button
-                                Click="Key_Click"
-                                Content="2"
-                                Style="{StaticResource KeyboardButtonStyle}" />
-                            <Button
-                                Click="Key_Click"
-                                Content="3"
-                                Style="{StaticResource KeyboardButtonStyle}" />
-                            <Button
-                                Click="Key_Click"
-                                Content="4"
-                                Style="{StaticResource KeyboardButtonStyle}" />
-                            <Button
-                                Click="Key_Click"
-                                Content="5"
-                                Style="{StaticResource KeyboardButtonStyle}" />
-                            <Button
-                                Click="Key_Click"
-                                Content="6"
-                                Style="{StaticResource KeyboardButtonStyle}" />
-                            <Button
-                                Click="Key_Click"
-                                Content="7"
-                                Style="{StaticResource KeyboardButtonStyle}" />
-                            <Button
-                                Click="Key_Click"
-                                Content="8"
-                                Style="{StaticResource KeyboardButtonStyle}" />
-                            <Button
-                                Click="Key_Click"
-                                Content="9"
-                                Style="{StaticResource KeyboardButtonStyle}" />
-                            <Button
-                                Click="Backspace_Click"
-                                Content="←"
-                                Foreground="Red"
-                                Style="{StaticResource KeyboardButtonStyle}" />
-                            <Button
-                                Click="Key_Click"
-                                Content="0"
-                                Style="{StaticResource KeyboardButtonStyle}" />
-                            <Button
-                                Click="Enter_Click"
-                                Content="OK"
-                                Foreground="Lime"
-                                Style="{StaticResource KeyboardButtonStyle}" />
-                        </UniformGrid>
-                    </Grid>
-                </StackPanel>
+                        Foreground="#FFF7F1F1"
+                        PreviewTouchDown="Key_PreviewTouchDown" />
+                    <Button
+                        Background="#FF12344E"
+                        Click="Key_Click"
+                        Content="2"
+                        FontSize="36"
+                        FontWeight="Bold"
+                        Foreground="#FFF7F1F1"
+                        PreviewTouchDown="Key_PreviewTouchDown" />
+                    <Button
+                        Background="#FF12344E"
+                        Click="Key_Click"
+                        Content="3"
+                        FontSize="36"
+                        FontWeight="Bold"
+                        Foreground="#FFF7F1F1"
+                        PreviewTouchDown="Key_PreviewTouchDown" />
+                    <Button
+                        Background="#FF12344E"
+                        Click="Key_Click"
+                        Content="4"
+                        FontSize="36"
+                        FontWeight="Bold"
+                        Foreground="#FFF7F1F1"
+                        PreviewTouchDown="Key_PreviewTouchDown" />
+                    <Button
+                        Background="#FF12344E"
+                        Click="Key_Click"
+                        Content="5"
+                        FontSize="36"
+                        FontWeight="Bold"
+                        Foreground="#FFF7F1F1"
+                        PreviewTouchDown="Key_PreviewTouchDown" />
+                    <Button
+                        Background="#FF12344E"
+                        Click="Key_Click"
+                        Content="6"
+                        FontSize="36"
+                        FontWeight="Bold"
+                        Foreground="#FFF7F1F1"
+                        PreviewTouchDown="Key_PreviewTouchDown" />
+                    <Button
+                        Background="#FF12344E"
+                        Click="Key_Click"
+                        Content="7"
+                        FontSize="36"
+                        FontWeight="Bold"
+                        Foreground="#FFF7F1F1"
+                        PreviewTouchDown="Key_PreviewTouchDown" />
+                    <Button
+                        Background="#FF12344E"
+                        Click="Key_Click"
+                        Content="8"
+                        FontSize="36"
+                        FontWeight="Bold"
+                        Foreground="#FFF7F1F1"
+                        PreviewTouchDown="Key_PreviewTouchDown" />
+                    <Button
+                        Background="#FF12344E"
+                        Click="Key_Click"
+                        Content="9"
+                        FontSize="36"
+                        FontWeight="Bold"
+                        Foreground="#FFF7F1F1"
+                        PreviewTouchDown="Key_PreviewTouchDown" />
+                    <Button
+                        Background="#FF12344E"
+                        Click="Backspace_Click"
+                        Content="←"
+                        FontSize="36"
+                        FontWeight="Bold"
+                        Foreground="Red"
+                        PreviewTouchDown="Backspace_PreviewTouchDown" />
+                    <Button
+                        Background="#FF12344E"
+                        Click="Key_Click"
+                        Content="0"
+                        FontSize="36"
+                        FontWeight="Bold"
+                        Foreground="#FFF7F1F1"
+                        PreviewTouchDown="Key_PreviewTouchDown" />
+                    <Button
+                        Background="#FF12344E"
+                        Click="Enter_Click"
+                        Content="OK"
+                        FontSize="36"
+                        FontWeight="Bold"
+                        Foreground="Lime"
+                        PreviewTouchDown="Enter_PreviewTouchDown" />
+                </UniformGrid>
             </Grid>
-        </Viewbox>
-    </Border>
+        </StackPanel>
+    </Grid>
 </Window>

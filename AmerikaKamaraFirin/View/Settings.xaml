@@ -16,14 +16,14 @@
     <Grid>
         <Label
             x:Name="lbl_frekans"
-            Margin="82,74,812,485"
+            Margin="80,74,814,485"
             Content="Pomp Speed"
             FontSize="20"
             FontWeight="Bold"
             Foreground="White" />
         <TextBox
             x:Name="txb_frekans"
-            Margin="82,124,812,407"
+            Margin="80,124,814,407"
             FontSize="50"
             FontWeight="Bold"
             PreviewMouseDown="PreviewMouseDown"
@@ -31,14 +31,14 @@
             TextWrapping="Wrap" />
         <Label
             x:Name="lbl_minTemp"
-            Margin="276,79,482,480"
+            Margin="360,79,398,480"
             Content="Min. Door Opening Temp."
             FontSize="20"
             FontWeight="Bold"
             Foreground="White" />
         <TextBox
             x:Name="txb_minTemp"
-            Margin="344,124,550,407"
+            Margin="428,124,466,407"
             FontSize="50"
             FontWeight="Bold"
             PreviewMouseDown="PreviewMouseDown"
@@ -46,18 +46,25 @@
             TextWrapping="Wrap" />
         <Label
             x:Name="lbl_tempFark"
-            Margin="568,79,190,480"
+            Margin="694,79,26,480"
             Content="Thermocouple Error Tolerance"
             FontSize="20"
             FontWeight="Bold"
             Foreground="White" />
         <TextBox
             x:Name="txb_tempFark"
-            Margin="636,124,258,407"
+            Margin="762,124,132,407"
             FontSize="50"
             FontWeight="Bold"
             PreviewMouseDown="PreviewMouseDown"
             Text="50"
             TextWrapping="Wrap" />
+        <Button
+            x:Name="button"
+            Margin="958,553,0,0"
+            Background="#00000000"
+            Click="button_Click"
+            Content="."
+            Foreground="White" />
     </Grid>
 </Page>

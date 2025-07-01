@@ -331,6 +331,15 @@ namespace AmerikaKamaraFirin {
         }
         
         /// <summary>
+        ///   Process paused benzeri yerelleştirilmiş bir dize arar.
+        /// </summary>
+        public static string durakladi {
+            get {
+                return ResourceManager.GetString("durakladi", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Stopping benzeri yerelleştirilmiş bir dize arar.
         /// </summary>
         public static string durduruldu {

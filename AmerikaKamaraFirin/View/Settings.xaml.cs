@@ -29,6 +29,10 @@ namespace AmerikaKamaraFirin.View
         }
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
+            lbl_minTemp.Visibility = Visibility.Hidden;
+            txb_minTemp.Visibility = Visibility.Hidden;
+            lbl_tempFark.Visibility = Visibility.Hidden;
+            txb_tempFark.Visibility = Visibility.Hidden;
 
             txb_frekans.Text = Plc.w_surucuFrekans.ToString();
             txb_minTemp.Text = Plc.w_minTemp.ToString();
@@ -103,6 +107,23 @@ namespace AmerikaKamaraFirin.View
                     txb.Text = num.GirilenMetin;
                 }
             }
+        }
+
+        private void button_Click(object sender, RoutedEventArgs e)
+        {
+                int max = 9999;
+                num = new Numpad("", 0, max);
+                if (num.ShowDialog() == true)
+                {
+                    if(num.GirilenMetin == "1453")
+                    {
+                        lbl_minTemp.Visibility = Visibility.Visible;
+                        txb_minTemp.Visibility = Visibility.Visible;
+                        lbl_tempFark.Visibility = Visibility.Visible;
+                        txb_tempFark.Visibility= Visibility.Visible;
+                    }
+                }
+            
         }
     }
 }
