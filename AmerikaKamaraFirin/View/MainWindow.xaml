@@ -84,7 +84,8 @@
                         Content="{x:Static resx:Resources.sirenSustur}"
                         FontSize="36"
                         FontWeight="Bold"
-                        Foreground="White">
+                        Foreground="White"
+                        Visibility="Hidden">
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
                                 <Border
@@ -271,7 +272,8 @@
             Margin="0,102,0,566"
             HorizontalAlignment="Center"
             IsError="True"
-            MouseLeftButtonDown="txbError_MouseLeftButtonDown" />
+            MouseLeftButtonDown="txbError_MouseLeftButtonDown"
+            Visibility="Hidden" />
         <Label
             x:Name="lbl_geriSayim"
             HorizontalAlignment="Center"
